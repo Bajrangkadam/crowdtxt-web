@@ -1,0 +1,226 @@
+
+
+<style type="text/css">
+
+
+
+
+/*Modal table*/
+
+#table1, #table2{
+	background-color: white;
+}
+
+    .table thead.nonya th.nonya:first-child {
+       border-top: 1px solid #dbdbdb;
+       border-right: 1px solid #dbdbdb;
+       border-left: 1px solid #dbdbdb;
+       border-bottom: 1px solid #dbdbdb;
+      }
+
+      .content1234{
+        
+      }
+
+
+    #table2{
+        display: none;
+    }
+
+    .pro{
+    	background-color: #EBF2F7;
+    }
+
+    .tab1{
+    	list-style-type: none;
+      
+    }
+
+    .featuresTitle{
+      list-style-type: none;
+      margin-left: -12%;
+      padding-top:10%;
+    }
+
+    .bluez, .bluez1, .bluez2{
+    	text-align: center;
+    }
+
+    .table-responsive{
+      border: 6px solid #5084B1;
+      border-radius: 6px;
+      background-color: white;
+      box-shadow: 2px 4px 15px #2D2D2D;
+    }
+    
+    #pricing{
+      margin-bottom: 0;
+    }
+
+    .featuresContent{
+      list-style-type: none;
+      padding-top:8%;
+      margin-left: 36%;
+    }
+
+    .btn-block1{
+      padding: 2% !important;
+      
+    }
+
+    .tableHeading{
+      font-weight: bold;
+    }
+
+    .mid-box1{display:block;}
+
+    .mid-box2{display:none;}
+
+
+
+	</style>
+
+	<div class="main" role="main">
+         <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <h3>Plan& Billing Details</h3>
+                            </div> <!-- .page-header End -->
+                            <div class="contents">
+                                <div class="row">
+                                    <div class="col-sm-12 cus-panels-with-pad pad-25">
+
+
+
+ 											<div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="plan-details box-set">
+                                                    <fieldset>
+                                                        <legend>Plan Details</legend>
+
+                                                        <!--  <div class="col-sm-6">
+                                                         	<h4><strong>Plan name </strong>- <span class="text-muted">{{planPlanName}}</span></h4>
+                                                         	<h4><strong>Plan start date </strong>- <span class="text-muted">02-02-2016</span></h4>
+                                                         </div>
+                                                         <div class="col-sm-6">
+                                                         	<h4><strong>Plan amount </strong>- <span class="text-muted">$9.99</span></h4>
+                                                        
+                                                        <h4><strong>Plan end date </strong>- <span class="text-muted">02-03-2016</span></h4>
+                                                         </div> -->
+                                                        <h5><strong>Plan name </strong>- <span class="text-muted">{{planPlanName}}</span></h5>
+                                                        <h5><strong>Plan amount </strong>- <span class="text-muted">{{planAmountPaid}}</span></h5>
+                                                        <h5><strong>Number of users </strong>- <span class="text-muted">{{planNoOfUsers}}</span></h5>
+                                                        <h5><strong>Subscription start date </strong>- <span class="text-muted">{{formatTimestampToDate(planStartDate)}}</span></h5>
+                                                        <h5><strong>Subscription expiry date </strong>- <span class="text-muted">{{formatTimestampToDate(planEndDate)}}</span></h5>
+                                                       <!--  <p class="text-muted">Renews automatically on <b>Oct 20, 2015</b></p> -->
+                                                       <legend></legend>
+                                                        <button type="button" class="sec-cus-buttons" ng-click="showPlanPage();" >Change Plan</button>
+                                                        <button type="button" class="sec-cus-buttons" ng-hide="planPlanName=='Free'" ng-click="renewPlan();" >Renew</button>
+                                                        <button type="button" class="sec-cus-buttons" ng-click="viewPlanHistory();" >View plan history</button>
+                                                    </fieldset>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class=" box-set">
+                                                    <fieldset>
+                                                        <legend>Recent Billing Activity</legend>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                 </div>
+
+
+
+                                 <div class="col-sm-12 cus-panels-with-pad pad-25" ng-show="viewCompanyPlanHistory">
+                                  <div class="text-right"><i class="fa fa-times fa-1x" ng-click="cancelPlanPage();"></i></div>
+
+                                    <div style="text-align:center;"><h2 class="heading12">Transaction history</h2></div>
+
+                                    <div class="table-responsive">          
+                                      <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th>Plan name</th>
+                                            <th>Amount paid</th>
+                                            <th>Transaction Id</th>
+                                            <th>Transaction date</th>
+                                            <th>Currency type</th>
+                                            <th>Payment status</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr ng-repeat="planss in plansHistorys">
+                                            <td>{{planss.planName}}</td>
+                                            <td>{{planss.amountPaid}}</td>
+                                            <td>{{planss.transactionId}}</td>
+                                            <td>{{formatTimestampToDate(planss.transactionDate)}}</td>
+                                            <td>{{planss.currencyType}}</td>
+                                            <td>{{planss.paymentStatus}}</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      </div>
+
+                                 </div>
+
+              <!-- Subscribe plan page -->
+              <div class="col-sm-12 cus-panels-with-pad pad-25" ng-show="showPlanDetails">
+              	<div class="text-right"><i class="fa fa-times fa-1x" ng-click="cancelPlanPage();"></i></div>
+                  <div style="text-align:center;"><h2 class="heading12">You can customize billing plan for more than 500 users.</h2>
+                     <p><a href=""><h4>Click here to contact sales</a></h4></p></div>
+
+                        <div style="margin-top:4%;">
+                            <div class="table-responsive">
+
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>Plan details</th>
+                                    <th>Amount</th>
+                                    <th> </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr ng-repeat="plans in planDetails" ng-if="plans.planName!='Free'">
+                                    <td><span class="label label-success">{{plans.planName}}</span><br>Upto {{plans.noOfUsers}} users</td>
+                                    <td>$ {{plans.planPrice}} / month<p>{{plans.noOfMsgs}} sms</p></td>
+                                    <td><button type="button" class="btn btn-success btn-block next" ng-if="(newKeyValue=='Y' && plans.planName=='Free')" ng-click="showAdminDetailPage($index);">Try for free</button><button type="button" class="btn btn-success btn-block next" ng-if="!(newKeyValue=='Y' && plans.planName=='Free')" ng-click="showAdminDetailPage($index);">Buy now</button></td>
+                                  </tr>
+                                  <!-- <tr>
+                                    <td>Upto 100 users</td>
+                                    <td>$ 19.99 / month<p>$ .02 / sms</p></td>
+                                    <td><button type="button" class="btn btn-success btn-block next" >Buy now</button></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Upto 500 users</td>
+                                    <td>$ 39.99 / month<p>$ .02 / sms</p></td>
+                                    <td><button type="button" class="btn btn-success btn-block next" >Buy now</button></td>
+                                  </tr> -->
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+
+              		</div>
+              </div>
+
+
+                               </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+               </div>
+            </div>
+
+
+            <form-submitter></form-submitter>
+
+
+                                       

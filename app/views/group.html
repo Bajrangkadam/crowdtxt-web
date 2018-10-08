@@ -1,0 +1,674 @@
+<!-- <h1>Group View Goes here.......</h1> -->
+
+
+<!-- To show the error message in red color.. -->
+ <style>
+  .editable-error{
+    color:red;
+  }
+ </style>
+
+
+
+  <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-if="!groupMain && !addUserToGroup || groupMainPage">
+
+
+           <!-- ========= Toast Notification Sections.. ====================== -->
+
+            <!-- Toast Notification for delete.. -->
+
+                <div class="alerts-container slideDown showAlertClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Successfully deleted the Group</strong>
+                 </div> 
+                </div>
+
+                <!-- Toast Notification for delete.. -->
+
+                <div class="alerts-container slideDown showAlertOnUserDelete" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Successfully deleted the User</strong>
+                 </div> 
+                </div>
+
+           <!-- Toast Notification for Email ID and Mobile No validation.. -->
+
+                <div class="alerts-container slideDown showAlertOnValidation" style="display:none">
+                 <div class="alert alert-warning alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group name </strong>you have entered already exist
+                 </div> 
+                </div>
+
+            <!-- Toast Notification for Adding the new group.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group name </strong>entered successfully
+                 </div> 
+                </div>
+
+             <!-- Toast Notification for Edited the new group.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessEditEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group name </strong>updated successfully
+                 </div> 
+                </div>
+
+           <!-- =============================================================== -->
+           
+
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-4">
+                                        <h3>Groups</h3>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-8 page-options text-right">
+                                       <div class="text-right">
+                                           <ul class="reset pull-right">
+                                               <!--  <li class="option">
+                                                    <i class="fa fa-sort-alpha-asc" ng-hide="MakeSearchVisible" ng-click="sortData((isCollapsedn = !isCollapsedn),'groupName')" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn, 'fa fa-sort-alpha-asc': !isCollapsedn}"></i>
+                                                </li>
+                                                <li class="option">
+                                                    <span ng-show="MakeSearchVisible"><input type="text" style="color: black;" placeholder="Search group" ng-model="filters.groupName"/></span>
+                                                    <span ng-click="MakeSearchVisible=!MakeSearchVisible"><i class="fa fa-search"></i></span>
+                                                </li> -->
+                                                <li class="option">
+                                                    <button type="button" ng-disabled="addNewUserDisable" ng-click="addUser(); check(groups); currentPage=0; MakeTextboxVisible=!MakeTextboxVisible" class="sec-cus-buttons" data-url="#"><i class="fa fa-plus"></i> Add New Group</button>
+                                                </li>
+                                            </ul>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+
+
+
+
+
+
+                            <div class="contents">
+                               <div class="row cus-panels-with-pad">
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive">
+                                          <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <th>Group Name<i class="fa fa-sort-alpha-asc" ng-hide="MakeSearchVisible" ng-click="sortData((isCollapsedn = !isCollapsedn),'groupName')" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn, 'fa fa-sort-alpha-asc': !isCollapsedn}"></i><span ng-show="MakeSearchVisible"><input type="text" style="color: black;" placeholder="Search group" ng-model="filters.groupName"/></span>
+                                                    <span ng-click="MakeSearchVisible=!MakeSearchVisible"><i class="fa fa-search"></i></span></th>
+
+                                                    <th>Group Type</th>
+                                                  <!-- <th>Group Type<i class="fa fa-sort-alpha-asc" ng-hide="MakeSearchisPublicVisible" ng-click="sortData((isCollapsedn1 = !isCollapsedn1),'isPublic')" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn1, 'fa fa-sort-alpha-asc': !isCollapsedn1}"></i><span ng-show="MakeSearchisPublicVisible"><input type="text" style="color: black;" placeholder="Search group" ng-model="filters.isPublic"/></span>
+                                                    <span ng-click="MakeSearchisPublicVisible=!MakeSearchisPublicVisible"><i class="fa fa-search"></i></span></th> -->
+
+                                                    <!-- <th>Purpose of Group</th> -->
+                                                  <th>Purpose of Group<i class="fa fa-sort-alpha-asc" ng-hide="MakeSearchpurposeVisible" ng-click="sortData((isCollapsedn3 = !isCollapsedn3),'purpose')" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn3, 'fa fa-sort-alpha-asc': !isCollapsedn3}"></i><span ng-show="MakeSearchpurposeVisible"><input type="text" style="color: black;" placeholder="Search group" ng-model="filters.purpose"/></span>
+                                                    <span ng-click="MakeSearchpurposeVisible=!MakeSearchpurposeVisible"><i class="fa fa-search"></i></span></th>
+
+                                                  <th>Who's Approved<!-- <span class="pull-right"><i class="fa fa-search"></i></span> --></th>
+
+                                                  <th class="text-center" style="max-width: 60px;">Who's Subscribed</th>
+
+                                                  <th class="text-center">Action</th>
+                                              </tr>
+                                          </thead>
+                                              <tbody>
+                                            <tr  ng-repeat="group in groups">
+                                               <!--  <td style="max-width:200px;"><span class="text-bold" editable-text="group.groupName" e-ng-pattern="/^[a-zA-Z ]*$/" onbeforesave="validateRequired($data)" e-name="group" ng-model="groupName" e-form="rowform" e-required required>{{ group.groupName }} </span></td> -->
+
+                                                <td style="max-width:200px;"><span class="text-bold" editable-text="group.groupName" onbeforesave="validateRequired($data)" e-name="group" ng-model="groupName" e-form="rowform" e-required required>{{ group.groupName }} </span></td>
+
+                                                <td><span class="{{ group.newClass}}">{{ group.isPublic }}</span>
+
+                                                  <form editable-form name="rowform1" id="hideOnEditGroup" ng-show="rowform.$visible"  onbeforesave="saveUser($data,$index)"  class="form-buttons text-right form-inline" shown="inserted == group" style="text-align: left;">
+
+                                                  <!-- <div class="text-right">
+                                                      <div class="single-w-lh">
+                                                         <div class="inline-options">
+                                                          <div class="checkbox" ng-show="disabled">
+                                                           <label ng-repeat="role in roles" data-toggle="tooltip" data-placement="bottom" title="If enabled, users can later request to join other groups, which will be notified in your end. You can accept it or decline it.">
+                                                            <input id="{{role.text}}" onbeforesave="validateRequired($data)" ng-click="$last&&mytest(checked)" ng-disabled="user.text " type="checkbox" checklist-model="user.roles" checklist-value="role.text" ng-init="user.roles=false">{{role.text}} &nbsp;&nbsp;
+                                                          </label>
+                                                       </div>
+                                                      </div>
+                                                    </div>
+                                                  </div> -->
+
+                                                 <div class="text-left">
+                                                      <div class="single-w-lh">
+                                                          <div class="inline-options" style="text-align: left;">
+                                                              <div class="checkbox" ng-show="disabled"> 
+                                                               <label ng-repeat="role in roles" tooltip-placement="bottom" tooltip="If enabled, users can later request to join other groups, which will be notified in your end. You can accept it or decline it.">
+                                                                <input type="checkbox" onbeforesave="validateRequired($data)" ng-model="result.id" ng-change="groupChange(value);" ng-true-value="{{role.id}}" ng-false-value="0" e-name="result" e-form="rowform"  e-required required > {{role.text}} &nbsp;&nbsp;
+                                                                </label>
+                                                              </div>
+                                                             </div>
+                                                          </div>
+                                                    </div>
+
+                                                    <span class="text-left" style="color:red;" ng-show="submittedGroup12">Required Group selection</span>
+
+
+                                                </form>
+
+                                      
+                                                 </td>
+
+                                                      <td style="max-width:200px;"><span class="text-bold" editable-text="group.purpose" onbeforesave="validateRequired($data)" e-name="purpose" ng-model="purpose" e-form="rowform" e-required required>{{ group.purpose }}</span> </td>
+
+                                                        
+                                                      <td style="max-width:200px;" ng-if="group.adminApproved=='none'"></td>
+                                                      <td style="max-width:200px;" ng-if="group.adminApproved=='Y'">{{group.groupCreatedBy}} &nbsp; {{group.approverName.toString()}}</td>
+                                                      <td style="max-width:200px;" ng-if="group.adminApproved=='N'">{{group.groupCreatedBy}}</td>
+                                                      <!-- <td ng-show="rowform.$visible"></td> -->
+
+                                                      <td class="text-center" style="max-width:70px;" class="dropdown" dropdown ><i class="fa fa-eye dropdown-toggle" ng-click="getGroupInfo($index);" ng-hide="group.id < 0" type="button"id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" dropdown-toggle></i>
+
+                                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" dropdown-menu>
+                                                      <li ng-repeat="subscribed in subscribedUsers" >
+                                                          <label class="checkbox-inline">
+                                                          {{subscribed.receiverFirstName}}
+                                                          </label>
+                                                      </li>
+                                                      
+                                                    </ul></td>
+
+                                                      <td>
+
+                                                          <form editable-form name="rowform" ng-show="rowform.$visible"  onbeforesave="saveUser($data,$index)"  class="form-buttons text-right form-inline" style="display:nline-block;" shown="inserted == group">
+
+                                                            <div class="">
+                                                                <button type="button" id="hideInVipGroup1" ng-show="!showAddGroup" ng-disabled="rowform.$waiting" ng-click="cancelEdit(); rowform.$cancel(); isCollapsed2 = !isCollapsed2" class="btn btn-default">Cancel</button>
+
+                                                                <button type="button" ng-show="showOnNewUserAdd" ng-click="cancelEditFirstUser(); rowform.$cancel(); isCollapsed2 = !isCollapsed2" class="btn btn-default">Cancel</button>
+
+                                                                 <button type="submit" id="hideInVipGroup2" ng-show="!showAddGroup" ng-click="saveUser($index);" ng-hide="hideButton[$index]" class="sec-cus-buttons">Save group</button>  
+                                                               
+                                                                <!--  <button type="submit" ng-show="!showAddGroup" ng-click="saveUser(); check(groups); isCollapsed2 = !isCollapsed2" ng-disabled="!(!!groupName) rowform.$waiting " ng-hide="hideButton[$index]" class="sec-cus-buttons">Save group</button>  --> 
+
+                                                                <button type="submit" ng-if="group.isPublic == 'Private'" class="sec-cus-buttons" id="hideInVipGroup1" ng-show="!showAddGroup" ng-disabled="rowform.$waiting" ng-click="addUserToGroupBtn($index); " ng-hide="hideButton[$index]" >Edit private users</button>
+                                                                 
+                                                                 <button type="submit" class="sec-cus-buttons" ng-show="showAddGroupssss" ng-disabled="disabledValidation" ng-click="disableEditandAdd();  " >Add users to group</button>
+
+                                                                 <button type="button" id="hideInVipGroup3" class="sec-cus-buttons" ng-show="showAddGroupss" ng-click="addApprover();" >Add approver</button>
+                                                             </div>
+
+                                                          </form>
+
+                                                  <div class="text-right single-w-lh" ng-show="!rowform.$visible">
+                                                      <div class="inline-options">
+                                                       <!--  <i class="fa fa-user-plus" ng-if="group.isPublic == 'Private' && group.groupStatus == 'No'" ng-click="disabled || addUserToGroupBtn($index); "></i> -->
+                                                          <i class="fa fa-pencil-square-o" ng-show="showOnDisabledCondition"></i>
+
+                                                          <i class="fa fa-pencil-square-o" ng-hide="showOnDisabledCondition" ng-click="editRow($index); rowform.$show(); rowform1.$show(); showButtons($index);" ></i>
+                                                          <i class="fa fa-trash-o" ng-click="disabled ||  removeUser($index)" ng-class='{ disabled: disabled}'></i>
+                                                          <i class="fa fa-chevron-right" ng-click="disabled || showGroupDetails($index);" ng-class='{ disabled: disabled}'></i>
+                                                           <!-- <i class="fa fa-chevron-right" ng-click="disabled || showGroupDetails($index); showGroup(group.id);" ng-class='{ disabled: disabled}'></i> -->
+                                                      </div>
+                                                  </div>
+
+                                                </td>
+                                                  </tr>
+                                                
+                                              </tbody>
+                                          </table>
+                                      </div>
+
+                                 
+                                    </div>
+
+
+                                </div>
+
+                                 <div class="row table-info-nav" ng-if="pagination.totalRecords>0">
+                                    <div class="col-sm-6">
+                                        <p>Showing <span>{{pagination.limit * (pagination.page-1) + 1}}</span> to <span id="totalCount">{{(pagination.page*pagination.limit > pagination.totalRecords && pagination.totalRecords || pagination.page*pagination.limit )}}</span> of <span>{{pagination.totalRecords}}</span> groups</p>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <button type="button" class="btn btn-default" ng-disabled="pagination.page == 1" ng-click="pagination.page=pagination.page-1"><i class="fa fa-chevron-left"></i></button><!-- {{pageNumber}}/{{totalPages}} -->
+                                        <button type="button" class="btn btn-default"  ng-disabled="pagination.totalRecords<pagination.page*pagination.limit" ng-click="pagination.page=pagination.page+1"><i class="fa fa-chevron-right"></i></button>
+                                    </div>
+
+                                </div>
+                               
+                            </div> 
+                            
+                           
+
+
+
+                          
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+
+
+
+
+
+
+        <!-- Group details page.. -->
+
+        <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-show="groupMain && !addUserToGroup">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+
+                                        <h4 ng-model="groupDetailsPrivate.group"><i class="fa fa-chevron-left" style="font-size: 24px;" ng-click="showGroupDetails1();"></i> &nbsp;<b class="text-muted">Group name: </b>{{ groupName || 'empty'  }}  &nbsp; &nbsp; &nbsp; &nbsp; <b class="text-muted">Group status:</b> <span class="{{newClass}}">{{ groupStatus }}</span> &nbsp; &nbsp; &nbsp; &nbsp; <b class="text-muted">Group purpose: </b>{{ groupPurpose || 'empty'  }} </h4>
+
+                                    </div>
+
+
+                                   <!--  <div class="col-sm-6 col-xs-12 page-options text-right">
+                                        <ul class="reset pull-right">
+                                             <li class="option">
+                                                    <i class="fa fa-sort-alpha-asc" ng-hide="MakeSearch1Visible" ng-click="predicate = 'groups'; reverse=!reverse; isCollapsedn = !isCollapsedn" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn, 'fa fa-sort-alpha-asc': !isCollapsedn}"></i>
+                                                </li>
+                                                <li class="option">
+                                                    <span ng-show="MakeSearch1Visible"><input type="text" style="color: black;" placeholder="Search users" ng-model="firstName.first"/></span>
+                                                    <span ng-click="MakeSearch1Visible=!MakeSearch1Visible"><i class="fa fa-search"></i></span>
+                                                </li>
+                                                <button type="submit" ng-click="showDiv(); currentPage=0;" class="sec-cus-buttons text-right" data-url="#"><i class="fa fa-plus"></i> Add User to Group</button>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+
+
+                                </div>
+                            </div> <!-- .page-header End -->
+                           
+
+
+                           <!-- <div class="row" ng-if="groupStatus=='Private'"> -->
+                           <div class="row">
+
+                            <div class="col-md-6 contents">
+                               <div class="cus-panels-with-pad text-center text-muted"><b>Invities</b></div>
+
+                                <div class="row cus-panels-with-pad" ng-repeat="invite in inviteUserResponse | filter: firstName | filter: lastName | filter: Email | filter: Mobile | orderBy:predicate:reverse">
+                                    <div class="col-sm-9 col-xs-9 single-w-lh">
+                                        <span class="text-bold">{{ invite.receiverFirstName || 'empty' }}</span>
+                                         
+                                    </div>
+
+                                    <div class="col-sm-3 col-xs-3 single-w-lh" ng-show="!rowform.$visible">
+                                        <div class="inline-options">
+                                            <i class="fa fa-trash-o" ng-click="removeUser1($index)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .content End -->
+
+                            <div class="col-md-6 contents">
+                               <div class="cus-panels-with-pad text-center text-muted"><b>Subscribed</b></div>
+
+                                <div class="row cus-panels-with-pad" ng-repeat="user in privateUserResponse | filter: firstName | filter: lastName | filter: Email | filter: Mobile | orderBy:predicate:reverse">
+                                    <div class="col-sm-9 col-xs-9 single-w-lh">
+                                        <span class="text-bold">{{ user.receiverFirstName || 'empty' }}</span>
+                                         
+                                    </div>
+
+                                    <div class="col-sm-3 col-xs-3 single-w-lh" ng-show="!rowform.$visible">
+                                        <div class="inline-options">
+                                            <i class="fa fa-trash-o" ng-click="removeUser1($index)"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .content End -->
+                          </div>
+
+
+
+
+
+
+                          <!-- <div class="row" ng-if="groupStatus!='Private'">
+
+                            <div class="col-md-12 contents">
+                               <div class="cus-panels-with-pad text-center text-muted"><b>Subscribed</b></div>
+
+                                <div class="row cus-panels-with-pad" ng-repeat="user in privateUserResponse | filter: firstName | filter: lastName | filter: Email | filter: Mobile | orderBy:predicate:reverse">
+                                    <div class="col-sm-12 col-xs-9 single-w-lh">
+                                        <span class="text-bold">{{ user.receiverFirstName || 'empty' }}</span>
+                                         
+                                    </div>
+
+                                </div>
+                            </div> 
+                          </div> -->
+
+
+
+
+
+
+
+                            <!-- <div class="row table-info-nav">
+                                <div class="col-sm-6">
+                                    <p>Showing <span>{{currentPage*10+1}}</span> to <span id="totalCount"></span> of <span>{{users.length}}</span> users</p>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <button type="button" class="btn btn-default" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1;pageRecord();"><i class="fa fa-chevron-left"></i></button>{{currentPage+1}}/{{numberOfPages()}}
+                                    <button type="button" class="btn btn-default" ng-disabled="currentPage >= users.length/pageSize - 1" ng-click="currentPage=currentPage+1;pageRecord();"><i class="fa fa-chevron-right"></i></button>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+    </div> <!-- .app-box End -->
+
+
+
+
+
+
+        <!-- Add user drag and drop page -->
+
+         <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-show="addUserToGroup">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <!-- <h3 ng-model="groupDetails.group">{{ groupDetails.group || 'empty'  }}</h3>   --> 
+                                       <!--  <h3 ng-model="groupDetailsPrivate"> &nbsp;{{ groupDetailsPrivate || 'empty'  }} <span class="label label-danger">Private</span> </h3> -->
+                                         <div ng-model="groupDetailsPrivate"><i class="fa fa-chevron-left" style="font-size: 24px;" ng-click="backCancelbtn();"></i> &nbsp;<b class="text-muted">Group name: </b>{{ groupDetailsPrivate || 'empty'  }}  &nbsp; &nbsp; &nbsp; &nbsp; <b class="text-muted">Group status:</b> <span class="label label-danger">Private</span> &nbsp; &nbsp; &nbsp; &nbsp; <b class="text-muted">Group purpose: </b>{{ groupPurposeDetailsPrivate || 'empty'  }} </div>
+
+
+                                    </div>
+                                    <div class="col-sm-3 ">
+                                        <h3 class="text-left"><i class="fa fa-info-circle pull-left" title="Drag and drop the user from the list to the Group"> User List</i> </h3>
+                                        <div class="text-left" ng-hide="showBtnToEnterPrivateUser"><button type="submit" ng-click="showDivToEnterDetails(); currentPage=0;" class="sec-cus-buttons" data-url="#"><i class="fa fa-plus"></i> Add new user to group</button></div>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                            <div class="contents">
+                                <div class="row">
+
+                                    <div class="col-sm-12 cus-panels-with-pad lisiting" ng-show='showhideprop'>
+                                    
+                                        <form class="form-inline" name="registerForm" ng-submit="saveSendInvite();" novalidate>
+                                          <div class="form-group">
+                                            <input type="text" class="form-control" ng-pattern="/^[a-zA-Z ]*$/" onbeforesave="validateRequired($data)" id="firstName" ng-model="first" name="first" placeholder="Enter first name" required><br>
+                                            <span class="required" ng-show="submittedPrivate && registerForm.first.$invalid">Required</span>
+                                            <span class="required" ng-show="submittedPrivate && registerForm.first.$error.pattern">valid first name</span>
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="text" class="form-control" ng-pattern="/^[a-zA-Z ]*$/" onbeforesave="validateRequired($data)" id="lastName" ng-model="last" name="last" placeholder="Enter last name" required><br>
+                                            <span class="required" ng-show="submittedPrivate && registerForm.last.$invalid">Required</span>
+                                            <span class="required" ng-show="submittedPrivate && registerForm.last.$error.pattern">valid last name</span>
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="email" class="form-control" name="email" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" onbeforesave="validateRequired($data)" id="email" ng-model="email" placeholder="Enter email name" required><br>
+                                            <span class="required" ng-show="submittedPrivate && registerForm.email.$invalid">Required</span>
+                                            <span class="required" ng-show="submittedPrivate && registerForm.email.$error.pattern">valid email id</span>
+                                          </div>
+                                          <div class="form-group">
+                                            <input type="text" class="form-control" name="mobileNo" ng-pattern="/^$|^(?:1-?)?[(]?\d{3}[)]?\s?-?\s?\d{3}\s?-?\s?\d{4}$/" onbeforesave="validateRequired($data)" id="mobile-no" ng-model="mobileNo" placeholder="Enter mobile no name" required><br>
+                                            <span class="required" ng-show="submittedPrivate && registerForm.mobileNo.$invalid">Required</span>
+                                            <span class="required" ng-show="submittedPrivate && registerForm.mobileNo.$error.pattern">valid mobile number</span>
+                                          </div>
+                                          <button type="button" class="btn btn-default" ng-click="hideDiv()">cancel</button>
+                                          <!-- <button type="submit" class="sec-cus-buttons" ng-disabled="registerForm.$invalid" ng-click="hideDiv(); saveSendInvite();">Save & send invite</button> -->
+                                          <button type="submit" class="sec-cus-buttons">Save & send invite</button>
+                                        </form>
+                                      
+                                    </div>
+
+                                   <div class="col-sm-9" 
+                                          ad-drop="true"
+                                          ad-drop-over="onDragOver($data, $dragElement, $dropElement, $event);"
+                                          ad-drop-leave="onDragLeave($data, $dragElement, $dropElement, $event)"
+                                          ad-drop-end="onDrop($data, $dragElement, $dropElement, $event);">
+
+                                      <div class="dz-default" ng-show="showDiv" ng-hide="models.basket.length">
+                                        <span>Drop files here to upload or click on upload button below to upload the image</span>
+                                    </div>
+                                    
+                                        <div class="col-sm-12 row cus-panels-with-pad lisiting" 
+                                            ad-drag="true"
+                                            ng-repeat="user in models.basket">
+                                            <!-- <span class="text-bold">{{ user.receiverFirstName + "  " + user.receiverLastName || 'empty' }}</span> -->
+                                            <span class="text-bold">{{ user.receiverFirstName || 'empty' }}</span>
+                                        </div> <br>
+                                   
+                                    
+
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-default" ng-click="backCancelbtn();">Cancel</button>
+                                        <button type="button" ng-show="inEdit" class="sec-cus-buttons" ng-click="savePrivateUser();">Save group</button>  
+                                        <button type="button" ng-show="inEditPrivateUser" class="sec-cus-buttons" ng-click="savePrivateUserInEdit($index); savePrivateUserInEditButton();">Save group</button>  
+                                    </div>
+
+
+                                    <!-- ========== Usage Drop ========== -->
+                                    
+                                   </div>
+
+
+                                   <div class="col-sm-3" style=" max-height: 600px; overflow-y: scroll;">
+                                       <div class="contents">
+
+                                        <div class="row cus-panels-with-pad lisiting" ad-drag="true"
+                                                ad-drag-data="user"
+                                                ad-drag-begin="onDragStart($data, $dragElement, $event);"
+                                                ad-drag-end="onDragEnd($data, $dragElement, $lastDropElement, $event);"
+                                                ng-repeat="user in users" ng-if="user.receiverstatus!='Inactive'">
+                                                <div class="col-sm-9 single-w-lh" >
+                                                    <span class="text-bold" >{{ user.receiverFirstName + "  " + user.receiverLastName || 'empty' }}</span>
+                                                </div>
+                                            </div>
+                                        </div> <!-- .content End -->
+                                   </div>
+                                    
+                                </div>
+                                
+                            </div> <!-- .content End -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+
+
+
+
+
+ <div id="showAddApprover" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="combineApproverData();" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Please provide approver details</h4>
+                </div>
+             
+
+
+
+
+                                <div class="modal-body">
+                                  <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" data-target="#manualEntry">Manual Entry</a></li>
+                                    <li><a data-toggle="tab" ng-click="existingUserss();" data-target="#userList">Select existing users</a></li>
+                                  </ul>
+
+                            <div class="tab-content">
+                              <div id="manualEntry" class="tab-pane fade in active">
+                                <br><br>
+                                <form name="myformss" ng-submit="addApproverToGroupBtn();" novalidate>
+
+                                   <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="f-name">First Name</label>
+                                            <input type="text" ng-model="firstName" name="firstName" ng-pattern="/^[a-zA-Z ]*$/" class="form-control" id="f-name" required>
+                                            <!-- <span class="required hidden">Validation Error</span> -->
+                                            <span class="required" ng-show="submittedGroup && myformss.firstName.$invalid">Required</span>
+                                            <span class="required" ng-show="submittedGroup && myformss.firstName.$error.pattern">valid first name</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="l-name">Last Name</label>
+                                            <input type="text" ng-model="lastName" name="lastName" ng-pattern="/^[a-zA-Z ]*$/" class="form-control" id="l-name" required>
+                                            <!-- <span class="required hidden">Validation Error</span> -->
+                                            <span class="required" ng-show="submittedGroup && myformss.lastName.$invalid">Required</span>
+                                            <span class="required" ng-show="submittedGroup && myformss.lastName.$error.pattern">valid last name</span>
+                                        </div>
+                                    </div>
+                                     </div>
+
+                                    <div class="row">
+                                     <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" ng-model="emailss" name="emailss" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" class="form-control" id="email" required>
+                                            <!-- <span class="required hidden">Validation Error</span> -->
+                                            <span class="required" ng-show="submittedGroup && myformss.emailss.$invalid">Required</span>
+                                            <span class="required" ng-show="submittedGroup && myformss.emailss.$error.pattern">valid email id</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="mob-no">Mobile Number</label>
+                                            <input type="text" ng-model="mobileNoss" name="mobileNoss" ng-pattern="/^$|^(?:1-?)?[(]?\d{3}[)]?\s?-?\s?\d{3}\s?-?\s?\d{4}$/" class="form-control" id="mob-no" required>
+                                            <!-- <span class="required hidden">Validation Error</span> -->
+                                            <span class="required" ng-show="submittedGroup && myformss.mobileNoss.$invalid">Required</span>
+                                            <span class="required" ng-show="submittedGroup && myformss.mobileNoss.$error.pattern">valid mobile number</span>
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                   
+                                     <div class="text-center pad-5">
+                                      <button type="button" data-dismiss="modal" ng-click="addApproverCancelBtn();" class="btn btn-default">Cancel</button>
+                                      <button type="submit" class="sec-cus-buttons">Save</button>
+                                    </div>
+
+                                </form>
+
+                                <br>
+                                <br>
+
+                            <div class="table-responsive">          
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile Number</th>
+                                  </tr>
+                                </thead>
+                               <tbody>
+                                  <tr ng-repeat="approver in approverDetails">
+                                    <td>{{approver.firstName}}</td>
+
+                                    <td>{{approver.lastName}}</td>
+                                   
+                                    <td>{{approver.emailid}}</td>
+
+                                    <td>{{approver.phone}}</td>
+                                  
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+    </div>
+
+
+
+
+
+                                <div id="userList" class="tab-pane fade">
+
+                                  <br>
+                                  <br>
+
+                                  <div class="table-responsive">          
+                                          <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th>#</th>
+                                                <th>User Name</th>
+                                               <!--  <th>Lastname</th> -->
+                                               <!--  <th>Email id</th>
+                                                <th>Mobile number</th> -->
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr ng-repeat="userss in usersApprover">
+                                                <td><input type="checkbox" ng-model="selectApprover" ng-init="selectApprover='N'" ng-change="selectUser($index,userss,selectApprover);" ng-true-value="'Y'" ng-false-value="'N'"></td>
+                                                <td>{{userss.firstName}} {{userss.lastName}}</td>
+                                                <!-- <td>{{userss.receiverLastName}}</td> -->
+                                               <!--  <td>{{userss.receiverFirstName}}</td>
+                                                <td>{{userss.receiverFirstName}}</td> -->
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                  </div>
+    
+   
+  </div>
+        </div>
+
+            
+          </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+      <script>
+   //      $(document).ready(function () {
+   //          $('.lisiting').click(function () {
+   //              window.location.replace("groups_details.html");
+   //          });
+            
+   //          $(".page-options .sec-cus-buttons").click(function () {
+   //              window.location.replace("add-group.html");
+   //          });
+   //      });  
+   //  </script>

@@ -1,0 +1,357 @@
+
+
+    <div class="app-box">
+
+
+         <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown showAlertClass" style="display:none">
+             <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">A verification code has been sent to your mobile.</strong>  
+             </div> 
+            </div>
+
+             <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown showAlertClassEmailid" style="display:none">
+             <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">A verification code has been sent to your email id.</strong>  
+             </div> 
+            </div>
+
+
+              <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown showAlertOnUnAuthorizedAccess" style="display:none">
+             <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">Unautorized access.</strong>  
+             </div> 
+            </div>
+
+              <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown showAlertOnSubscribedUser" style="display:none">
+             <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">User already subscribed.</strong>  
+             </div> 
+            </div>
+
+              <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown OTPSuccess" style="display:none">
+             <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">Successfully verified.</strong>  
+             </div> 
+            </div>
+
+              <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown reEnterMobileNumber" style="display:none">
+             <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">Re-enter your mobile number.</strong>  
+             </div> 
+            </div>
+
+              <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown reEnterEmailId" style="display:none">
+             <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">Re-enter your email id.</strong>  
+             </div> 
+            </div>
+
+             <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown showAlertOnWrongCode" style="display:none">
+             <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert"> 
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">Wrong OTP code.</strong>  
+             </div> 
+            </div>
+
+
+
+
+
+    <style type="text/css">
+        body{
+            background: url(images/banner6.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        body::before {
+    z-index: 30;
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0,0,0,0.2);
+}
+
+html{
+      overflow: auto !important;
+    }
+
+
+.login12{
+      position:relative;
+      z-index:2; 
+      border: 2px solid;
+    border-radius: 10px;
+    padding: 2%;
+    background-color:rgba(255,255,255,0.5);
+    margin-top:6%;
+}
+
+.login123{
+    position:relative;
+     z-index:2; 
+    border: 2px solid;
+    padding: 1%;
+    background-color:rgba(255,255,255,0.5);
+    margin-top:5%;
+}
+    </style>
+
+     <style type="text/css">
+
+      @media screen and (min-width: 993px) and (max-width: 2000px) { 
+        .successBtnsTop{
+          margin-top:4px;
+        }
+      }
+
+          @media screen and (min-width: 280px) and (max-width: 993px) { 
+            .container{
+              margin-right: 5%;
+              margin-left: 5%;
+            }
+
+            .login12{
+              margin-top:20%;
+            }
+
+            .contentMain{
+              margin-top: 16%;
+            }
+
+            .inputContents{
+              margin-top:8%;
+            }
+            .colPassword{
+              margin-top:5%;
+            }
+
+           .successBtnsTop{
+              margin-top:-28px;
+            }
+          }
+
+    </style>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+
+                    <!-- <div style="border: 2px solid #7DA8E8; width: 5%; padding: 1%; border-radius: 20px;">Login</div> -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                   <!--  <a class="navbar-brand" href="#"><img src="images/logo.png" style="width: 45%; margin-top: -9%;" alt=""></a> -->
+                   <a class="navbar-brand" href="#"><img src="images/crowdtxt-logo.png" style="width: 172px; margin-top: -6%;" alt=""></a>
+                  </div>
+
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a href="#/web">Home</a></li>
+                        <li><a href="#/login">Login</a></li>
+                        <!-- <li><a href="sign-up.html" class="btn-1" style="color: #67ab49;">Sign Up</a></li> -->
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </div><!-- /.container -->
+              </nav> 
+  
+
+        
+
+   
+
+
+
+<!-- ====================================== -->
+
+
+
+  <div class="container login12">
+    <!-- <h2>Login</h2>  -->
+
+    <div class="col-md-12" style="text-align:center; margin-top:-3%;"><h2>Employee sign up</h2></div>
+
+     <hr class="style-two" style="width:100%;">
+
+     <div class="col-md-6"><img src="images/mobile.jpg" alt="" style="width: 100%; border-radius: 5px;"></div>
+
+      <div class="col-md-6 inputContents">
+      <!-- <form name="myform" ng-submit="employeeSignUp();" novalidate> -->
+        <div class="form-group">
+          <label for="companyId">Company Name: {{companme}}</label>
+        </div>
+
+         <div class="form-group">
+          <label for="companme">Company ID: {{companyId}}</label>
+        </div>
+
+        <div class="form-group">
+          <label for="firstName">First Name: {{firstName}}</label>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Last Name: {{lastName}}</label>
+        </div>
+
+      
+
+       <!--   <div class="form-group vtext" style="width:47%;">
+            <label for="email">Email id:</label>
+           <input type="email" class="form-control" id="companyEmail" ng-disabled="isDisabled12" ng-model="email" placeholder="Email">
+          </div> -->
+
+          <div class="row">
+          <div class="col-md-6">
+            <div class="form-group vtext" ng-hide="hideOnEmailVerify">
+                  <label for="companyName">Email id:</label>
+                 <input type="email" class="form-control" id="companyEmail" ng-disabled="isDisabledEmail" ng-model="email" placeholder="Enter email id">
+                </div>
+
+                <span class="required" ng-show="emailValidation">Required</span>
+                <span class="required" ng-show="emailValidation12">Enter valid email id</span>
+
+                <div class="form-group pwd1" ng-show="showOnEmailVerify">
+                  <label for="companyName">Verify email code:</label>
+                  <input type="text" class="form-control" id="companyName" ng-model="otpEmailCodeVerify" placeholder="Enter email verification code">
+                </div>
+
+                <span class="required" ng-show="otpEmailvalidation">Required</span>
+                <span class="required" ng-show="otpEmailvalidation12">Enter valid OTP number</span>
+          </div>
+
+          <div class="col-md-6">
+            <br>
+            <button type="button" ng-hide="hideOnEmailVerify" ng-click="verifyEmailBtn();"  ng-disabled="isDisabledEmail" class="btn btn-success successBtnsTop vbtn" style="">Verify email id</button>
+            <button type="button" ng-show="showOnEmailVerify" ng-click="verifyEmailOTPBtn(1);" class="btn btn-success successBtnsTop vbtn" style="">Verify OTP</button>
+
+
+          </div>
+        </div>
+
+        
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group vtext" ng-hide="hideOnVerify">
+                  <label for="companyName">Mobile number:</label>
+                 <input type="text" class="form-control" id="companyName" ng-disabled="isDisabled12" ng-model="phone" placeholder="Enter mobile number">
+                </div>
+
+                <span class="required" ng-show="mobileValidation">Required</span>
+                <span class="required" ng-show="mobileValidation12">Enter valid mobile number</span>
+
+                <div class="form-group pwd1" ng-show="showOnVerify">
+                  <label for="companyName">Verify phone code:</label>
+                  <input type="text" class="form-control" id="companyName" ng-model="otpCodeVerify" placeholder="Enter phone verification code">
+                </div>
+
+                <span class="required" ng-show="otpvalidation">Required</span>
+                <span class="required" ng-show="otpvalidation12">Enter valid OTP number</span>
+          </div>
+
+          <div class="col-md-6">
+            <br>
+            <button type="button" ng-hide="hideOnVerify" ng-click="verifyBtn();"  ng-disabled="isDisabled12" class="btn btn-success successBtnsTop vbtn" style="">Verify mobile number</button>
+            <button type="button" ng-show="showOnVerify" ng-click="verifyOTPBtn(1);" class="btn btn-success successBtnsTop vbtn" style="">Verify OTP</button>
+
+
+          </div>
+        </div>
+
+         <div class="row colPassword">
+          <div class="col-md-6">
+            <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="companyName" ng-disabled="otpDisabled" name="password" ng-model="password" placeholder="Password" required>
+        </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+          <label for="password">Confirm Password</label>
+          <input type="password" class="form-control" id="companyName" ng-disabled="otpDisabled" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm Password" required>
+          <span class="required" ng-show="submitted && myform.confirmPassword.$invalid">Required</span>
+        </div>
+          </div>
+          <div class="col-md-12 text-center"><span class="required" ng-show="passwordMatch">Passwords have to match!</span></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"><label for="email">Notify me on:</label></div>
+            <div class="col-md-4"><input type="checkbox"  ng-model="sendEmail" ng-disabled="otpDisabled" ng-init="sendEmail='N'" ng-true-value="'Y'" ng-false-value="'N'"> <label for="email">Email</label> </div>
+            <div class="col-md-4"><input type="checkbox" ng-model="sendMobile" ng-disabled="otpDisabled" ng-init="sendMobile='N'" ng-true-value="'Y'" ng-false-value="'N'"> <label for="email">Mobile</label> </div>
+          </div>
+
+
+
+
+
+
+
+         <div class="checkbox">
+          <label><input type="checkbox" ng-model="showSubmitBotton" ng-disabled="otpDisabled" class="cbox" ng-click="showSubmitBtn(value);" value="true"><a href="">I Agree to terms and conditions</a></label>
+        </div>
+        <button type="button" class="btn btn-success" ng-click="employeeSignUp();" ng-disabled="isDisabled1" id="bt_submit" style="width:40%;">Sign up</button><br><br>
+      <!-- </form> -->
+    </div>
+
+    
+
+
+  </div>
+
+
+
+
+        
+    </div> <!-- .app-box End -->

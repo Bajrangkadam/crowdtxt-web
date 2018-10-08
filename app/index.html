@@ -1,0 +1,331 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CrowdTXT - Webapp</title>
+   
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+   
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="bower_components/angular-toggle-switch/angular-toggle-switch.css" />
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <!-- endbower -->
+
+   
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+<!-- Bootstrap links.. -->
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+<!-- Bootstrap links.. -->
+
+    <style>
+        .ng-hide {
+            display: none;
+        }
+        body{
+             background-color: #e9ecef !important;
+        }
+    </style>
+
+  </head>
+  <body ng-app="ctApp">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- <div class="alerts-container ng-hide" ng-class="slideDownAlertBox" ng-show="alerts.length">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><span
+            ng-cloak>{{alert.msg}}</span></alert>
+    </div> -->
+
+
+        <!-- Toast Notification Sections.. -->
+           <!--  <div class="alerts-container slideDown">
+             <div class="alert alert-info alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong>Well done!</strong> You successfully read this important alert message. 
+             </div> 
+            </div> -->
+
+
+   
+  <div class="app-box" ng-controller="MainCtrl">
+        <div class="preloader spinner"></div>
+<!-- 
+        <div class="login">
+            <div class="container-fluid pad-box">
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <div class="login-box cus-panels-with-pad">
+                            <div class="login-logo text-center">
+                                <img src="images/crowdtxt-logo.png" alt="CrowdTXT">
+                            </div>
+                            <form action="initial-setup.html">
+                                <div class="form-group">
+                                    <label for="u-name">Username</label>
+                                    <input type="text" class="form-control" id="u-name">
+                                    <span class="required hidden">Validation Error</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">Password</label>
+                                    <input type="password" class="form-control" id="pass">
+                                    <span class="required hidden">Validation Error</span>
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" value="Sign In" class="sec-cus-buttons ma-btn">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="text-center mar-10">
+                            <a href="forget_pass.html">Forget Password ?</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="footer"><div class=""> Copyright © 2015 CrowdAround Inc. All Rights Reserved.</div></div>
+        </div>
+        
+    </div> --> <!-- .app-box End -->
+
+        <div class="header-wrapper" id="navBars" style="display:none;"> <!-- navbar Id to hide navigation bar in Login page.. -->
+            
+            <header class="clearfix" >
+                <nav class="navbar navbar-fixed-top">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="btn btn-navbar" ng-click="isCollapsed = !isCollapsed" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <div class="pull-right visible-xs">
+                               <a href="" class="dropdown-toggle admin" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{companyNameTodisplayss}} <span class="caret"></span></a>
+                                 <ul class="dropdown-menu">
+                                    <!-- <li><a href="#">Profile</a></li> -->
+                                    <li class="admin"><a href="#/settings">Profile</a></li>
+                                    <li class="admin"><a href="#/planBilling">Plan & Billing</a></li>
+                                    <li class="user"><a href="#/settingsUser">Profile</a></li>
+                                     <li ><a href="#/changePassword">Settings</a></li>
+                                    <li><a href="#/help">Help</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="" ng-click="logout();">Logout</a></li>
+                                </ul>
+                            </div>
+                            <div class="pull-right visible-xs">
+                               <a href="" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{firstNameTodisplayss}} {{lastNameTodisplayss}} <span class="caret"></span></a>
+                                 <ul class="dropdown-menu">
+                                    <!-- <li><a href="#">Profile</a></li> -->
+                                    <li class="admin"><a href="#/settings">Profile</a></li>
+                                    <li class="admin"><a href="#/planBilling">Plan & Billing</a></li>
+                                    <li class="user"><a href="#/settingsUser">Profile</a></li>
+                                    <li ><a href="#/changePassword">Settings</a></li>
+                                    <li><a href="#/help">Help</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="" ng-click="logout();">Logout</a></li>
+                                </ul>
+                            </div>
+                            <a class="navbar-brand" href=""><img src="images/crowdtxt-logo.png" alt="CrowdTXT"></a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="navbar-collapse pull-left" collapse="isCollapsed" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+
+                               <!--  <li class="admin hideInInitial"><a href="#/initialSetup">Initial Setup</a></li> 
+
+                                <li class="admin hideInInitial"><a href="#/home">Home</a></li> -->
+
+                                <li class="admin hideInInitial"><a href="#/event">Events</a></li>
+
+                                <li class="admin hideInInitial"><a href="#/user">Users<span class="sr-only"></span></a></li>
+                                
+                                <li class="admin hideInInitial"><a  href="#/group">Groups</a></li>
+
+                                <li class="admin hideInInitial"><a  href="#/dashboard">Dashboard</a></li>
+
+                                
+
+                                <li class="user"> <a  href="#/event_user">Events</a></li>
+
+                                <li class="user"> <a  href="#/group_user">Groups</a></li>
+
+                                <li class="user"> <a  href="#/trip">Trip</a></li>
+                              
+                               
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <ul class="nav navbar-nav navbar-right hidden-xs">
+                            <li class="admin hideInInitial"><a  href="#/tripNotification">Trip Notification</a></li>
+                            <!-- <li class="admin hideInInitial">
+                                <a href="#/notifications" ng-click="showNotification();" tooltip-placement="bottom" class="" tooltip="Notifications">
+                                    <i class="fa fa-bell-o"></i>
+                                   <span class="label radius">{{notificationCounts}}</span>
+                                </a>
+                            </li> -->
+                            <li class="hideInInitial" id="isAdmin">
+                                <a href="#/notifications" ng-click="showNotification();" tooltip-placement="bottom" class="" tooltip="Notifications">
+                                    <i class="fa fa-bell-o"></i>
+                                   <span class="label radius">{{notificationCounts}}</span>
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle admin" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <b class="text-muted"></b> {{companyNameTodisplayss}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <!-- <li><a href="#">Profile</a></li> -->
+                                    <li class="admin"><a href="#/settings">Profile</a></li>
+                                    <li class="admin"><a href="#/planBilling">Plan & Billing</a></li>
+                                    <li class="user"><a href="#/settingsUser">Profile</a></li>
+                                    <li ><a href="#/changePassword">Settings</a></li>
+                                    <li><a href="#/help">Help</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="" ng-click="logout();">Logout</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <b class="text-muted"></b> {{firstNameTodisplayss}} {{lastNameTodisplayss}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <!-- <li><a href="#">Profile</a></li> -->
+                                    <li class="admin"><a href="#/settings">Profile</a></li>
+                                    <li class="admin"><a href="#/planBilling">Plan & Billing</a></li>
+                                    <li class="user"><a href="#/settingsUser">Profile</a></li>
+                                    <li ><a href="#/changePassword">Settings</a></li>
+                                    <li><a href="#/help">Help</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="" ng-click="logout();">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+        </div>
+
+
+
+        <div  class="page-content-container row">
+            <div class="page-contents">
+                <div class="container-fluid" ng-view></div>
+            </div>
+        </div>
+</div>
+
+
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+
+
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui/build/angular-ui.js"></script>
+    <script src="bower_components/angular-toggle-switch/angular-toggle-switch.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/adapt-strap/dist/adapt-strap.min.js"></script>
+    <script src="bower_components/adapt-strap/dist/adapt-strap.tpl.min.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+    <script src="bower_components/checklist-model/checklist-model.js"></script>
+    <script src="bower_components/rangy/rangy-core.js"></script>
+    <script src="bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="bower_components/rangy/rangy-serializer.js"></script>
+    <script src="bower_components/rangy/rangy-textrange.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+    <script src="bower_components/ng-file-upload-shim/angular-file-upload-shim.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    
+    
+
+   <!-- <script type="text/javascript" src="http://code.angularjs.org/X.Y.Z/angular-route.js"></script>-->
+    <!-- build:js({app,.tmp}) scripts/scripts.js -->
+    <script src="scripts/controllers/MainCtrl.js"></script>
+    <script src="scripts/controllers/HelpCtrl.js"></script>
+    <script src="scripts/controllers/InitialSetupCtrl.js"></script>
+    <script src="scripts/controllers/EmployeeSignupCtrl.js"></script>
+    <script src="scripts/controllers/ForgotPasswordCtrl.js"></script>
+    <script src="scripts/controllers/ForgotPasswordGetLinkCtrl.js"></script>
+    <script src="scripts/controllers/ChangePasswordCtrl.js"></script>
+    <script src="scripts/controllers/HomeCtrl.js"></script>
+    <script src="scripts/controllers/UserCtrl.js"></script>
+    <script src="scripts/controllers/GroupCtrl.js"></script>
+    <script src="scripts/controllers/EventCtrl.js"></script>
+    <script src="scripts/controllers/WebCtrl.js"></script>
+    <script src="scripts/controllers/UpdateEventDetailsCtrl.js"></script>
+    <script src="scripts/controllers/LoginCtrl.js"></script>
+    <script src="scripts/controllers/NotificationsCtrl.js"></script>
+    <script src="scripts/controllers/DashboardCtrl.js"></script>
+    <script src="scripts/controllers/PlanBillingCtrl.js"></script>
+    <script src="scripts/controllers/Group_userCtrl.js"></script>
+    <script src="scripts/controllers/SettingsCtrl.js"></script>
+     <script src="scripts/controllers/SettingsUserCtrl.js"></script>
+    <script src="scripts/controllers/Event_userCtrl.js"></script>
+    <script src="scripts/controllers/EmailInviteCtrl.js"></script>
+    <script src="scripts/controllers/MobileInviteCtrl.js"></script>
+    <script src="scripts/controllers/UploadUserDataCtrl.js"></script>
+    <script src="scripts/controllers/TripCtrl.js"></script>
+    <script src="scripts/controllers/SubscribeCtrl.js"></script>
+    <script src="scripts/controllers/InitialSetupOneCtrl.js"></script>
+    <script src="scripts/controllers/InitialSetupTwoCtrl.js"></script>
+    <script src="scripts/controllers/InitialSetupThreeCtrl.js"></script>
+    <script src="scripts/controllers/TripNotificationCtrl.js"></script>
+    <script src="scripts/directive/form-submitter.js"></script>
+     <script src="scripts/main.js"></script>
+    <!-- endbuild -->       
+</body>
+</html>

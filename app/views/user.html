@@ -1,0 +1,278 @@
+
+<!-- <h1>user View Goes here.......</h1> -->
+
+<!-- To show the error message in red color.. -->
+ <style>
+  /*.editable-error{
+    color:red;
+  }
+
+  .spinnerMainDiv{
+      margin-top: 0%;
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background-color: #E9ECEF;
+  }
+
+  .spinnerDiv{
+    margin-top: 20%;
+     position: absolute; 
+     z-index: 1; 
+     margin-left: 42%;
+  }*/
+ </style>
+
+
+ <!-- ======================= To show Spinner while loading data.. ======================= -->
+
+       <!--  <div class="spinnerMainDiv" ng-show="loading">
+            <div class="spinnerDiv">
+                <h1><i class="fa fa-refresh fa-spin"></i> Loading user data..</h1>
+            </div>
+        </div> -->
+        
+ <!-- ==================================================================================== -->  
+
+ <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-show="!userList" ng-class="{ 'loading': loading }" class="loading">
+
+          
+
+          <!-- ========= Toast Notification Sections.. ====================== -->
+
+                <!-- Toast Notification for delete.. -->
+
+                <div class="alerts-container slideDown showAlertClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Successfully, this user status is changed to Inactive</strong>
+                 </div> 
+                </div>
+
+                  <!-- Toast Notification for add user.. -->
+
+                <div class="alerts-container slideDown showAlertAddClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Successfully, added the user</strong>
+                 </div> 
+                </div>
+
+                 <!-- Toast Notification for Adding the new group.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessEditEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>User </strong>updated successfully
+                 </div> 
+                </div>
+
+
+                 <div class="alerts-container slideDown userLimitOver" style="display:none">
+                 <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Your limit has been over, you can not add more users.</strong>
+                 </div> 
+                </div>
+
+
+                <!-- Toast Notification for Email ID and Mobile No validation.. -->
+
+                <div class="alerts-container slideDown showAlertOnValidation" style="display:none">
+                 <div class="alert alert-warning alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Email ID </strong>or <strong>Mobile No </strong>you have entered already exist
+                 </div> 
+                </div>
+
+        <!-- =============================================================== -->
+
+
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <h3>User List</h3>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12 page-options text-right">
+                                      <button type="button" class="sec-cus-buttons" ng-click="showUploadUserList(); uploadData();" ><i class="fa fa-plus"></i> Upload User Data</button>
+                                        <button type="button" class="sec-cus-buttons" ng-disabled="addNewUserDisable" ng-click="addUser(); currentPage=0; rowform1.$show();" ng-hide="rowform.$visible" ><i class="fa fa-plus"></i> Add New User</button>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                           
+                            <div class="contents">
+                                <div class="row cus-panels-with-pad">
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive">
+                                           <table class="table" id="table12">
+                                              <thead>
+                                                  <tr>
+                                                      <th><span ng-click="sortData((isCollapsedn1 = !isCollapsedn1),'receiverFirstName')" ng-hide="MakeFirstVisible">First Name<i ng-class="{'fa fa-sort-alpha-desc': isCollapsedn1, 'fa fa-sort-alpha-asc': !isCollapsedn1}"></i></span> <span ng-show="MakeFirstVisible"><input type="text" placeholder="search first name" ng-model="filters.receiverFirstName"></span><span class="pull-right" ng-click="MakeFirstVisible=!MakeFirstVisible"><i class="fa fa-search"></i></span></th>
+
+                                                      <th><span ng-click="sortData((isCollapsedn2 = !isCollapsedn2),'receiverLastName')" ng-hide="MakeLastVisible">Last Name<i ng-class="{'fa fa-sort-alpha-desc': isCollapsedn2, 'fa fa-sort-alpha-asc': !isCollapsedn2}"></i></span> <span ng-show="MakeLastVisible"><input type="text" placeholder="search last name" ng-model="filters.receiverLastName"></span><span class="pull-right" ng-click="MakeLastVisible=!MakeLastVisible"><i class="fa fa-search"></i></span></th>
+
+                                                      <th><span ng-hide="MakeEmailVisible">Email ID</span> <span ng-show="MakeEmailVisible"><input type="text" placeholder="search email id" ng-model="filters.receiverEmail"></span> <span class="pull-right" ng-click="MakeEmailVisible=!MakeEmailVisible"><i class="fa fa-search"></i></span></th>
+
+                                                      <th><span ng-hide="MakeMobileVisible">Mobile No</span> <span ng-show="MakeMobileVisible"><input type="text" placeholder="search mobile no" ng-model="filters.receiverPhoneNo"></span> <span class="pull-right" ng-click="MakeMobileVisible=!MakeMobileVisible"><i class="fa fa-search"></i></span></th>
+
+                                                     <!--  <th ng-click="sortData((isCollapsedn3 = !isCollapsedn3),'receiverstatus')">Status<i ng-class="{'fa fa-sort-alpha-desc': isCollapsedn3, 'fa fa-sort-alpha-asc': !isCollapsedn3}"></i></th> -->
+
+                                                      <th>Status</i></th>
+
+                                                      <th class="text-center">View Groups</th>
+                                                      <th class="text-center ">Action</th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                    <tr ng-style="set_color(user)" ng-repeat="user in users">
+                                      <td>
+                                        <!-- editable FirstName (text with validation) -->
+                                        <span class="inActive" editable-text="user.receiverFirstName" e-ng-pattern="/^[a-zA-Z ]*$/" ng-model="firstName" onbeforesave="validateRequired($data,false)" e-name="first" e-form="rowform" e-required>
+                                          {{ user.receiverFirstName }}
+                                        </span>
+                                      </td>
+
+                                      <td>
+                                        <!-- editable LastName (text with validation) -->
+                                        <span editable-text="user.receiverLastName" ng-model="lastName" e-ng-pattern="/^[a-zA-Z ]*$/" onbeforesave="validateRequired($data,false)" e-name="last" e-form="rowform" e-required>
+                                          {{ user.receiverLastName }}
+                                        </span>
+                                      </td>
+
+                                       <td>
+                                        <!-- editable Email (text with validation) -->
+                                        <span editable-email="user.receiverEmail" e-ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" ng-model="emailId" onbeforesave="validateRequired($data,false)" e-name="email" e-form="rowform" e-required>
+                                          {{ user.receiverEmail }}
+                                        </span>
+                                      </td>
+
+                                       <td>
+                                        <!-- editable PhoneNo (text with validation) -->
+                                        <span editable-text="user.receiverPhoneNo" e-ng-pattern="/^$|^(?:1-?)?[(]?\d{3}[)]?\s?-?\s?\d{3}\s?-?\s?\d{4}$/" ng-model="phoneNo" onbeforesave="validateRequired($data,true,user)" e-name="mobileNo" e-form="rowform">
+                                          {{ user.receiverPhoneNo }}
+                                        </span>
+                                      </td>
+
+                                       <td>
+                                          <!-- editable status (select-local) -->
+                                          <span editable-select="user.value=3" ng-model="receiverstatus" ng-disabled="!receiverstatus" onbeforesave="validateRequired($data,false)" e-name="receiverstatus" e-form="rowform" e-ng-options="s.value as s.text for s in statuses" disabled="isDisableds">
+                                            {{ showStatus(user) }}
+                                          </span>
+                                          <!-- <span editable-select="user.receiverstatus" ng-model="receiverstatus" onbeforesave="validateRequired($data)" e-name="receiverstatus" e-form="rowform" e-ng-options="s.value as s.text for s in statuses">
+                                            {{ showStatus(user) }}
+                                          </span> -->
+                                        </td>
+
+                                              <td class="text-center">
+
+                                                <!--  <div class="dropdown" shown="" ng-model="invitebtn" dropdown>
+                                                   <i class="fa fa-ellipsis-v dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" dropdown-toggle></i> -->
+
+
+                                               <div class="dropdown" shown="" ng-model="invitebtn"  ng-disabled="!saveDisabled" dropdown >
+                                                   <i class="fa fa-eye dropdown-toggle" ng-if="user.receiverstatus =='Unsubscribed'" type="button" ng-hide="user.id < 0"></i>
+
+                                                   <i class="fa fa-eye dropdown-toggle" type="button" ng-hide="user.id < 0" ng-click="getGroupInfo($index);" id="dropdownMenu2" data-toggle="dropdown" ng-if="user.receiverstatus !='Unsubscribed'" aria-haspopup="true" aria-expanded="true" dropdown-toggle></i>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" dropdown-menu>
+                                                      <li ng-repeat="listgroup in listofgroup" >
+                                                          <label class="checkbox-inline">
+                                                           <!--  <input type="checkbox" ng-model="executive" id="inlineCheckbox1" value="1">  -->{{listgroup.groupName}}
+                                                          </label>
+                                                      </li>
+                                                    </ul>
+                                               </div>
+                                            </td>
+
+                                      <td style="white-space: nowrap">
+                                        <!-- form -->
+                                      
+                                        <!-- <form class="text-right" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+                                          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel();" ng-hide="hideButton[$index]" class="btn btn-default">cancel</button>
+                                           <button type="submit" ng-show="user.id < 0" ng-click="saveUser(); sendInvite(); isCollapsed2 = !isCollapsed2" ng-disabled="rowform.$waiting" class="btn btn-primary">{{buttonText}}</button>
+                                           
+                                           <button type="submit" ng-click="saveUser(); isCollapsed2 = !isCollapsed2" ng-disabled="rowform1.$waiting" ng-hide="hideButton[$index]" class="btn btn-primary">Save changes</button>
+                                        </form> -->
+
+                                    <form class="text-right" editable-form name="rowform" onbeforesave="saveUser($data, user)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+
+                                      <button type="button" ng-show="user.id < 0" ng-disabled="rowform.$waiting" ng-click="removeUser1($index); cancelEdit();" class="btn btn-default">Cancel</button>
+
+                                      <button type="submit" ng-show="user.id < 0" ng-click=" sendInvite();" ng-disabled="rowform.$waiting && rowform.$invalid" class="sec-cus-buttons">Save & send invite</button>
+                                      
+                                      <button type="button" ng-show="user.receiverConfigId > 0" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel(); cancelEdit();" class="btn btn-default">Cancel</button>
+                                      
+                                      <button type="submit" ng-show="user.receiverConfigId > 0" ng-click="saveUser();" ng-disabled="rowform.$waiting " class="sec-cus-buttons">Save changes</button>
+                                      
+                                    </form>
+
+
+
+                                        <div class="inline-options" ng-disabled="addDisable" ng-show="!rowform1.$visible && !rowform.$visible">
+                                          <i ng-if="user.receiverstatus !='Unsubscribed' && btnDisabled == 'true'" class="fa fa-pencil-square-o"></i>
+
+                                            <i ng-if="user.receiverstatus !='Unsubscribed' && btnDisabled == 'false'" class="fa fa-pencil-square-o" ng-click="editRow(); rowform.$show();"></i>
+                                            <i ng-if="user.receiverstatus =='Unsubscribed'" class="fa fa-pencil-square-o"></i>
+                                            <i class="fa fa-trash-o" ng-click="removeUser($index)"></i>                                  
+                                        </div>  
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                  </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row table-info-nav" ng-if="pagination.totalRecords>0">
+                                    <div class="col-sm-6">
+                                        <p>Showing <span>{{pagination.limit * (pagination.page-1) + 1}}</span> to <span id="totalCount">{{(pagination.page*pagination.limit > pagination.totalRecords && pagination.totalRecords || pagination.page*pagination.limit )}}</span> of <span>{{pagination.totalRecords}}</span> users</p>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <button type="button" class="btn btn-default" ng-disabled="pagination.page == 1" ng-click="pagination.page=pagination.page-1"><i class="fa fa-chevron-left"></i></button><!-- {{pageNumber}}/{{totalPages}} -->
+                                        <button type="button" class="btn btn-default"  ng-disabled="pagination.totalRecords<pagination.page*pagination.limit" ng-click="pagination.page=pagination.page+1"><i class="fa fa-chevron-right"></i></button>
+                                    </div>
+
+                                </div>
+                            </div> <!-- .content End -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+
+
+
+
+
+<style type="text/css">
+  /*.inActive{
+    color:orange;
+  }
+  .red {
+    color: red;
+  }
+  .black {
+    color: black;
+}*/
+</style>
+

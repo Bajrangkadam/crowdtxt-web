@@ -1,0 +1,485 @@
+
+   
+	<style type="text/css">
+
+
+		body{
+			background: url(images/banner6.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
+
+
+		}
+
+    html{
+      overflow: auto !important;
+    }
+
+.login12{
+    position:relative;
+    margin-top: 8%;
+    z-index:0; 
+    border: 2px solid;
+    border-radius: 10px;
+    padding: 2%;
+    background-color:rgba(255,255,255,0.6);
+   
+}
+
+.login123 {
+    position: absolute;
+    width: 100%;
+	clear: both;
+    bottom: 0;
+	padding: 0;
+    margin: 0;
+}
+
+.login1234{
+  position:relative;
+   z-index:2; 
+  border: 2px solid;
+    padding: 1%;
+    background-color:rgba(255,255,255,0.6);
+    margin-top:2%;
+}
+
+.panel{
+	box-shadow: -8px 10px 23px #2D2D2D;
+}
+
+.panel-heading{
+	background-color:#5E7E9A !important;
+}
+
+.contentMain{
+              margin-top: 8%;
+            }
+
+
+@media screen and (min-width: 993px) and (max-width: 6000px) { 
+
+  .login12{
+    margin-left: 25%;
+  margin-top:0%;
+  }
+
+  .account{
+            margin-left:16%;
+          }
+  
+  }
+
+
+
+
+
+/*Modal table*/
+
+#table1, #table2{
+	background-color: white;
+}
+
+    .table thead.nonya th.nonya:first-child {
+       border-top: 1px solid #dbdbdb;
+       border-right: 1px solid #dbdbdb;
+       border-left: 1px solid #dbdbdb;
+       border-bottom: 1px solid #dbdbdb;
+      }
+
+      .content1234{
+        
+      }
+
+
+    #table2{
+        display: none;
+    }
+
+    .pro{
+    	background-color: #EBF2F7;
+    }
+
+    .tab1{
+    	list-style-type: none;
+      
+    }
+
+    .featuresTitle{
+      list-style-type: none;
+      margin-left: -12%;
+      padding-top:10%;
+    }
+
+    .bluez, .bluez1, .bluez2{
+    	text-align: center;
+    }
+
+    .table-responsive{
+      border: 6px solid #5084B1;
+      border-radius: 6px;
+      background-color: white;
+      box-shadow: 2px 4px 15px #2D2D2D;
+    }
+    
+    #pricing{
+      margin-bottom: 0;
+    }
+
+    .featuresContent{
+      list-style-type: none;
+      padding-top:8%;
+      margin-left: 36%;
+    }
+
+    .btn-block1{
+      padding: 2% !important;
+      
+    }
+
+    .tableHeading{
+      font-weight: bold;
+    }
+
+    .mid-box1{display:block;}
+
+    .mid-box2{display:none;}
+
+
+
+	</style>
+
+   <style type="text/css">
+
+          @media screen and (min-width: 280px) and (max-width: 993px) { 
+            .container{
+              margin-right: 5%;
+              margin-left: 5%;
+            }
+
+            .login12{
+              margin-top:20%;
+            }
+
+            .contentMain{
+              margin-top: 16%;
+            }
+
+            .account{
+              margin-left:0;
+            }
+          }
+
+    </style>
+
+
+
+
+
+    <style>
+  .editable-error{
+    color:red;
+  }
+
+  .spinnerMainDiv{
+      margin-top: 0%;
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background-color:rgba(255,255,255,0.6);
+      /*background-color: #E9ECEF;*/
+  }
+
+  .spinnerDiv{
+    margin-top: 24%;
+     position: absolute; 
+     z-index: 1; 
+     margin-left: 50%;
+  }
+ </style>
+
+
+ <!-- ======================= To show Spinner while loading data.. ======================= -->
+
+        <div class="spinnerMainDiv" ng-show="loading">
+            <div class="spinnerDiv">
+                <h1><i class="fa fa-refresh fa-spin"></i></h1>
+            </div>
+        </div>
+        
+ <!-- ==================================================================================== -->  
+
+
+
+     <!-- Toast Notification for Email ID and Mobile No validation.. -->
+
+                <div class="alerts-container slideDown showAlertOnValidation" style="display:none">
+                 <div class="alert alert-warning alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group name </strong>you have entered already exist
+                 </div> 
+                </div>
+
+                
+
+                <div class="alerts-container slideDown successfullyRegistered" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>You have been successfully registered.</strong>
+                 </div> 
+                </div>
+
+                 <div class="alerts-container slideDown showAlertOnSubscribtion" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>You have been successfully registered, you can check with your Email.</strong>
+                 </div> 
+                </div>
+
+
+
+
+	     <div class="">
+		          <nav class="navbar navbar-default" role="navigation">
+                <div class="container">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+
+                    <!-- <div style="border: 2px solid #7DA8E8; width: 5%; padding: 1%; border-radius: 20px;">Login</div> -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" ng-click="navbarCollapsed = !navbarCollapsed">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                   <!--  <a class="navbar-brand" href="#"><img src="images/logo.png" style="width: 45%; margin-top: -9%;" alt=""></a> -->
+                   <a class="navbar-brand" href="#/web"><img src="images/crowdtxt-logo.png" style="width: 172px; margin-top: -6%;" alt=""></a>
+                  </div>
+
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" collapse="navbarCollapsed">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a href="#/web">Home</a></li>
+                        <li><a href="#/login">Login</a></li>
+                        <!-- <li><a href="sign-up.html" class="btn-1" style="color: #67ab49;">Sign Up</a></li> -->
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </div><!-- /.container -->
+              </nav> 
+	     </div>
+
+
+        
+
+
+
+
+
+
+	           <div class="container contentMain">
+
+
+
+              <!-- Subscribe plan page -->
+              <div ng-show="showPlanDetails">
+                  <div style="text-align:center;"><h2 class="heading12">You can customize billing plan for more than 500 users.</h2>
+                     <p><a href=""><h4>Click here to contact sales</a></h4></p></div>
+
+                        <div style="margin-top:4%;">
+                            <div class="table-responsive">
+
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>Plan details</th>
+                                    <th>Amount</th>
+                                    <th> </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- <tr ng-repeat="plans in planDetails" ng-if="!(newKeyValue=='N' && plans.planName=='Free')"> -->
+                                  <tr ng-repeat="plans in planDetails">
+                                    <td><span class="label label-success">{{plans.planname}} </span><br>Upto {{plans.noofusers}} users</td>
+
+                                    <!-- <td><span class="label label-success">{{plans.planName}} </span><br>Upto {{plans.noOfUsers}} users</td> -->
+                                    <td>$ {{plans.amount}} / month<p>{{plans.noofmsgs}} sms</p></td>
+                                    <td><button type="button" class="btn btn-success btn-block next" ng-if="plans.planname=='Free'" ng-click="showAdminDetailPage($index);">Try for free</button><button type="button" class="btn btn-success btn-block next" ng-if="plans.planname!='Free'" ng-click="showAdminDetailPage($index);">Buy now</button></td>
+                                  </tr>
+                                  <!-- <tr>
+                                    <td>Upto 100 users</td>
+                                    <td>$ 19.99 / month<p>$ .02 / sms</p></td>
+                                    <td><button type="button" class="btn btn-success btn-block next" >Buy now</button></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Upto 500 users</td>
+                                    <td>$ 39.99 / month<p>$ .02 / sms</p></td>
+                                    <td><button type="button" class="btn btn-success btn-block next" >Buy now</button></td>
+                                  </tr> -->
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+
+              </div>
+
+ <!-- Subscribe plan page end -->
+
+
+
+
+
+             <div ng-show="adminDetails">
+                 <div class="row content">
+                  <div class="col-md-6 container login12">
+
+                     <div style="float:right; position: relative; z-index: 3;"><i class="fa fa-times fa-1x" ng-click="goToPlanPage();"></i></div>
+                         <div style="text-align:center;"><h4>You have selected a  <!-- <span class="label label-success"> ${{dataPlanDetails}}/per month</span> -->
+                         <span class="label label-success"> {{planNameToDisplay}}</span> plan
+                       </h4></div>
+
+                           <div class="col-md-8 account" >
+                              <form name="myform" ng-submit="adminDetailsSubmit();" novalidate>
+                                  <h3 style="text-align:center;">Create account.</h3>
+                                  <hr class="style-two" style="width:100%; height:1px;">
+                                    <div class="form-group">
+                                      <label for="text">Account name:</label>
+                                      <input type="text" class="form-control" id="firstName" name="firstName" ng-model="firstName" placeholder="Company Name" required>
+                                      <span class="required" ng-show="submitted && myform.firstName.$invalid">Required</span>
+                                      <!-- <span class="required" ng-show="submitted && myform.firstName.$error.pattern">valid first name</span> -->
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="email">Email:</label>
+                                      <input type="email" class="form-control" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" id="lastName" name="email" ng-model="email" placeholder="Company Email" required>
+                                       <span class="required" ng-show="submitted && myform.email.$invalid">Required</span>
+                                      <span class="required" ng-show="submitted && myform.email.$error.pattern">valid email id</span>
+                                    </div>
+                                    <div class="row">
+                                      <div class="form-group col-md-12">
+                                        <label for="password">Password:</label>
+                                        <input type="password" class="form-control" id="password" ng-model="password" name="password" placeholder="Password" required>
+                                        <span class="required" ng-show="submitted && myform.password.$invalid">Required</span>
+                                       <!--  <span class="required" ng-show="submitted && myform.password.$error.pattern">valid first name</span> -->
+                                      </div>
+                                      <div class="form-group col-md-12">
+                                        <label for="password">Confirm password:</label>
+                                        <input type="password" class="form-control" id="confirmPassword" ng-model="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                                        <span class="required" ng-show="submitted && myform.confirmPassword.$invalid">Required</span>
+                                        <span class="required" ng-show="passwordMatch">Passwords have to match!</span>
+                                        <!-- <span class="required" ng-show="submitted && myform.confirmPassword.$error.pattern">valid first name</span> -->
+                                      </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="row">
+                                      <div class="form-group text-center">
+                                       <!-- <input type="submit" name="submit" value="Proceed to pay" class="btn btn-success" border="0"> -->
+                                       <button type="submit" ng-if="planNameToDisplay=='Free'" class="sec-cus-buttons">Submit account</button>
+                                        <button type="submit" ng-if="planNameToDisplay!='Free'" class="sec-cus-buttons">Proceed to pay</button>
+                                      </div>
+                                    </div>
+                              </form>
+                           </div>
+
+                            <!--   <hr class="style-two" style="width:100%; height:1px;">
+                                    <div  style="text-align:center; padding:1%;">
+                                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="pp">
+                                         
+                                          <input type="hidden" name="business" value="crowdtesting@gmail.com">
+                                         
+                                          <input type="hidden" name="cmd" value="_cart">
+                                          <input type="hidden" name="upload" value="1">
+                                          
+                                          <input type="hidden" name="item_name_1" value="subscribe250">
+                                          <input type="hidden" name="amount_1" value="25">
+                                          <input type="hidden" name="quantity_1" value="1">
+                                          <input type="hidden" name="currency_code" value="USD">
+                                          <input type="hidden" name="return" value="https://accounts.google.com/ServiceLogin?service=mail&passive=true&rm=false&continue=htt..."/>
+                                          <input type="hidden" name="cancel_return" value="https://login.secureserver.net/?app=wbe"/>
+                                                           
+                                          <input type="submit" name="submit" value="Proceed to pay" class="btn btn-success" border="0">
+                                          <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+                                        </form>
+                                    </div> -->
+                  </div>
+             </div>               
+          </div>
+
+
+        <form-submitter></form-submitter>
+
+
+
+               
+
+
+
+
+     </div>
+
+
+
+
+
+
+
+        
+
+
+
+  
+     
+      <!--   <div class="container footer1">
+          <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center   wow fadeInUp animated">
+                    <div class="social">
+                        <h2 style="float:left;">Follow us on here &nbsp;</h2>
+                        <span class="">
+                            <ul class="icon_list" style="float:left;">
+                                <li><a href="http://www.facebook.com/abdullah.noman99"target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="http://www.twitter.com/absconderm"target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </span>
+                    </div>   
+               </div>
+            
+                <div class="col-md-6 text-center">
+                    <div class="social   wow fadeInUp animated" style="float:right;">
+                        <h2>&copy; 2015.All Right reserved by <a href="#"target="_blank" style="color:white;">CROWD TXT</a></h2>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div> -->
+      
+
+      
+			
+
+
+<!-- =========================
+     SCRIPTS 
+============================== -->
+
+<!-- 
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nicescroll.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/easyWizard.js"></script>
+ -->
+    
+	

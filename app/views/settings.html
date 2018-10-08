@@ -1,0 +1,231 @@
+    
+
+    <!-- Toast Notification for Adding the new Event.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Data updated successfully </strong>
+                 </div> 
+                </div>
+
+
+
+        <div class="main" role="main">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <h3>Profile</h3>
+                            </div> <!-- .page-header End -->
+                            <div class="contents">
+                                <div class="row">
+                                    <div class="col-sm-12 cus-panels-with-pad pad-25">
+
+                                 <form name="myform" ng-submit="update();" novalidate>
+                                      <!--  <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="plan-details box-set">
+                                                    <fieldset>
+                                                        <legend>Plan Details</legend>
+                                                        <h4><strong>CrowdTXT Pro - Annual plan</strong></h4>
+                                                        <p class="text-muted">Renews automatically on <b>Oct 20, 2015</b></p>
+                                                        <button type="button" class="sec-cus-buttons" data-url="#">Change Plan</button>
+                                                        <button type="button" class="sec-cus-buttons" data-url="#">Renew</button>
+                                                    </fieldset>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class=" box-set">
+                                                    <fieldset>
+                                                        <legend>Recent Billing Activity</legend>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                       <!--  <br><br> -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="box-set">
+                                                    <fieldset class="per-info">
+                                                        <legend>Personal Information</legend>
+
+                                                   
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="f-name">Company Name</label>
+                                                                    <input type="text" readonly class="form-control" id="f-name" ng-model="companyName"
+                                                                    ng-disabled="companyName">
+                                                                    <span class="required hidden">Validation Error</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="l-name">Email</label>
+                                                                    <input type="text" readonly class="form-control" id="l-name"  ng-model="email"  ng-disabled="email"> 
+                                                                    <span class="required hidden">Validation Error</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="f-name">First Name</label>
+                                                                    <input type="text" class="form-control" name="firstName" id="f-name" ng-model="firstName" >
+                                                                    <!-- <span class="required hidden">Validation Error</span> -->
+                                                                    <span class="required" ng-show="submitted && myform.firstName.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="l-name">Last Name</label>
+                                                                    <input type="text" class="form-control" name="lastName" id="l-name" ng-model="lastName" >
+                                                                    <!-- <span class="required hidden">Validation Error</span> -->
+                                                                    <span class="required" ng-show="submitted && myform.lastName.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Select Gender</label>
+                                                                    <select class="form-control" name="gender" ng-model="gender" >
+                                                                      <!--   <option> Select </option> -->
+                                                                        <option>Male</option>
+                                                                        <option>Female</option>
+                                                                    </select>
+                                                                    <!-- <span class="required hidden">Validation Error</span> -->
+                                                                     <span class="required" ng-show="submitted && myform.gender.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="mob-no">Mobile no</label>
+                                                                    <input type="text" readonly class="form-control" id="mob-no" ng-model="mobileNumber" ng-disabled="mobileNumber">
+                                                                    <span class="required hidden">Validation Error</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="add-line1">Address line1</label>
+                                                                    <input type="text" class="form-control" name="address1" id="add-line1" ng-model="address1" >
+                                                                    <!-- <span class="required hidden">Validation Error</span> -->
+                                                                     <span class="required" ng-show="submitted && myform.address1.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="add-line2">Address line2</label>
+                                                                    <input type="text" class="form-control" id="add-line2" name="address2" ng-model="address2" >
+                                                                    <!-- <span class="required hidden">Validation Error</span> -->
+                                                                    <span class="required" ng-show="submitted && myform.address2.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                           <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="state">Country</label>
+                                                                    <input type="text" class="form-control" id="state" name="country" ng-model="country" >
+                                                                    <!-- <span class="required hidden">Validation Error</span> -->
+                                                                    <span class="required" ng-show="submitted && myform.country.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="city">City</label>
+                                                                    <input type="text" class="form-control" id="city" name="city" ng-model="city" >
+                                                                    <!-- <span class="required hidden">Validation Error</span> -->
+                                                                    <span class="required" ng-show="submitted && myform.city.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="row">
+                                                           <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="state">State</label>
+                                                                    <input type="text" class="form-control" id="state" name="state" ng-model="state" >
+                                                                   <!--  <span class="required hidden">Validation Error</span> -->
+                                                                   <span class="required" ng-show="submitted && myform.state.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="zip">Zip</label>
+                                                                    <input type="text" class="form-control" id="zip" name="zip" ng-model="zip" >
+                                                                    <!-- <span class="required hidden">Validation Error</span> -->
+                                                                    <span class="required" ng-show="submitted && myform.zip.$invalid">Required</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--<div class="text-center"> <button type="submit" class="sec-cus-buttons ma-btn">Update</button> </div>-->
+
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                       
+                                           <!--  <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="box-set">
+                                                        <fieldset>
+                                                            <legend>Change Password</legend>
+                                                            <div class="form-group">
+                                                                <label for="currentpass">Current Password</label>
+                                                                <input type="password" class="form-control" id="currentpass" name="currentPassword" ng-model="currentPassword" >
+                                                                
+                                                                <span class="required" ng-show="submitted && myform.currentPassword.$invalid">Required</span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="newpass">New Password</label>
+                                                                <input type="password" class="form-control" id="newpass" name="newPassword" ng-model="newPassword" >
+                                                               
+                                                                <span class="required" ng-show="submitted && myform.newPassword.$invalid">Required</span>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="confimpass">Confirm Password</label>
+                                                                <input type="password" class="form-control" id="confimpass" name="confirmPassword" ng-model="confirmPassword" >
+                                                                
+                                                                <span class="required" ng-show="submitted && myform.confirmPassword.$invalid">Required</span>
+                                                                <span class="required" ng-show="confirmPasswordCheck">Password should match</span>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class=" box-set">
+                                                        <fieldset>
+                                                            <legend>Notification</legend>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div class="text-center mar-10-0">
+                                                <input type="submit" value="Update" class="sec-cus-buttons ma-btn">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--<div class="row">
+                                    <div class="col-sm-12 cus-panels-with-pad pad-25">
+                                        
+                                    </div>
+                                </div>-->
+                             </div>
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->

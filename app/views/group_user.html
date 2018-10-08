@@ -1,0 +1,376 @@
+<!-- <h1>Group View Goes here.......</h1> -->
+
+
+<!-- To show the error message in red color.. -->
+ <style>
+  .editable-error{
+    color:red;
+  }
+ </style>
+
+
+  <style type="text/css">
+
+          @media screen and (min-width: 280px) and (max-width: 993px) { 
+            .buttonSize{
+             font-size:12px;
+            }
+          }
+
+    </style>
+
+
+
+  <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-if="!groupMain && !addUserToGroup || groupMainPage">
+
+
+           <!-- ========= Toast Notification Sections.. ====================== -->
+
+            <!-- Toast Notification for delete.. -->
+
+                <div class="alerts-container slideDown showAlertClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Successfully deleted the Group</strong>
+                 </div> 
+                </div>
+
+           <!-- Toast Notification for Email ID and Mobile No validation.. -->
+
+                <div class="alerts-container slideDown showAlertOnValidation" style="display:none">
+                 <div class="alert alert-warning alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group name </strong>you have entered already exist
+                 </div> 
+                </div>
+
+            <!-- Toast Notification for Adding the new group.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group name </strong>entered successfully
+                 </div> 
+                </div>
+
+             <!-- Toast Notification for Edited the new group.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessEditEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group name </strong>edited successfully
+                 </div> 
+                </div>
+
+           <!-- =============================================================== -->
+           
+
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-4">
+                                        <h3>Groups</h3>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-8 page-options text-right">
+                                       <div class="text-right">
+                                           <!-- <ul class="reset pull-right">
+                                                <li class="option">
+                                                    <i class="fa fa-sort-alpha-asc" ng-hide="MakeSearchVisible" ng-click="sortData((isCollapsedn = !isCollapsedn),'groupName')" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn, 'fa fa-sort-alpha-asc': !isCollapsedn}"></i>
+                                                </li>
+                                                <li class="option">
+                                                    <span ng-show="MakeSearchVisible"><input type="text" style="color: black;" placeholder="Search group" ng-model="filters.groupName"/></span>
+                                                    <span ng-click="MakeSearchVisible=!MakeSearchVisible"><i class="fa fa-search"></i></span>
+                                                </li>
+                                              
+                                            </ul> -->
+                                       </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                            
+                           
+
+
+
+
+
+
+                                  <div class="contents">
+                               <div class="row cus-panels-with-pad">
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive">
+                                          <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <!-- <th>Group Name<i class="fa fa-sort-alpha-asc" ng-hide="MakeSearchVisible" ng-click="sortData((isCollapsedn = !isCollapsedn),'groupName')" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn, 'fa fa-sort-alpha-asc': !isCollapsedn}"></i><span ng-show="MakeSearchVisible"><input type="text" style="color: black;" placeholder="Search group" ng-model="filters.groupName"/></span>
+                                                    <span ng-click="MakeSearchVisible=!MakeSearchVisible"><i class="fa fa-search"></i></span></th> -->
+                                                    <th>Group Name</th>
+
+                                                    <th>Group Type</th>
+
+                                                    <th>Company Name</th>
+                                               
+                                                
+                                                  <th>Who's Approved<!-- <span class="pull-right"><i class="fa fa-search"></i></span> --></th>
+
+                                                  
+                                                 
+                                                  <th class="text-center">Action</th>
+                                              </tr>
+                                          </thead>
+                                              <tbody>
+                                            <tr  ng-repeat="group in groups">
+                                              
+
+                                                <td style="max-width:200px;"><span class="text-bold" editable-text="group.groupName" onbeforesave="validateRequired($data)" e-name="group" ng-model="groupName" e-form="rowform" e-required required>{{ group.groupName }} </span></td>
+
+                                                <td>
+                                                  <span class="{{ group.newClass}}">{{ group.isPublic }}</span>
+                                                </td>
+
+                                                <td>{{group.companyName}}</td>
+
+                                                <td>{{group.groupCreatedBy}} &nbsp; {{group.approverName}}</td>
+
+                                               
+                                                  
+
+                                                      <td>
+
+                                                         <div class="buttonSize col-sm-12 col-xs-12 text-right single-w-lh" ng-show="!rowform.$visible">
+                                        <div class="inline-options">
+                                           <button ng-show="group.groupStatus === 'No' && group.isPublic === 'Public'" id="joinHide" ng-click="showChevronRight($index);" ng-style="disableJoinButton" type="button" class="sec-cus-buttons"><span class="glyphicon glyphicon-ban-minus"></span>Join</button>
+
+                                           <button class="sec-cus-buttons" ng-show="group.isRequest =='N' && group.adminApproved === 'Y'" id="removeBtnClass" ng-disabled="isDisabled" ng-click="adminApproved($index);" type="button"><span class="glyphicon glyphicon-ban-minus"></span>Join - Request Admin</button>
+
+                                            <button class="btn btn-default disabled" ng-if="group.adminApproved === 'Y' && group.isRequest =='Y' && group.isAcceptOrDecline =='sent'" id="removeBtnClass" ng-click="" type="button"><span class="glyphicon glyphicon-ban-minus"></span>Join - Request sent</button>
+
+                                            <button class="btn btn-default disabled" ng-if="group.adminApproved === 'Y' && group.isRequest =='Y' && group.isAcceptOrDecline =='N'" id="removeBtnClass" ng-click="" type="button"><span class="glyphicon glyphicon-ban-minus"></span>Request declined</button>
+
+                                          <!--  <i class="fa fa-chevron-right" id="removeId" ng-style="disableChevronRightButton" ng-show="joinBtnClick" ng-click="disabled || showGroupDetails($index); showGroup(group.id);" ng-class='{ disabled: disabled}'></i> -->
+
+                                           <!--  <i class="fa fa-chevron-right" id="removeId" ng-style="disableChevronRightButton"  ng-show="group.status != 'Admin approved' && group.status != 'Public'" ng-click="disabled || showGroupDetails(); showGroup(group.id);"></i> -->
+
+                                              <i class="fa fa-chevron-right" id="removeId" ng-style="disableChevronRightButton"  ng-show="group.groupStatus === 'Yes' && group.isPublic ==='Public'" ng-click="disabled || showGroupDetails($index); showGroup(group.id);" ng-class='{ disabled: disabled}'></i>
+
+                                              <i class="fa fa-chevron-right" id="removeId" ng-style="disableChevronRightButton"  ng-show="group.isPublic ==='Private'" ng-click="disabled || showGroupDetails($index); showGroup(group.id);" ng-class='{ disabled: disabled}'></i>
+
+                                            <!-- <i class="fa fa-chevron-right" id="removeId" ng-style="disableChevronRightButton"  ng-show="group.adminApproved === 'Y' && group.groupStatus === 'Yes' && group.isAcceptOrDecline ==='Y'" ng-click="disabled || showGroupDetails($index); showGroup(group.id);" ng-class='{ disabled: disabled}'></i> -->
+                                            <i class="fa fa-chevron-right" id="removeId" ng-style="disableChevronRightButton"  ng-show="group.adminApproved === 'Y' && group.isAcceptOrDecline ==='Y'" ng-click="disabled || showGroupDetails($index); showGroup(group.id);" ng-class='{ disabled: disabled}'></i>
+                                        </div>
+                                    </div>
+                                                        
+
+                                                </td>
+                                                  </tr>
+                                                
+                                              </tbody>
+                                          </table>
+                                      </div>
+
+                                 
+                                    </div>
+
+
+                                </div>
+
+                                <!-- <div class="row table-info-nav" ng-if="pagination.totalRecords>0"> -->
+                                <!-- <div class="row table-info-nav">
+                                    <div class="col-sm-6">
+                                        <p>Showing <span>{{pagination.limit * (pagination.page-1) + 1}}</span> to <span id="totalCount">{{(pagination.page*pagination.limit > pagination.totalRecords && pagination.totalRecords || pagination.page*pagination.limit )}}</span> of <span>{{pagination.totalRecords}}</span> groups</p>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <button type="button" class="btn btn-default" ng-disabled="pagination.page == 1" ng-click="pagination.page=pagination.page-1"><i class="fa fa-chevron-left"></i></button>
+                                        <button type="button" class="btn btn-default"  ng-disabled="pagination.totalRecords<pagination.page*pagination.limit" ng-click="pagination.page=pagination.page+1"><i class="fa fa-chevron-right"></i></button>
+                                    </div>
+
+                                </div> -->
+                               
+                            </div> 
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+
+
+
+
+
+
+        <!-- Group details page.. -->
+
+        <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-show="groupMain && !addUserToGroup">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+
+                                        <h3 ng-model="groupDetailsPrivate.group"><i class="fa fa-chevron-left" ng-click="showGroupDetails1();"></i> &nbsp;{{ groupNameToDisplayss || 'empty'  }} <span class="{{newClass}}">{{ groupStatus }}</span> </h3>
+
+                                    </div>
+
+
+                                   <!--  <div class="col-sm-6 col-xs-12 page-options text-right">
+                                        <ul class="reset pull-right">
+                                             <li class="option">
+                                                    <i class="fa fa-sort-alpha-asc" ng-hide="MakeSearch1Visible" ng-click="predicate = 'groups'; reverse=!reverse; isCollapsedn = !isCollapsedn" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn, 'fa fa-sort-alpha-asc': !isCollapsedn}"></i>
+                                                </li>
+                                                <li class="option">
+                                                    <span ng-show="MakeSearch1Visible"><input type="text" style="color: black;" placeholder="Search users" ng-model="firstName.first"/></span>
+                                                    <span ng-click="MakeSearch1Visible=!MakeSearch1Visible"><i class="fa fa-search"></i></span>
+                                                </li>
+                                                <button type="submit" ng-click="showDiv(); currentPage=0;" class="sec-cus-buttons text-right" data-url="#"><i class="fa fa-plus"></i> Add User to Group</button>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+
+
+                                </div>
+                            </div> <!-- .page-header End -->
+                           
+                            <div class="contents">
+                                
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading">
+                                            <h3 class="panel-title">Group Users
+                                            <!-- <div class="page-options pull-right">
+                                                <ul class="reset pull-right">
+                                                    <li class="option">
+                                                        <i class="fa fa-sort-alpha-asc"></i>
+                                                    </li>
+                                                    <li class="option">
+                                                        <i class="fa fa-search"></i>
+                                                    </li>
+                                                </ul>
+                                            </div> -->
+                                            </h3>
+                                          </div>
+
+                                        <div class="row cus-panels-with-pad lisiting" ng-repeat="user in userNameToDisplay | filter: firstName | filter: lastName | filter: Email | filter: Mobile | orderBy:predicate:reverse">
+                                             <div class="col-sm-9 col-xs-9 single-w-lh">
+                                        <span class="text-bold">{{ user.fistname || 'empty' }} {{ user.lastname || 'empty' }}</span>
+                                    </div>
+                                </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading">
+                                            <h3 class="panel-title">Events</h3>
+                                          </div>
+                                        <!--   <ul class="list-group" ng-repeat="events in eventss">
+                                                <li class="list-group-item current clearfix"> {{ events.events}}
+                                                    <div class="inline-options pull-right">
+                                                        <i class="fa fa-chevron-right"></i>
+                                                    </div>
+                                                </li>
+                                            </ul> -->
+
+                                       
+                                <div class="row cus-panels-with-pad lisiting" ng-repeat="events in eventListToDisplay track by $index">
+                                    <div class="col-sm-9 col-xs-9 single-w-lh">
+                                        <span class="text-bold" ng-model="eventTitle">{{ events.EventName || 'empty' }}</span>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-3 single-w-lh">
+                                        <div class="inline-options">
+                                            <i class="fa fa-chevron-right" ng-click="showEventDetails($index);"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                          
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading">
+                                            <h3 class="panel-title">Messages related to selected Event</h3>
+                                          </div>
+                                         <ul class="list-group">
+                                              <li class="list-group-item clearfix">
+                                                  <div class="row">
+                                                      <!--<div class="col-sm-6">
+                                                          <div class="chat-content-wrapper bottom-moderate2-box-shadow">
+                                                               <div class="avatar pull-left"><img src="images/admin-avatar.png" alt="User-Avatar"></div>
+                                                               <div class="post-body">
+                                                                   <p><b>Just got the alert that email is down</b></p>
+                                                                <small class="text-muted">Oct 16, 2015 - 1:50am</small>
+                                                               </div>
+                                                            </div>
+                                                      </div>-->
+                                                      <div class=" col-sm-12">
+                                                          <div class="user-chat-wrapper" ng-repeat="message in messageToDisplay">
+                                                            <div class="chat-content-wrapper bottom-moderate2-box-shadow">
+                                                               <div class="avatar pull-left" ng-if="message.role=='ROLE_ADMIN'"><img src="images/admin-avatar.png" alt="User-Avatar"></div>
+                                                                <div class="avatar pull-left" ng-if="message.role=='ROLE_USER'"><img src="images/user-avatar.png" alt="User-Avatar"></div>
+                                                               <div class="post-body">
+                                                                   <p>{{ message.messages || 'empty' }}</p>
+                                                                <small class="text-muted">{{message.createdBy}} - {{formatTimestampToDates(message.createdDate)}}</small>
+                                                               </div>
+                                                            </div>
+                                                          
+                                                        </div>
+                                                      </div>
+                                                  </div>
+
+
+
+                                               
+                                                <!--<h4 class="list-group-item-heading">Oct 16, 2015 - 1:50am</h4>
+                                                <p class="list-group-item-text">Just got the alert that email is down </p>-->
+
+                                              </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .content End -->
+
+                          
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+    </div> <!-- .app-box End -->
+
+
+
+
+

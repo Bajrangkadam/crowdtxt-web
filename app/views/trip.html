@@ -1,0 +1,413 @@
+ 
+
+ <div class="main" role="main" ng-show="!showTripList && !showAddNewTrip">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h3>Your trips</h3>
+                                    </div>
+                                    <div class="col-sm-6 page-options text-right">
+                                       <div class="text-right">
+                                           <ul class="reset pull-right">
+                                               <li class="option">
+                                                    <a><button type="button" class="sec-cus-buttons" ng-click="showAddNewTripSection();" data-url="#"><i class="fa fa-plus"></i> Add Trip</button></a>
+                                                </li>
+                                            </ul>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                            <!--<div class="page-options cus-panels-with-pad clearfix">
+                                <ul class="reset pull-left">
+                                    <li class="option" title="Filter">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-filter"></i></button>
+                                    </li>
+                                    <li class="option" title="Sort">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-sort-alpha-asc"></i></button>
+                                    </li>
+                                </ul>
+                                <div class="btn-group pull-left" role="group" aria-label="...">
+                                  <button type="button" class="btn btn-default">Left</button>
+                                  <button type="button" class="btn btn-default">Middle</button>
+                                  <button type="button" class="btn btn-default">Right</button>
+                                </div>
+                                <div class="pull-right" >
+                                  <button type="button" class="sec-cus-buttons" data-url="manage_newuser.html"><i class="fa fa-plus"></i> Add New User</button>
+                                </div>
+                            </div>  .page-options End -->
+                            <div class="contents">
+                                <div class="row cus-panels-with-pad lisiting trip" ng-click="showTripDetailSection();">
+                                    <div class="col-sm-2 col-xs-2">
+                                        <div class="date-wrapper">
+                                            <span class="month">Nov</span>
+                                            <span class="date">29</span>
+                                            <span class="day">Sun</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 summary">
+                                        <h4 class="truncate" title="San Jose → Austin"><i class="fa fa-plane"></i> San Jose → Austin</h4>
+							            <small class="truncate" title=""></small>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 destination">
+                                        <h5 class="truncate" title="">Destination Address:</h5>
+							            <small class="truncate" title="">9390 Research Blvd, Austin, TX 78759.</small>
+                                    </div>
+                                </div>
+                                <div class="row cus-panels-with-pad lisiting trip" ng-click="showTripDetailSection();">
+                                    <div class="col-sm-2 col-xs-2">
+                                        <div class="date-wrapper">
+                                            <span class="month">Dec</span>
+                                            <span class="date">29</span>
+                                            <span class="day">Tue</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6 summary">
+                                        <h4 class="truncate" title="San Jose → Austin"><i class="fa fa-plane"></i> Austin → San Jose</h4>
+							            <small class="truncate" title=""></small>
+                                    </div>
+                                    <div class="col-sm-4 col-xs-12 destination">
+                                        <h5 class="truncate" title="">Destination Address:</h5>
+							            <small class="truncate" title="">181 Metro Drive, San Jose, CA 95110.</small>
+                                    </div>
+                                </div>
+                                
+                            </div> <!-- .content End -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+
+
+
+
+
+
+
+
+
+
+
+        <div class="main" role="main" ng-show=" !showAddNewTrip && showTripDetails ">
+            
+            <div id="page-content" class="trip-details">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h3><i class="fa fa-chevron-left" ng-click="backToTripList();"></i> Trip Details</h3>
+                                    </div>
+                                    <div class="col-sm-6 page-options text-right">
+                                       <div class="text-right">
+                                           <ul class="reset pull-right">
+                                               <li class="option">
+                                                    <button type="button" class="sec-cus-buttons" data-url="#"><i class="fa fa-pencil-square-o"></i> Edit Trip</button>
+                                                </li>
+                                            </ul>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                            <!--<div class="page-options cus-panels-with-pad clearfix">
+                                <ul class="reset pull-left">
+                                    <li class="option" title="Filter">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-filter"></i></button>
+                                    </li>
+                                    <li class="option" title="Sort">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-sort-alpha-asc"></i></button>
+                                    </li>
+                                </ul>
+                                <div class="btn-group pull-left" role="group" aria-label="...">
+                                  <button type="button" class="btn btn-default">Left</button>
+                                  <button type="button" class="btn btn-default">Middle</button>
+                                  <button type="button" class="btn btn-default">Right</button>
+                                </div>
+                                <div class="pull-right" >
+                                  <button type="button" class="sec-cus-buttons" data-url="manage_newuser.html"><i class="fa fa-plus"></i> Add New User</button>
+                                </div>
+                            </div>  .page-options End -->
+                            <div class="contents">
+                                <div class="row">
+                                    <div class="col-sm-12 cus-panels-with-pad">
+                                       <div class="row">
+                                           <div class="col-sm-2 col-md-1 text-center">
+                                               <i class="fa fa-plane fa-3x"></i>
+                                           </div>
+                                           <div class="col-sm-4 col-md-6">
+                                               <h3>San Jose → Austin</h3>
+                                           </div>
+                                           <div class="col-sm-6 col-md-5 text-right action-buts">
+                                               <button type="button" class="btn btn-default" data-url="#" id="" title="Weather forecast"><i class="fa fa-sun-o"></i></button>
+                                               <button type="button" class="btn btn-default" data-url="#" id="" title="Hotel nearby"><i class="fa fa-bed"></i></button>
+                                               <button type="button" class="btn btn-default" data-url="#" id="" title="Restaurants nearby"><i class="fa fa-cutlery"></i></button>
+                                           </div>
+                                           
+                                        </div>
+                                        <hr>
+                                        <h4><strong>Destination Address</strong></h4>
+                                        <address>
+                                            3120 De La Cruz Blvd, Suite# 106<br>
+                                            Santa Clara, CA - 95054<br>
+                                        </address>
+                                    </div>
+                                </div>
+                            </div> <!-- .content End -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         <div class="main" role="main" ng-show="showAddNewTrip">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h3><i class="fa fa-chevron-left" ng-click="backToTripList();"></i> Add trip</h3>
+                                    </div>
+                                    <div class="col-sm-6 page-options text-right">
+                                       <div class="text-right">
+                                           
+                                       </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                            <!--<div class="page-options cus-panels-with-pad clearfix">
+                                <ul class="reset pull-left">
+                                    <li class="option" title="Filter">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-filter"></i></button>
+                                    </li>
+                                    <li class="option" title="Sort">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-sort-alpha-asc"></i></button>
+                                    </li>
+                                </ul>
+                                <div class="btn-group pull-left" role="group" aria-label="...">
+                                  <button type="button" class="btn btn-default">Left</button>
+                                  <button type="button" class="btn btn-default">Middle</button>
+                                  <button type="button" class="btn btn-default">Right</button>
+                                </div>
+                                <div class="pull-right" >
+                                  <button type="button" class="sec-cus-buttons" data-url="manage_newuser.html"><i class="fa fa-plus"></i> Add New User</button>
+                                </div>
+                            </div>  .page-options End -->
+                            <div class="contents">
+                                <div class="row">
+                                    <div class="col-sm-12 cus-panels-with-pad">
+                                       <div class="row">
+                                           <div class="col-sm-8 col-sm-offset-2">
+                                               <fieldset class="per-info">
+                                                   <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="radio-inline">
+                                                                  <input type="radio" name="inlineRadioOptions" ng-model="checkboxSelection" id="inlineRadio1" value="1"> ONE WAY
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="radio-inline">
+                                                                  <input type="radio" name="inlineRadioOptions" ng-model="checkboxSelection" id="inlineRadio1" value="2"> ROUND TRIP
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="f-name">From</label>
+                                                                <input type="text" class="form-control" id="f-name">
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="l-name">To</label>
+                                                                <input type="text" class="form-control" id="l-name">
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="">Departure Date</label>
+                                                                <div class="input-group"> 
+
+                                                                    <input type="text" class="form-control" id="" aria-describedby="">
+                                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+                                                               </div>
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="mob-no">Return Date</label>
+                                                                <div class="input-group"> 
+
+                                                                    <input type="text" ng-disabled="isCheckboxSelected('1')" class="form-control" id="" aria-describedby="">
+                                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+                                                               </div>
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    
+
+
+
+                                               <div ng-show="showAddNewAddress"> 
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="add-line1">Destination Address line1</label>
+                                                                <input type="text" class="form-control" id="add-line1">
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="add-line2">Address line2</label>
+                                                                <input type="text" class="form-control" id="add-line2">
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                       <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="state">Country</label>
+                                                                <input type="text" class="form-control" id="state">
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="city">City</label>
+                                                                <input type="text" class="form-control" id="city">
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                       <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="state">State</label>
+                                                                <input type="text" class="form-control" id="state">
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="zip">Zip</label>
+                                                                <input type="text" class="form-control" id="zip">
+                                                                <span class="required hidden">Validation Error</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center"> <!-- <button type="button" ng-click="hideAddnewTripSection();" class="sec-cus-buttons ma-btn">Update</button> --> </div>
+                                            </div>    
+
+
+
+
+
+                                                </fieldset>
+
+
+
+                                                <hr>
+                                                <fieldset class="per-info">
+                                                <label>Choose Destination Address</label>
+                                                <div class="row">
+                                                        <div class="col-sm-4">
+                                                           <div class="panel panel-default">
+                                                             <div class="panel-heading">
+                                                                <h3 class="panel-title">San Jose Office</h3>
+                                                              </div>
+                                                              <div class="panel-body text-center">
+                                                                <div class="address-wrapper text-left">
+                                                                    <p>3120 De La Cruz Blvd, Suite# 106</p>
+                                                                    <p>Santa Clara, CA - 95054</p>
+                                                                </div>
+                                                                <button type="button" class="btn btn-default" data-url="#" id="" title="Weather forecast">Select</button>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="panel panel-default">
+                                                             <div class="panel-heading">
+                                                                <h3 class="panel-title">Austin Office</h3>
+                                                              </div>
+                                                              <div class="panel-body text-center">
+                                                                <div class="address-wrapper text-left">
+                                                                    <p>3120 De La Cruz Blvd, Suite# 106</p>
+                                                                    <p>Santa Clara, CA - 95054</p>
+                                                                </div>
+                                                                <button type="button" class="btn btn-default" data-url="#" id="" title="Weather forecast">Select</button>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="panel panel-default">
+                                                             <div class="panel-heading">
+                                                                <h3 class="panel-title">Los Angeles Office</h3>
+                                                              </div>
+                                                              <div class="panel-body text-center">
+                                                                <div class="address-wrapper text-left">
+                                                                    <p>3120 De La Cruz Blvd, Suite# 106</p>
+                                                                    <p>Santa Clara, CA - 95054</p>
+                                                                </div>
+                                                                <button type="button" class="btn btn-default" data-url="#" id="" title="Weather forecast">Select</button>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center" ng-click="showaddNewAddressSection();" ng-show="!hideaddNewAddressBtn"> <button type="submit" class="sec-cus-buttons ma-btn">Add New Address</button> </div>
+                                                </fieldset>
+                                                <div class="text-center pad-25"> <button type="button" ng-click="backToTripList();" class="sec-cus-buttons ma-btn">Save Trip</button> </div>
+                                           </div>
+                                       </div>
+                                        
+                                    </div>
+                                </div>
+                            </div> <!-- .content End -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->

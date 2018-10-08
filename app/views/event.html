@@ -1,0 +1,1188 @@
+<!-- <h1>Help View Goes here.......</h1> -->
+
+<style type="text/css">
+    .control-label{
+        text-align: left !important;
+    }
+</style>
+
+
+<!-- ================= Group list section.. ==================== -->
+
+ <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-show="!eventMain">
+
+
+                 <!-- Toast Notification for Adding the new Event.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Event </strong>added successfully
+                 </div> 
+                </div>
+
+                 <!-- Toast Notification for Edit Event.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessEdited" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Event </strong>updated successfully
+                 </div> 
+                </div>
+
+                 <!-- Toast Notification for Deleting the new Event.. -->
+
+                <div class="alerts-container slideDown showAlertOnSuccessDelete" style="display:none">
+                 <div class="alert alert-warning alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Event </strong>deleted successfully
+                 </div> 
+                </div>
+
+
+
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-4">
+                                    	<h3>Events</h3>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-8 page-options text-right">
+                                       <div class="text-right">
+                                           <ul class="reset pull-right">
+                                                <!--<li class="option">
+                                                    <i class="fa fa-filter"></i>
+                                                </li>-->
+                                                <li class="option">
+                                                    <i class="fa fa-sort-alpha-asc" ng-hide="MakeSearchVisible" ng-click="sortData((isCollapsedn = !isCollapsedn),'eventTitle')" ng-class="{'fa fa-sort-alpha-desc': isCollapsedn, 'fa fa-sort-alpha-asc': !isCollapsedn}"></i>
+                                                </li>
+                                                <li class="option">
+                                                    <span ng-show="MakeSearchVisible"><input type="text" style="color: black;" placeholder="Search events" ng-model="filters.eventTitle"/></span>
+                                                    <span ng-click="MakeSearchVisible=!MakeSearchVisible"><i class="fa fa-search"></i></span>
+                                                </li>
+                                                <li class="option">
+                                                    <button type="button" class="sec-cus-buttons" data-url="#" ng-click="showCreateSection();"><i class="fa fa-plus"></i> Create New Event</button>
+                                                </li>
+                                            </ul>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                            <!--<div class="page-options cus-panels-with-pad clearfix">
+                                <ul class="reset pull-left">
+                                    <li class="option" title="Filter">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-filter"></i></button>
+                                    </li>
+                                    <li class="option" title="Sort">
+                                        <button type="button" class="btn btn-default"><i class="fa fa-sort-alpha-asc"></i></button>
+                                    </li>
+                                </ul>
+                                <div class="btn-group pull-left" role="group" aria-label="...">
+                                  <button type="button" class="btn btn-default">Left</button>
+                                  <button type="button" class="btn btn-default">Middle</button>
+                                  <button type="button" class="btn btn-default">Right</button>
+                                </div>
+                                <div class="pull-right" >
+                                  <button type="button" class="sec-cus-buttons" data-url="manage_newuser.html"><i class="fa fa-plus"></i> Add New User</button>
+                                </div>
+                            </div>  .page-options End -->
+                            <div class="contents">
+                                <div class="row cus-panels-with-pad lisiting" ng-repeat="events in eventss">
+                                    <div class="col-sm-9 col-xs-7 single-w-lh">
+                                        <span class="text-bold" ng-model="eventTitle">{{ events.eventTitle }}</span>
+                                        <small class="text-muted">{{formatTimestampToDate(events.eventDate)}}</small>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-5 single-w-lh">
+                                        <div class="inline-options">
+                                            <span class="{{ events.newClass}}">{{ events.currentStatus }}</span>
+                                           <!--  <i class="fa fa-trash-o" ng-click="removeEvent($index)"></i>  -->
+                                            <i class="fa fa-chevron-right" ng-click="showEventDetails($index); showGroup(events.id);"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- .content End -->
+
+
+                            <div class="row table-info-nav" ng-if="pagination.totalRecords>0">
+                                    <div class="col-sm-6">
+                                        <p>Showing <span>{{pagination.limit * (pagination.page-1) + 1}}</span> to <span id="totalCount">{{(pagination.page*pagination.limit > pagination.totalRecords && pagination.totalRecords || pagination.page*pagination.limit )}}</span> of <span>{{pagination.totalRecords}}</span> events</p>
+                                    </div>
+                                    <div class="col-sm-6 text-right">
+                                        <button type="button" class="btn btn-default" ng-disabled="pagination.page == 1" ng-click="pagination.page=pagination.page-1"><i class="fa fa-chevron-left"></i></button><!-- {{pageNumber}}/{{totalPages}} -->
+                                        <button type="button" class="btn btn-default"  ng-disabled="pagination.totalRecords<pagination.page*pagination.limit" ng-click="pagination.page=pagination.page+1"><i class="fa fa-chevron-right"></i></button>
+                                    </div>
+
+                                </div>
+
+
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+
+
+
+
+
+
+
+
+
+        <!-- ======================== Create event section ============================ -->
+
+         <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-show="createEvents">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <h3> <i class="fa fa-chevron-left" ng-show="showOnCreateEvent" ng-click="backToEventList();"></i> <i class="fa fa-chevron-left" ng-show="showOnEditEvent" ng-click="backToEventListOnEdit($index);"></i> {{messageTitle}}</h3>
+                            </div> <!-- .page-header End -->
+                            <div class="contents">
+                               <div class="row">
+                                   <div class="col-sm-12 cus-panels-with-pad">
+                                       <div class="row">
+                                           <div class="col-sm-8">
+                                               <!-- <form class="form-horizontal"> -->
+                                                <form name="myform" class="form-horizontal" ng-submit="saveEvent();" novalidate>
+                                                    <fieldset class="per-info">
+                                                        <!--<legend>Create Event:</legend>-->
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-sm-8 mar-5-0">
+                                                                <div class="">
+                                                                    <label for="" class="control-label">What is the Event ?</label>
+                                                                    <div class="">
+                                                                       <!--  <input type="text" class="form-control" ng-pattern="/^[a-zA-Z ]*$/" name="eventTitle" ng-model="event.eventTitle" id="" placeholder="" required> -->
+                                                                        <input type="text" class="form-control" name="eventTitle" ng-model="event.eventTitle" id="" placeholder="" required>
+                                                                        <!-- <span class="required hidden">Validation Error</span> -->
+                                                                        <span class="required" ng-show="submitted && myform.eventTitle.$invalid">Required</span>
+                                                                        <span class="required" ng-show="submitted && myform.eventTitle.$error.pattern">valid title</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4 mar-5-0">
+                                                                <div class="">
+                                                                    <label for="" class=" control-label">Event Status</label>
+                                                                    <div class="">
+                                                                        <!-- <select class="form-control" readonly>
+                                                                            <option>Open</option>
+                                                                            <option>Closed</option>
+                                                                        </select> -->
+                                                                         <select class="form-control" ng-options="eventStatus.code as eventStatus.name for eventStatus in eventStatuses" ng-model="eventStatus" ng-disabled="disabled">
+                                                              <!--     <option style="display:none" value="">Select event status</option> -->
+                                                                  </select>
+                                                                        <span class="required hidden">Validation Error</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-6 mar-5-0">
+                                                                <div class="">
+                                                                    <label for="" class="control-label">Event Date</label>
+                                                                    <div class="">
+                                                                        <input type="date" class="form-control" name="eventDate" ng-model="event.eventDate" id="" placeholder="" required>
+                                                                       <!--  <span class="required hidden">Validation Error</span> -->
+                                                                        <span class="required" ng-show="submitted && myform.eventDate.$invalid">Required</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 mar-5-0">
+                                                                <div class="">
+                                                                    <label for="" class="control-label">Event Time</label>
+                                                                    <div class="">
+                                                                        <input type="time" class="form-control" name="eventTime" ng-model="event.eventTime" id="" placeholder="" required>
+                                                                        <!-- <span class="required hidden">Validation Error</span> -->
+                                                                        <span class="required" ng-show="submitted && myform.eventTime.$invalid">Required</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 mar-5-0">
+                                                                <div class="form-group">
+                                                                    <label for="" class="col-sm-2 control-label">Event Options</label>
+                                                                    <div class="col-sm-4">
+                                                                        <label class="checkbox-inline">
+                                                                          <input type="checkbox" id="" ng-model="event.allowReply" ng-init="event.allowReply=false" ng-true-value="'Y'" ng-false-value="'N'"> Reply all
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label class="checkbox-inline">
+                                                                          <input type="checkbox" id="" ng-model="event.allowPrivateComments" ng-init="event.allowPrivateComments=false" ng-true-value="'Y'" ng-false-value="'N'"> Reply Private Comments
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 mar-5-0">
+                                                                <div class="form-group">
+                                                                    <label for="" class="col-sm-2 control-label">To</label>
+                                                                    <div class="col-sm-4">
+                                                                        <!-- <input type="text" class="form-control" ng-model="toList" id="" placeholder="enter email address or mobile no"> -->
+                                                                         <tags-input display-property="groupName" name="msgSendMethodMap" ng-model="msgSendMethodMap.groups" placeholder="Add groups" required></tags-input>
+                                                                        <!-- <span class="required hidden">Validation Error</span> -->
+                                                                        <span class="required" ng-show="submitted && myform.msgSendMethodMap.$invalid">Required</span>
+                                                                    </div>
+
+                                                                    <div class="col-sm-4">
+                                                                        <!-- <input type="text" class="form-control" ng-model="toList" id="" placeholder="enter email address or mobile no"> -->
+                                                                         <tags-input display-property="receiverFirstName" name="msgUserMap" ng-model="msgUserMap.users" placeholder="Add users" required></tags-input>
+                                                                        <!-- <span class="required hidden">Validation Error</span> -->
+                                                                        <span class="required" ng-show="submitted && myform.msgUserMap.$invalid">Required</span>
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+                                                                        <button type="button" ng-click="showTab(); showGroupListInTab();" ng-hide="hideBtn" class="btn btn-default" title="Add group or user from existing group"><i class="fa fa-plus"></i><i class="fa fa-users"></i></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>      
+                                                        <div class="row">
+                                                            <div class="col-sm-12 mar-5-0">
+                                                                <div class="form-group">
+                                                                    <label for="" class="col-sm-2 control-label">Message</label>
+                                                                    <div class="col-sm-10">
+                                                                        <textarea class="form-control" name="message" ng-model="event.message" rows="3" required></textarea>
+                                                                        <span class="required" ng-show="submitted && myform.message.$invalid">Required</span>
+                                                                        <span class="required" ng-show="submitted && myform.message.$error.pattern">valid message</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 mar-5-0">
+                                                                <div class="form-group">
+                                                                    <label for="" class="col-sm-2 control-label">Message Options</label>
+                                                                    <div class="col-sm-4">
+                                                                        <label class="checkbox-inline">
+                                                                          <input type="checkbox" ng-model="event.isPollEnabled" ng-init="event.isPollEnabled=false" ng-true-value="'Y'" ng-false-value="'N'"> Poll
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label class="checkbox-inline">
+                                                                          <input type="checkbox" ng-model="event.isSurveyEnabled"  ng-init="event.isSurveyEnabled=false" ng-true-value="'Y'" ng-false-value="'N'"> Survey
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                    <br>
+                                                    <!--<fieldset>
+                                                        <legend class="clearfix"><i class="fa"></i>Additional Options<span class="pull-right"><i class="fa fa-question-circle"></i></span></legend>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <label for="" class="col-sm-2 control-label">Enable</label>
+                                                                    <div class="col-sm-10">
+                                                                        <label class="checkbox-inline">
+                                                                          <input type="checkbox" id="" value="option1"> Poll
+                                                                        </label>
+                                                                        <label class="checkbox-inline">
+                                                                          <input type="checkbox" id="" value="option2"> Survey
+                                                                        </label>
+                                                                        <label class="checkbox-inline">
+                                                                          <input type="checkbox" id="" value="option2"> Allow Reply
+                                                                        </label>
+                                                                        <label class="checkbox-inline">
+                                                                          <input type="checkbox" id="" value="option2"> Allow Private Comments
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-4 col-sm-offset-2">
+                                                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#poll"> Add Poll Questions</button>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#survey"> Add Survey Questions</button>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>-->
+                                                    <div class="text-center pad-25" ng-show="showInCreateEvent"> <button type="submit" ng-click="submitNewEvent();" class="sec-cus-buttons">Preview event</button> </div>
+                                                    <div class="text-center pad-25" ng-show="showInUpdateEvent"> <button type="submit" class="sec-cus-buttons" ng-click="submitEditEvent();">Submit event</button> </div>
+                                                </form>
+                                           </div>
+
+
+
+
+                                           <div class="col-sm-4 group-user-list" ng-show="showTabs">
+                                               <legend class="clearfix">Group/Users: <i class="pull-right fa fa-times-circle" title="Close Group/User selection" ng-click="hideTab();"></i><!-- <i class="pull-right fa fa-search"></i> --></legend>
+                                              	<ul class="nav nav-tabs">
+												  <li class="active"><a data-toggle="tab" data-target="#group">Group</a></li>
+												  <li><a data-toggle="tab" ng-click="showUserListInTab();" data-target="#users">Users</a></li>
+												</ul>
+
+												<div class="tab-content">
+												  <div id="group" class="tab-pane fade in active">
+												     <ul class="list-group">
+	                                                  <li class="list-group-item" ng-repeat="group in groups | filter: group | orderBy:predicate:reverse">
+	                                                    <!-- <span class="badge">{{ group.notification || 'empty' }}</span> -->
+	                                                    <div class="checkbox">
+	                                                      <label>
+	                                                        <input type="checkbox" checklist-model="msgSendMethodMap.groups" checklist-value="group">
+	                                                        {{ group.groupName }}
+	                                                      </label>
+	                                                    </div>
+	                                                  </li>
+	                                                 </ul>
+												  </div>
+
+												  <div id="users" class="tab-pane fade" style=" max-height: 500px; overflow-y: scroll;">
+												   <ul class="list-group">
+	                                                  <li class="list-group-item" ng-repeat="user in users | filter: firstName | filter: lastName | orderBy:predicate:reverse | filter: user | orderBy:predicate:reverse">
+	                                                    <div class="checkbox">
+	                                                      <label>
+	                                                        <input type="checkbox" checklist-model="msgUserMap.users" checklist-value="user">
+	                                                        {{ user.receiverFirstName + "  " + user.receiverLastName || 'empty' }}
+                                                            <!-- {{ user.receiverFirstName }} -->
+	                                                      </label>
+	                                                    </div>
+	                                                  </li>
+	                                                 </ul>
+												  </div>
+												</div>
+
+                                           </div>
+
+
+                                       </div>
+                                   </div>
+                               </div>
+                                <form action="">
+                                            
+                                </form>
+                            </div> <!-- .content End -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+
+
+
+
+
+
+
+
+    
+    
+    <div class="modal fade" id="poll" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Add Poll Question</h4>
+          </div>
+          <div class="modal-body">
+            <div class="">
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <div class="modal fade" id="survey" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Add Survey Question and Answers</h4>
+          </div>
+          <div class="modal-body">
+            <div class="">
+                <form>
+                    <div class="form-group">
+                        <label for="">Question-1: Multiple Choice</label>
+                        <input type="text" class="form-control" id="" placeholder="enter the question">
+                        <br>
+                        <label>Answer Choices</label>
+                        <div class="table-responsive">
+                          <table class="table">
+                            <tr>
+                                <td>
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 1
+                                      </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="" placeholder="">
+                                </td>
+                                <td>
+                                    <i class="fa fa-plus-circle add" title="Add another choice"></i>
+                                    <!--<i class="fa fa-times-circle delete" title="Delete this choice."></i>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 2
+                                      </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="" placeholder="">
+                                </td>
+                                <td>
+                                    <i class="fa fa-plus-circle add" title="Add another choice"></i>
+                                    <i class="fa fa-times-circle delete" title="Delete this choice."></i>
+                                </td>
+                            </tr>
+                          </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+          </div>
+          <div class="modal-footer clearfix">
+           <div class="pull-left">
+               <button type="button" class="btn btn-default">Add More Questions</button>
+           </div>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ================= View event section.. ==================== -->
+
+
+
+      <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-show="eventList">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <h3><i class="fa fa-chevron-left" ng-click="backToEventList12();"> Event Details</i></h3>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12 page-options text-right">
+                                        <ul class="reset pull-right">
+                                            <!--<li class="option">
+                                                <i class="fa fa-filter"></i>
+                                            </li>
+                                            <li class="option">
+                                                <i class="fa fa-sort-alpha-asc"></i>
+                                            </li>
+                                            <li class="option">
+                                                <i class="fa fa-search"></i>
+                                            </li> -->
+                                            <li class="option">
+                                                <button type="button" class="sec-cus-buttons" ng-hide="hideOnEventClose" ng-click="editEvent();" data-url="#"><i class="fa fa-pencil"></i> Edit Event</button>
+                                                <button type="button" class="sec-cus-buttons" ng-hide="hideOnEventClose" ng-click="updateEvent(eventId);" data-url="#"><i class="fa fa-pencil-square-o"></i> Update Event Details</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                            <div class="contents" id="newEventEntry3">
+                               <div class="row">
+                                   <div class="col-sm-12 cus-panels-with-pad event-details">
+                                      <div class="row">
+                                        <div class="col-sm-6 col-xs-12">
+                                            <h3 ng-model="groupDetails.events" class="clearfix">{{ eventTitle }}</h3>
+                                            <small class="text-muted">{{eventPreviewDate}}</small>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-12 text-right">
+                                           <span class="{{newClass}}">{{ currentStatus }}</span>&nbsp;
+                                           <!-- <a ng-click="openPollResult();">Poll Result</a> | <a ng-click="openSurveyResultResult();">Survey Result</a> -->
+
+
+                                           <span ng-show="showOnNoPoll">No Poll question</span>
+                                           <span ng-show="isPollEnabled=='Y'"> <a ng-click="openPollResult();" ng-bind="pollResults">Poll Result</a></span> &nbsp; <span ng-show="showOnNoSurvey">No Survey question</span><span ng-show="isSurveyEnabled=='Y'"><a ng-click="openSurveyResult();" ng-bind="surveyResults">Survey Result</a></span>
+                                        </div>
+                                      </div>
+                                       
+                                       <!--<p>Event description goes here - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam aliquid, quia. Suscipit corporis fugit earum tempore sit obcaecati accusamus repellendus sed autem, consequatur porro libero fuga non vero, magnam ea.</p>-->
+                                       
+                                       <!--<hr>-->
+                                      
+                                    </div>
+                                </div>
+                                
+
+
+                     <div ng-repeat="eventMessage in eventMsgResponse track by $index">
+                        <div class="row">
+                             <div class="col-sm-12 cus-panels-with-pad mar-10-0">
+                                       <div class="row">
+                                            <div class="avatar col-sm-1 mar-5-0"><img src="images/admin-avatar.png" alt="User-Avatar"></div>
+                                            <div class="col-sm-9">
+                                                <h4 class="clearfix">{{eventMessage.messages}}
+
+
+
+
+                                                    
+                                                   <!--  <span ng-if="eventMessage.addPoll=='Y'"> Still any one facing issue - <a ng-click="openPollQuestion($index);">Click here</a> to let us know.</span>
+                                                    <span ng-if="eventMessage.addSurvey=='Y'"> Survey questions - <a ng-click="openSurveyQuestion($index);">Click here</a> to let us know.</span> -->
+
+
+
+
+
+
+
+
+
+
+                                                     <!-- <span> Still any one facing issue - <a ng-click="openPollQuestion($index);">Click here</a> to let us know.</span>
+                                                    <span> Survey questions - <a ng-click="openSurveyQuestion($index);">Click here</a> to let us know.</span> -->
+                                                </h4>
+                                                <small class="text-muted">{{eventMessage.newCreatedDate}}</small>
+                                            </div>
+                                        </div>
+                                        <div class="comments-container">
+                                         <header>
+                                             <div class="row">
+                                                 <div class="col-sm-6">
+                                                     <span><b>{{commentsCount[$index]}}</b> Comments</span>
+                                                 </div>
+                                                 <!-- <div class="col-sm-6 text-right">
+                                                     <div class="dropdown">
+                                                      <button class="btn btn-default dropdown-toggle" type="button" id="comment_sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        Options
+                                                        <span class="caret"></span>
+                                                      </button>
+                                                      <ul class="dropdown-menu" aria-labelledby="comment_sort">
+                                                        <li><a href="#">Show all</a></li>
+                                                        <li><a href="#">Show only Admin comments</a></li>
+                                                      </ul>
+                                                    </div>
+                                                 </div> -->
+                                             </div>
+                                         </header>
+                                         <!-- Comments options ends -->
+                                         <div class="new-comment">
+                                             <form>
+                                                 <div class="row">
+                                                     <div class="col-md-12 columns">
+                                                         <!--<div class="avatar pull-left"><img src="images/user-avatar.png" alt="User-Avatar"></div>-->
+                                                         <div class="post-body-textarea">
+                                                             <textarea class="form-control" ng-model="$parent.postCommentContent['field_' + $index]" rows="3"></textarea>
+                                                         </div>
+                                                         <div class="post-but-options text-right">
+                                                             <button class="sec-cus-buttons" ng-click="postcommentsBtn(eventMessage.evenMsgId,$index);">Post Comment</button>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </form>
+                                         </div>
+
+                                <!-- ===================== To show posted comments.. ====================== -->
+
+                                         <div ng-repeat="comment in comments[$index] track by $index">
+                                          <ul class="reset post-children">
+                                              <li class="post row">
+                                                  <div class="col-md-12">
+                                                      <div class="avatar pull-left" ng-if="comment.role=='ROLE_ADMIN'"><img src="images/admin-avatar.png" alt="User-Avatar"></div>
+                                                      <div class="avatar pull-left" ng-if="comment.role=='ROLE_USER'"><img src="images/user-avatar.png" alt="User-Avatar"></div>
+                                                      <div class="post-body">
+                                                          <div class="heading">
+                                                              <!-- <strong>Admin</strong> -->
+                                                              <strong>{{comment.commentBy}}</strong>
+                                                              <span class="post-time">{{tests(comment.commentDate)}} </span>
+                                                          </div>
+                                                          <div class="body">
+                                                              <p>{{comment.commentDesc}}</p>
+                                                          </div>
+
+
+                                 <!-- ====================== To show Reply to post.. ============================= -->
+
+                                                          <div class="footer">
+                                                              <ul class="reset">
+                                                                  <li class="no-of-replies">
+                                                                      <b>{{replyCount[$index]}}</b> Replies
+                                                                  </li><li>
+                                                                  <a ng-disabled="replyDisabled" ng-click="showPostCommentsOnReplys(comment.commentId,$parent.$index,$index);"> Reply</a>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+
+                                                          <div class="reply-comment" ng-show="showPostcommentsOnReply[$parent.$index][$index]">
+                                                             <form>
+                                                                 <div class="row">
+                                                                     <div class="col-md-12 columns">
+                                                                         <div class="avatar pull-left"><img src="images/admin-avatar.png" alt="Admin-Avatar"></div>
+                                                                         <div class="post-body-textarea">
+                                                                             <textarea class="form-control" ng-model="$parent.$parent.replyToComment"></textarea>
+                                                                         </div>
+                                                                         <div class="post-but-options text-right">
+                                                                            <button class="btn btn-default" ng-click="cancelReplyBtn(comment.commentId,$parent.$index,$index);" type="button">Cancel</button>
+                                                                             <button class="sec-cus-buttons" ng-click="postReplyByComment(comment.commentId,$parent.$index,$index);">Post Comment</button>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </form>
+                                                         </div>
+
+                                                         <ul class="reset post-children">
+                                                              <li class="post row" ng-repeat="reply in replyinfo[$parent.$index][$index]">
+                                                                  <div class="col-md-12">
+                                                                      <!-- <div class="avatar pull-left"><img src="images/admin-avatar.png" alt="User-Avatar"></div> -->
+                                                                      <div class="avatar pull-left" ng-if="reply.role=='ROLE_ADMIN'"><img src="images/admin-avatar.png" alt="User-Avatar"></div>
+                                                      <div class="avatar pull-left" ng-if="reply.role=='ROLE_USER'"><img src="images/user-avatar.png" alt="User-Avatar"></div>
+
+                                                                      <div class="post-body">
+                                                                          <div class="heading">
+                                                                              <!-- <strong>Admin</strong> -->
+                                                                              <strong>{{reply.replyBy}}</strong>
+                                                                              <span class="post-time">{{tests(reply.replyDate)}}</span>
+                                                                          </div>
+                                                                          <div class="body">
+                                                                              <p>{{reply.replyDesc}}</p>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </li>
+                                                          </ul>
+
+                                <!-- =================================================================================== -->                                         
+
+
+                                                      </div>
+                                                  </div>
+                                              </li>
+                                          </ul>
+                                        </div>
+
+                                 <!-- ========================================================================= -->                                              
+
+
+                                                      </div>
+                                                  </div>
+                                              </li>
+                                          </ul>
+                                        </div>
+
+                                 <!-- ========================================================================= -->       
+                                       
+                                 
+                                         <!-- Comment-listing ends -->
+                                     </div>
+                                   </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div> <!-- .content End -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+    
+
+                  
+            <!--<p><b>Everything is up and running as ususal - <a href="#" data-toggle="modal" data-target="#survey">Click here</a> to provide your feedback.</b></p>-->
+                                                        
+
+    
+    <!-- <div class="modal fade" id="poll" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Please provide your feedback</h4>
+          </div>
+          <div class="modal-body">
+            <div class="">
+                <p class="">Is the issue resolved ?</p>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6 text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">YES</button>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-12 mar-5-0 text-right">
+                    <textarea class="form-control" rows="3"></textarea>
+                    <button class="sec-cus-buttons mar-5-0">Post Comment</button>
+                </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div> -->
+
+    <div id="showPollQuestions" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Please provide your feedback</h4>
+                </div>
+                <div class="modal-body">
+            <div class="">
+                <p class="">{{ pollQuestionToDisplay }}</p>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6 text-center">
+                    <button type="button" class="btn btn-default" ng-click="showTextAreaBtn()">NO</button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button type="button" class="btn btn-default" ng-click="sendPollYes();" data-dismiss="modal">YES</button>
+                </div>
+            </div>
+            <div class="row clearfix" ng-show="showTextArea">
+                <div class="col-sm-12 mar-5-0 text-right">
+                    <textarea class="form-control" ng-model="pollComment" rows="3"></textarea>
+                    <button class="sec-cus-buttons mar-5-0" ng-click="sendPollNo($index);">Post Comment</button>
+                </div>
+            </div>
+          </div>
+            </div>
+        </div>
+    </div>
+
+
+
+     <div class="modal fade" id="showSurveyQuestions" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Please provide your feedback</h4>
+          </div>
+          <div class="modal-body">
+           <div class="border">
+               <h4 class="text-primary">{{ surveyQuestionToDisplay }} </h4>
+                <div class="radio" ng-repeat="survey in surveyQueAnswers track by $index">
+                  <label>
+                    <input type="radio" name="optionsRadios" ng-click="surveyOutPut(survey.surveyAnswer);" id="optionsRadios1" value="option1" >
+                        {{survey.surveyAnswer}}
+                  </label>
+                </div>
+                <!-- <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    Satisfied
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+                    Neutral
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+                    Dissatisfied
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+                    Very dissatisfied
+                  </label>
+                </div> -->
+           </div>
+          
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn" ng-click="submitSurvey();">Submit and Finish Survey</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+
+
+    
+    <div class="modal fade" id="poll-result" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Feedback back Result</h4>
+          </div>
+          <div class="modal-body">
+            <div class="">
+                <label>Total Result:</label> <span class="label label-success">Yes</span> - <strong>{{YesCount}}</strong> &nbsp; &nbsp; <span class="label label-danger">No</span> - <strong>{{NoCount}}</strong>
+            </div>
+            <br>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <tr>
+                    <th>User Name</th>
+                    <th class="text-center">Result</th>
+                </tr>
+
+                <tr ng-repeat="pollResponse in pollResponseToDisplay">
+                    <td>{{pollResponse.FirstName + "  " + pollResponse.Lastname}}</td>
+                    <td class="text-center"><!-- <span class="label label-success">{{pollResponse.feedback}}</span>  -->
+                        <span class="label label-success" ng-if="pollResponse.feedback=='Yes'">Yes</span>
+                        <span class="label label-danger" ng-if="pollResponse.feedback=='No'">No</span>
+                    </td>
+                </tr>
+                <!-- <tr>
+                    <td>James</td>
+                    <td class="text-center"><span class="label label-success">Yes</span></td>
+                </tr>
+                <tr>
+                    <td>Adam Jones</td>
+                    <td class="text-center"><span class="label label-success">Yes</span></td>
+                </tr>
+                <tr>
+                    <td>Tom</td>
+                    <td class="text-center"><span class="label label-danger">No</span></td>
+                </tr> -->
+
+                 <!-- <tr ng-repeat="userName in dataToDisplay.userDetails">
+                    <td>{{userName.FirstName}} {{userName.Lastname}}</td>
+                    <td class="text-center"><span class="label label-success" ng-repeat="resultCount in dataToDisplay.PollResponse">{{resultCount.NoCount}}</span></td>
+                </tr> -->
+
+              </table>
+            </div>
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>-->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    
+    
+    <div class="modal fade" id="survey-result" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Survey Feedback back Resultssssss</h4>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <tr>
+                    <th>Question Options</th>
+                    <th class="text-center">&nbsp;&nbsp;Graph&nbsp;&nbsp;</th>
+                    <th>Response Percentage</th>
+                </tr>
+                <tr>
+                    <td colspan="3" class="active">{{diplayServerQuestion}}</td>
+                    
+                </tr>
+                <tr ng-repeat="survey in namePercentageToDisplay">
+                    <td>{{survey.name}}</td>
+                    <td class="text-center">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{survey.Percentage}}">
+                            
+                          </div>
+                        </div>
+                    </td>
+                    <td>{{survey.Percentage}}</td>
+                </tr>
+               <!--  <tr>
+                    <td>Satisfied</td>
+                    <td class="text-center">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+                            
+                          </div>
+                        </div>
+                    </td>
+                    <td>20%</td>
+                </tr>
+                <tr>
+                    <td>Neutral</td>
+                    <td class="text-center">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+                            
+                          </div>
+                        </div>
+                    </td>
+                    <td>10%</td>
+                </tr>
+                <tr>
+                    <td>Dissatisfied</td>
+                    <td class="text-center">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 6%;">
+                            
+                          </div>
+                        </div>
+                    </td>
+                    <td>6%</td>
+                </tr>
+                <tr>
+                    <td>Very dissatisfied</td>
+                    <td class="text-center">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 4%;">
+                            
+                          </div>
+                        </div>
+                    </td>
+                    <td>10%</td>
+                </tr> -->
+              </table>
+            </div>
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>-->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+   
+
+
+
+
+
+
+
+
+
+     <!-- ================= View event section.. ==================== -->
+
+
+
+     <!-- .header-wrapper End -->
+        <div class="main" role="main" ng-show="previewEvent">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-headers cus-panels-with-pad">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h3><i class="fa fa-chevron-left" ng-click="backToEventList1();"> Preview event</i></h3>
+                                    </div>
+                                    <div class="col-sm-6 page-options text-right">
+                                        <ul class="reset pull-right">
+                                           
+                                            <li class="option">
+                                                <button type="button" class="sec-cus-buttons" ng-click="submitEvent();" data-url="#"> Send Message</button>         
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> <!-- .page-header End -->
+                            <div class="contents">
+                               <div class="row">
+                                   <div class="col-sm-12 cus-panels-with-pad mar-10-0">
+                                       <div class="row">
+                                            <div class="avatar col-sm-1 mar-5-0"><img src="images/admin-avatar.png" alt="User-Avatar"></div>
+                                            <div class="col-sm-8">
+                                                <h4 class="clearfix"><small class="text-muted">Event Title: </small>{{ titleDisplay }} &nbsp; <small class="text-muted">{{ eventDateToDisplay }} - {{ eventTimeToDisplay }}</small></h4>
+                                                <br>
+                                                <h4 class="clearfix"><small class="text-muted">Event Title: </small>{{ messageToPreview }}</h4>
+                                                <!-- <small class="text-muted">{{ eventDateToDisplay }} - {{ eventTimeToDisplay }}</small> -->
+                                                
+                                            </div>
+                                             <div class="col-sm-3 text-right">
+                                               <span class="label label-warning">Open</span>
+                                               <!-- <span>Poll Result</span> | <span>Survey Result</span> -->
+                                               <span ng-bind="pollResult"></span> &nbsp; <span ng-bind="surveyResult"></span>
+                                             </div>
+                                       </div>
+                                   </div>
+                                </div>
+                            </div> <!-- .content End -->
+                        </div>
+                    </div>               
+                </div>
+            </div><!-- #page-content End -->
+        </div> <!-- .main End -->
+    </div> <!-- .app-box End -->
+
+
+
+
+
+
+     <!-- Modal to show Poll result.. -->
+    <div id="pollResult" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Please provide your feedback</h4>
+                </div>
+                <div class="modal-body">
+            <div class="">
+                <p class="">Is the issue resolved ?</p>
+            </div>
+            <div class="row clearfix">
+                <div class="col-sm-6 text-center">
+                    <button type="button" class="btn btn-default" ng-click="showTextAreaBtn()">NO</button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">YES</button>
+                </div>
+            </div>
+            <div class="row clearfix" ng-show="showTextArea">
+                <div class="col-sm-12 mar-5-0 text-right">
+                    <textarea class="form-control" rows="3"></textarea>
+                    <button class="sec-cus-buttons mar-5-0">Post Comment</button>
+                </div>
+            </div>
+          </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal to show Survey result.. -->
+    <div id="surveyResult" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Please provide your feedback</h4>
+               </div>
+                <div class="modal-body">
+           <div class="border">
+               <h4 class="text-primary">1. How satisfied are you with the response time by IT Team ? </h4>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+                    Very satisfied
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                    Satisfied
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+                    Neutral
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+                    Dissatisfied
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+                    Very dissatisfied
+                  </label>
+                </div>
+           </div>
+           <hr>
+           <div class="border">
+               <h4 class="text-primary">2. How quickly was the problem resolved? </h4>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option1" >
+                    Immediately
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option1" checked>
+                    Within a day
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option1" >
+                    Between 1 and 3 days
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option1" >
+                    More than a week
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios2" id="optionsRadios2" value="option1" >
+                    The problem still exists
+                  </label>
+                </div>
+           </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Submit and Finish Survey</button>
+          </div>
+            </div>
+        </div>
+    </div>
+
+    

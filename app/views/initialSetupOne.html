@@ -1,0 +1,294 @@
+
+
+<style type="text/css">
+  .required{
+    color: red;
+  }
+</style>
+
+
+<style type="text/css">
+  @media screen and (min-width: 250px) and (max-width: 992px) { 
+
+    .col-xs-8{
+          display: table;
+          width: 90%;
+          position: relative;
+          margin-left: 5%;
+    }
+  }
+</style>
+
+
+
+
+         <!-- Toast Notification for delete.. -->
+
+                <div class="alerts-container slideDown showAlertClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Uploaded file processed successfully, please proceed to Invite</strong>
+                 </div> 
+                </div>
+
+
+                 <div class="alerts-container slideDown showAlertOnUnsupportedClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Unsupported file format</strong>
+                 </div> 
+                </div>
+
+                 <div class="alerts-container slideDown showAlertOnfileOnCorruptedClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>File format correct but file corrupted</strong>
+                 </div> 
+                </div>
+
+                 <div class="alerts-container slideDown showAlertOnSuccessClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Successfully uploaded user data</strong>
+                 </div> 
+                </div>
+
+                <div class="alerts-container slideDown showAlertOnexistingUser" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>User already exist</strong>
+                 </div> 
+                </div>
+
+                <div class="alerts-container slideDown showAlertOnexistingGroup" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group already exist</strong>
+                 </div> 
+                </div>
+
+                 <div class="alerts-container slideDown showAlertOnSuccessEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group added sucessfully </strong>
+                 </div> 
+                </div>
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="main hidden-xs" role="main"> -->
+
+<div class="main" role="main">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!--<div class="page-headers cus-panels-with-pad">
+                                <h3>Initial Setup</h3>
+                            </div>  .page-header End -->
+                            <div class="contents">
+                               
+                               <div class="row">
+                                   <div class="col-sm-12">
+                                       <div class="initial-setup-header text-center">
+                                           <h2>Setup Your Crowd Notifications</h2>
+                                           <p>Fill the form below &nbsp;→&nbsp; Invite the Users &nbsp;→&nbsp; Get Started with the Application</p>
+                                       </div><br><br>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                   <div class="stepwizard col-xs-offset-3 col-md-offset-3">
+                                    <div class="stepwizard-row setup-panel">
+                                      <div class="stepwizard-step">
+                                        <a href="" type="button" ng-click="showStepInitialOne();" class="btn btn-primary btn-circle">1</a>
+                                        <p>Complete registration</p>
+                                      </div>
+                                      <div class="stepwizard-step">
+                                        <a href="" type="button" ng-click="showStepInitialTwo();" class="btn btn-default btn-circle">2</a>
+                                        <p>Create groups</p>
+                                      </div>
+                                      <div class="stepwizard-step">
+                                        <a href="" type="button" ng-click="showStepInitialThree();" class="btn btn-default btn-circle">3</a>
+                                        <p>Invite people</p>
+                                      </div>
+                                     <!--  <div class="stepwizard-step">
+                                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                                        <p>Invite</p>
+                                      </div> -->
+                                    </div>
+                                </div>
+                             </div>
+  
+
+
+
+
+                <div class="row container setup-content" ng-model="step1" id="step-1">
+      <div class="col-xs-8 col-md-offset-2 cus-panels-with-pad">
+
+        <br>
+        <br>
+
+        <fieldset class="per-info">
+
+          <form name="myform" novalidate>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="f-name">First Name</label>
+                        <input type="text" ng-model="first" name="first" ng-pattern="/^[a-zA-Z ]*$/" class="form-control" id="f-name" required>
+                        <!-- <span class="required hidden">Validation Error</span> -->
+                        <span class="required" ng-show="submitted && myform.first.$invalid">Required</span>
+                        <span class="required" ng-show="submitted && myform.first.$error.pattern">valid first name</span>
+                        <span ng-show="firstNamess" style="color:red;">Required valid first name</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="l-name">Last Name</label>
+                        <input type="text" ng-model="last" name="last" ng-pattern="/^[a-zA-Z ]*$/" class="form-control" id="l-name" required>
+                       <!--  <span class="required hidden">Validation Error</span> -->
+                        <span class="required" ng-show="submitted && myform.last.$invalid">Required</span>
+                        <span class="required" ng-show="submitted && myform.last.$error.pattern">valid last name</span>
+                        <span ng-show="lastNamess" style="color:red;">Required valid last name</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="mob-no">Email</label>
+                        <input type="email" ng-model="email" name="email" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" class="form-control" placeholder="" id="email-id" ng-disabled="disableEmailId" ng-init="disableEmailId=false" required>
+                        <span class="required" ng-show="submitted && myform.email.$invalid">Not a valid email id</span><br>
+                        <span ng-show="emailss" style="color:red;">Required valid email id</span>
+                         <span class="slideDown showAlertOnSuccessEmailVerification" style="display:none; color:green;"><h4>A verification code has been sent to your Email id.</h4></span>
+                         <span class="slideDown showAlertOnSuccessEmailOtpCode" style="display:none; color:green;"><h4>Successfully verified</h4></span>
+                          <span class="slideDown showAlertOnEmailReentering" style="display:none; color:green;"><h4>Re-enter your email id</h4></span>
+                         <span class="showAlertOnErrorEmailOtpCode" style="display:none; color:red;"><h4>The verification code is incorrect</h4></span>
+                         <span class="showAlertOnDuplicate" style="display:none; color:red;"><h4>Email id already exist</h4></span>
+                        <span class="required hidden">Validation Error</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="mob-no">Mobile Number</label>
+                        <input type="text" ng-model="mobileNo" name="mobileNo" class="form-control" ng-pattern="/^$|^(?:1-?)?[(]?\d{3}[)]?\s?-?\s?\d{3}\s?-?\s?\d{4}$/" id="mob-no" ng-disabled="disableMobileNo" ng-init="disableMobileNo=false">
+                         <!-- <span ng-show="submitted && myForm.mobileNo.$error.pattern">Not a valid number!</span> -->
+                        <span class="required" ng-show="submitted && myform.mobileNo.$invalid">Not a valid number</span><br>
+                        <span ng-show="mobiless" style="color:red;">Required valid number</span>
+                        <span class="slideDown showAlertOnSuccessMobileVerification" style="display:none; color:green;"><h4>A verification code has been sent to your mobile.</h4></span>
+                         <span class="slideDown showAlertOnSuccessOtpCode" style="display:none; color:green;"><h4>Successfully verified</h4></span>
+                          <span class="slideDown showAlertOnReentering" style="display:none; color:green;"><h4>Re-enter your mobile number</h4></span>
+                         <span class="showAlertOnErrorOtpCode" style="display:none; color:red;"><h4>The verification code is incorrect</h4></span>
+                        <span class="required hidden">Validation Error</span>
+                    </div>
+
+
+                    
+
+                </div>   
+            </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group text-center">
+                        <button type="" style="font-size: 14px;" ng-show="!hideEmailVerificationBtn" ng-click="verifyEmailIdBtn();" class="sec-cus-buttons ma-btn">Verify Email id</button>
+                    </div>
+                 </div>
+                  <!-- <div class="col-sm-6">
+                    <div class="form-group text-center">
+                        <button type="submit" ng-disabled="mobileBtnDisableds" style="font-size: 14px;" ng-show="!hideVerificationBtn"  ng-click="showMobileVerification();" class="sec-cus-buttons ma-btn">Verify Mobile Number</button>
+                    </div>
+                 </div> -->
+              </div>
+
+          </form>
+        </fieldset>
+
+        <!-- =================== OTP code ====================== -->
+
+         <div class="col-xs-6">
+
+           <form name="myform12" ng-submit="emailShowNextBtn(1);" novalidate>
+                   <div class="row" ng-show="hideEmailVerification">
+                      <div class="form-group col-sm-4"> 
+                          <input type="number" class="form-control" name="emailOtpCode" ng-model="emailOtpCode" required>
+                           <span class="required" ng-show="submitteds1 && myform12.emailOtpCode.$invalid">Required</span><br>
+                      </div>
+
+                      <div class="form-group col-sm-8">
+                          <button type="submit" style="font-size: 14px;"  class="sec-cus-buttons ma-btn">Verify code</button>
+                      </div>
+                    </div>
+                   </form> 
+
+         </div>
+
+        <div class="col-xs-6">
+
+                 <form name="myform1" ng-submit="showNextBtn(1);" novalidate>
+                   <div class="row" ng-show="hideMobileVerification">
+                      <div class="form-group col-sm-4"> 
+                          <input type="number" class="form-control" name="otpCode" ng-model="otpCode" required>
+                           <span class="required" ng-show="submitted1 && myform1.otpCode.$invalid">Required</span><br>
+                      </div>
+
+                      <div class="form-group col-sm-8">
+                          <button type="submit" style="font-size: 14px;" class="sec-cus-buttons ma-btn">Verify code</button>
+                      </div>
+                    </div>
+                   </form> 
+
+         </div>          
+
+        <!-- =================== OTP code ====================== -->         
+
+
+
+                      
+         <!--  <button class="btn btn-default prevBtn pull-left" type="button">Back</button> -->
+         <!--  <button class="btn btn-primary nextBtn pull-right" ng-disabled="!((!!first) && (!!last) && (!!mobileNo))" type="button">Next</button> -->
+           <button class="btn btn-primary pull-right" ng-click="gotoStep2();" type="button" ng-disabled="nextBtnDisable" ng-init="nextBtnDisable=true">Next</button>
+      </div>
+    </div>
+
+
+
+      </div>
+    </div>
+ </div>
+
+

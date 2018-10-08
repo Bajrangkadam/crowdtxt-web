@@ -1,0 +1,253 @@
+
+
+    <div class="app-box">
+
+
+         <!-- Toast Notification Sections.. -->
+            <div class="alerts-container slideDown showAlertClass" style="display:none">
+             <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Close</span>
+              </button>
+               <strong class="text-center">Invalid username or password</strong>  
+             </div> 
+            </div>
+
+
+
+
+            <html>
+
+   <!--  
+    <link href='https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/preloader.css" type="text/css" media="screen, print"/>
+   
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.css">
+    
+    <link rel="stylesheet" href="css/animate.css">
+
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/responsive.css" rel="stylesheet"> -->
+
+    <style type="text/css">
+        body{
+            background: url(images/banner6.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        body::before {
+    z-index: 30;
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:rgba(0,0,0,0.2);
+}
+
+html{
+      overflow: auto !important;
+    }
+
+
+.login12{
+      position:relative;
+      z-index:2; 
+      border: 2px solid;
+    border-radius: 10px;
+    padding: 2%;
+    background-color:rgba(255,255,255,0.5);
+    margin-top:6%;
+}
+
+.login123{
+    position:relative;
+     z-index:2; 
+    border: 2px solid;
+    padding: 1%;
+    background-color:rgba(255,255,255,0.5);
+    margin-top:5%;
+}
+    </style>
+
+
+    <style type="text/css">
+
+          @media screen and (min-width: 280px) and (max-width: 993px) { 
+            .container{
+              margin-right: 5%;
+              margin-left: 5%;
+            }
+
+            .login12{
+              margin-top:20%;
+            }
+          }
+
+    </style>
+
+
+  
+                <div class="">
+              <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+
+                    <!-- <div style="border: 2px solid #7DA8E8; width: 5%; padding: 1%; border-radius: 20px;">Login</div> -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" ng-click="navbarCollapsed = !navbarCollapsed">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                   <!--  <a class="navbar-brand" href="#"><img src="images/logo.png" style="width: 45%; margin-top: -9%;" alt=""></a> -->
+                   <a class="navbar-brand" href="#/web"><img src="images/crowdtxt-logo.png" style="width: 172px; margin-top: -6%;" alt=""></a>
+                  </div>
+
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" collapse="navbarCollapsed">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li><a href="#/web">Home</a></li>
+                        <li><a href="#/subscribe?isFree=N">Subscribe</a></li>
+                        <!-- <li><a href="sign-up.html" class="btn-1" style="color: #67ab49;">Sign Up</a></li> -->
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </div><!-- /.container -->
+              </nav> 
+       </div>
+
+              
+  
+
+        
+
+    <div class="container login12">
+      <!-- <h2>Login</h2>  -->
+
+      <div class="col-md-12" style="text-align:center; margin-top:-3%;"><h2>Login</h2></div>
+
+       <hr class="style-two" style="width:100%;">
+
+       <div class="col-md-6"><img src="images/mobile.jpg" alt="" style="width: 100%; border-radius: 5px;"></div>
+
+      
+
+      <div class="col-md-6">
+          <form method="POST" ng-submit="login()">
+            <div class="form-group">
+                <label for="u-name">Email ID</label>
+                <input type="text" class="form-control" ng-model="userName" id="u-name">
+                <span class="required hidden">Validation Error</span>
+            </div>
+            <div class="form-group">
+                <label for="pass">Password</label>
+                <input type="password" class="form-control" ng-model="password" id="pass">
+                <span class="required hidden">Validation Error</span>
+            </div>
+           <!--  <div class="checkbox">
+              <label><input type="checkbox"> Keep me signed in</label>
+            </div> -->
+            <!-- <button type="submit" class="btn btn-success" style="width:40%;">Login</button><br><br> -->
+            <input type="submit" value="Sign In" class="sec-cus-buttons ma-btn" style="width:40%;"><br><br>
+            
+          </form>
+
+          <p><a ng-click="openForgotPassword();">Forgot your password?</a></p><br>
+           <!--  <h4>Need an account? <a href="">Sign up.</a></h4> -->
+      </div>
+
+
+     <!--  <div class="text-center mar-10">
+        <a ng-click="openForgotPassword();">Forget Password ?</a>
+      </div> -->
+    </div>
+
+
+
+
+
+     <!-- <div class="container footer1">
+             <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center   wow fadeInUp animated">
+                    <div class="social">
+                        <h2 style="float:left;">Follow us on here &nbsp;</h2>
+                        <span class="">
+                            <ul class="icon_list" style="float:left;">
+                                <li><a href="http://www.facebook.com/abdullah.noman99"target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="http://www.twitter.com/absconderm"target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </span>
+                    </div>   
+               </div>
+            
+                <div class="col-md-6 text-center">
+                    <div class="social   wow fadeInUp animated" style="float:right;">
+                        <h2>&copy; 2015.All Right reserved by <a href="#"target="_blank" style="color:white;">CROWD TXT</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+ -->
+
+
+            
+
+
+
+        <!-- <div class="preloader spinner"></div>
+        <div class="login">
+            <div class="container-fluid pad-box">
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <div class="login-box cus-panels-with-pad">
+                            <div class="login-logo text-center">
+                                <img src="images/crowdtxt-logo.png" alt="CrowdTXT">
+                            </div>
+                            <form method="POST" ng-submit="login()">
+                                <div class="form-group">
+                                    <label for="u-name">Username</label>
+                                    <input type="text" class="form-control" ng-model="userName" id="u-name">
+                                    <span class="required hidden">Validation Error</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">Password</label>
+                                    <input type="password" class="form-control" ng-model="password" id="pass">
+                                    <span class="required hidden">Validation Error</span>
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" value="Sign In" class="sec-cus-buttons ma-btn">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="text-center mar-10">
+                            <a ng-click="openForgotPassword();">Forget Password ?</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="footer"><div class=""> Copyright © 2015 CrowdAround Inc. All Rights Reserved.</div></div>
+        </div> -->
+        
+    </div> <!-- .app-box End -->

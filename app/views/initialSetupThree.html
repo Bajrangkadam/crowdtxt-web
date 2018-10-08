@@ -1,0 +1,962 @@
+
+<style type="text/css">
+  .required{
+    color: red;
+  }
+</style>
+
+<style type="text/css">
+  @media screen and (min-width: 250px) and (max-width: 992px) { 
+
+    .col-xs-8{
+          display: table;
+          width: 90%;
+          position: relative;
+          margin-left: 5%;
+    }
+  }
+</style>
+
+
+
+
+         <!-- Toast Notification for delete.. -->
+
+                <div class="alerts-container slideDown showAlertClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Uploaded file processed successfully, please proceed to Invite</strong>
+                 </div> 
+                </div>
+
+
+                 <div class="alerts-container slideDown showAlertOnUnsupportedClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Unsupported file format</strong>
+                 </div> 
+                </div>
+
+                <div class="alerts-container slideDown userLimitOver" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Your limit has been over, you can not add more users.</strong>
+                 </div> 
+                </div>
+
+                 <div class="alerts-container slideDown showAlertOnfileOnCorruptedClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>File format correct but file corrupted</strong>
+                 </div> 
+                </div>
+
+                 <div class="alerts-container slideDown showAlertOnSuccessClass" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Successfully uploaded user data</strong>
+                 </div> 
+                </div>
+
+                <div class="alerts-container slideDown showAlertOnexistingUser" style="display:none">
+                 <div class="alert alert-info alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>User already exist</strong>
+                 </div> 
+                </div>
+
+                <div class="alerts-container slideDown showAlertOnexistingGroup" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group already exist</strong>
+                 </div> 
+                </div>
+
+                 <div class="alerts-container slideDown showAlertOnSuccessEntry" style="display:none">
+                 <div class="alert alert-success alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                  </button>
+                   <strong>Group added sucessfully </strong>
+                 </div> 
+                </div>
+
+
+
+
+
+
+
+
+
+
+<div class="main" role="main">
+            
+            <div id="page-content" class="">
+                <div class="scrollable container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!--<div class="page-headers cus-panels-with-pad">
+                                <h3>Initial Setup</h3>
+                            </div>  .page-header End -->
+                            <div class="contents">
+                               
+                               <div class="row">
+                                   <div class="col-sm-12">
+                                       <div class="initial-setup-header text-center">
+                                           <h2>Setup Your Crowd Notifications</h2>
+                                           <p>Fill the form below &nbsp;→&nbsp; Invite the Users &nbsp;→&nbsp; Get Started with the Application</p>
+                                       </div><br><br>
+                                   </div>
+                               </div>
+                               <div class="row">
+                                   <div class="stepwizard col-xs-offset-3 col-md-offset-3">
+                                    <div class="stepwizard-row setup-panel">
+                                      <div class="stepwizard-step">
+                                        <a href="" type="button" class="btn btn-primary btn-circle">1</a>
+                                        <p>Complete registration</p>
+                                      </div>
+                                      <div class="stepwizard-step">
+                                        <a href="" type="button" class="btn btn-primary btn-circle">2</a>
+                                        <p>Create groups</p>
+                                      </div>
+                                      <div class="stepwizard-step">
+                                        <a href="" type="button" class="btn btn-primary btn-circle">3</a>
+                                        <p>Invite people</p>
+                                      </div>
+                                     <!--  <div class="stepwizard-step">
+                                        <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                                        <p>Invite</p>
+                                      </div> -->
+                                    </div>
+                                </div>
+                             </div>
+
+
+
+    <div class="row setup-content" id="step-3">
+      <div class="col-xs-8 col-md-offset-2 cus-panels-with-pad">
+        <h3 class="text-center" ng-show="hideWhenPrivateSelected">How would you like to invite people to the <span ng-bind="stepThreeGroup"></span>?</h3><br>
+        <div class="home">
+
+            <div class="col-sm-4" ng-show="hideWhenPrivateSelected">
+                <div class="text-center options" style="padding-bottom:5px;">
+                    <a href="" ng-click="uploadUserDetails();">
+                        <i class="fa fa-cloud-upload"></i>
+                        <br>
+                        <h5>Upload their information</h5>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-1 text-center" style="padding: 4%;" ng-show="hideWhenPrivateSelected"><b class="text-muted">OR</b>
+            </div>
+
+
+            <div class="col-sm-3" ng-show="hideWhenPrivateSelected">
+                <div class="text-center options" style="padding-bottom:5px;">
+                    <a href="" ng-click="addUserDetails();">
+                        <i class="fa fa-pencil"></i>
+                        <br>
+                        <h5>Enter their information</h5>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-1 text-center" style="padding: 4%;" ng-show="hideWhenPrivateSelected"><b class="text-muted">OR</b>
+            </div>
+
+
+            <div class="col-sm-3" ng-show="hideWhenPrivateSelected">
+                <div class="text-center options" style="padding-bottom:5px;">
+                    <a href="" ng-click="showLinkDetails();">
+                        <i class="fa fa-share-alt"></i>
+                        <br>
+                        <h5>Share the link</h5>
+                    </a>
+                </div>
+            </div>
+
+            <hr>
+
+
+            <div class="row"></div>
+
+
+            <div class="col-sm-12" ng-show="showLinkTableOnShareClick">
+              <br><br>
+                            <div class="contents">
+                               <div class="row">
+                                   <div class="col-sm-12">
+                                    <div class="table-responsive">
+               
+                                      <table class="table">
+                                        <thead>
+                                          <tr>
+                                           
+                                            <th>Group Name</th>
+                                            <th>Group Type</th>
+                                            <th>Link</th>
+                                           
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>HR Group</td>
+                                            <td>Public Group</td>
+                                            <td>www.crowdtxt.com</td>
+                                          </tr>
+                                           <tr>
+                                            <td>IT Group</td>
+                                            <td>Public Group</td>
+                                            <td>www.crowdtxt.com</td>
+                                          </tr>
+                                           <tr>
+                                            <td>Development Group</td>
+                                            <td>VIP Group</td>
+                                            <td>www.crowdtxt.com</td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+
+                                    </div>
+          
+
+                                     
+                                   </div>
+                               </div>
+                                <form action="">
+                                            
+                                </form>
+                            </div> <!-- .content End -->
+                        </div>
+
+
+
+
+                        <div class="col-sm-12" ng-show="showUploadUserDetails">
+                            <div class="contents">
+                               <div class="row">
+                                   <div class="col-sm-12">
+                                      <!--  <div class="row">
+                                           <div class="col-sm-12">
+                                               <P>Please download sample template - <a href="favicon.ico" target="_blank">Click to Download</a> </P>
+                                               <br>
+                                           </div>
+                                       </div> -->
+                                    <!--    <div class="row">
+                                           <div class="col-sm-12">
+                                               <div class="dz-default" ngf-drop ngf-select ng-model="files" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" 
+                                               ngf-allow-dir="true" ngf-pattern="'.xls,.xlsx'" accept=".xls,.xlsx">
+                                                   <span>Drop files here that contain the email address or phone number of people you want to invite to your group. E.g: <b>First Name</b>, <b>Last Name</b>, <b>Mobile number</b> or <b>Email ID</b> or <b>both</b></span>
+                                               </div>
+                                               <div class="text-center pad-5">
+                                              <button type="button" ng-click="openUploadModelContent();" class="sec-cus-buttons ma-btn">Upload</button>
+                                               </div>
+                                           </div>
+                                       </div> -->
+
+ 
+
+       <!--  <div class="form-group row">
+            <label for="File">Locate the File <span class="required">*</span></label>
+        </div> -->
+        <div style="width: 100%;" class="col-sm-12 form-group drag-file-upload-container dz-default drop-box" 
+            ng-file-drop
+            ng-file-select="onFileSelect($files)" ngf-pattern="'.xls,.csv,.xlsx'" accept=".xls,.csv,.xlsx"
+            drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+            ng-multiple="false" allow-dir="false"       ng-show="!selectedFile.uploadStatus"    
+           >
+            <div class="file-upload-inner">
+                <span>Drop files here that contain the email address or phone number of people you want to invite to your group. E.g: <b>First Name</b>, <b>Last Name</b>, <b>Mobile number</b> or <b>Email ID</b> or <b>both</b></span>
+            </div>
+        </div>
+        <div ng-show="!!selectedFile.uploadStatus" class="form-group col-sm-12" >
+            <span ng-if="selectedFile.uploadStatus < 2">Uploading the file </span>
+            <span><b>{{selectedFile.name}}</b></span><span ng-if="selectedFile.uploadStatus < 2">...</span>
+            <i class="fa fa-times" tooltip="Remove the file" ng-if="selectedFile.uploadStatus == 2"
+              ng-click="removeUploadedFile()"></i>
+            <span class="help-inline"
+                  ng-show="addFileForm.submitted && addFileForm.file.$error.required">Required</span>
+
+        </div>
+
+        <div class="col-sm-12 text-center pad-5" ng-show="showAfterFileUpload">
+          <button type="button" ng-click="openUploadModelContent();" class="sec-cus-buttons ma-btn">Upload</button>
+        </div>
+
+
+
+
+
+
+
+
+
+
+                                   </div>
+                               </div>
+                                <form action="">
+                                            
+                                </form>
+                            </div> <!-- .content End -->
+                        </div>
+
+
+                         <div class="col-sm-12" ng-show="showAddUserToGroup">
+                          <br><br>
+
+                            <div class="text-center"><h3>Enter user details</h3></div><br><br>
+
+                            <fieldset class="per-info">
+                               <form name="myformUser" ng-submit="addUsers();" novalidate>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="f-name">First Name</label>
+                                            <input type="text" ng-model="firstNames" ng-pattern="/^[a-zA-Z ]*$/" name="firstNames" class="form-control" id="f-name" required>
+                                           <!--  <span class="required hidden">Validation Error</span> -->
+                                           <span class="required" ng-show="submitted3 && myformUser.firstNames.$invalid">Not a valid first name</span>
+                                           <!-- <span class="required" ng-show="submitted3 && myformUser.firstNames.$error.pattern">valid first name</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="l-name">Last Name</label>
+                                            <input type="text" ng-model="lastNames" ng-pattern="/^[a-zA-Z ]*$/" name="lastNames" class="form-control" id="l-name" required>
+                                           <!--  <span class="required hidden">Validation Error</span> -->
+                                            <span class="required" ng-show="submitted3 && myformUser.lastNames.$invalid">Not a valid last name</span>
+                                            <!-- <span class="required" ng-show="submitted3 && myformUser.lastNames.$error.pattern">valid last name</span> -->
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                     <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" ng-model="emails" name="emails" ng-pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/" class="form-control" id="emails" required>
+                                           <!--  <span class="required hidden">Validation Error</span> -->
+                                            <span class="required" ng-show="submitted3 && myformUser.emails.$invalid">Not a valid email Id</span>
+                                           <!--  <span class="required" ng-show="submitted3 && myformUser.emails.$error.pattern">valid email id</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="mob-no">Mobile Number</label>
+                                            <input type="text" ng-model="mobileNos" name="mobileNos" ng-pattern="/^$|^(?:1-?)?[(]?\d{3}[)]?\s?-?\s?\d{3}\s?-?\s?\d{4}$/" class="form-control" id="mob-no">
+                                           <!--  <span class="required hidden">Validation Error</span> -->
+                                            <span class="required" ng-show="submitted3 && myformUser.mobileNos.$invalid">Not a valid number</span>
+                                            <!-- <span class="required" ng-show="submitted3 && myformUser.mobileNos.$error.pattern">valid mobile number</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="text-center pad-5">
+                                        <button type="button" ng-click="hideUploadUserDetails();" class="btn btn-default">Cancel</button>
+                                        <button type="submit" class="sec-cus-buttons" ng-disabled="registerForm.$invalid">Save</button>
+                                      </div>
+                                    </div>
+                                </div>
+                              </form>
+                            </fieldset>
+                            <br>
+
+
+                            <div class="table-responsive" ng-show="showList">          
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile Number</th>
+                                    <th class="text-center">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                 <form name="myformUserEdit" novalidate>
+                                  <tr ng-style="set_color(user)" ng-repeat="user in usersManually">
+                                    <td ng-hide="edit">{{user.firstName}}</td>
+                                    <td ng-show="edit"><input type="text" ng-model="user.firstName" ng-show="edit" /></td>
+
+                                    <td ng-hide="edit">{{user.lastName}}</td>
+                                    <td ng-show="edit"> <input type="text" ng-model="user.lastName" ng-show="edit" /></td>
+
+                                    <td ng-hide="edit">{{user.emailid}}</td>
+                                    <td ng-show="edit"> <input type="text" ng-model="user.emailid" ng-show="edit" /></td>
+
+                                    <td ng-hide="edit">{{user.phone}}</td>
+                                    <td ng-show="edit"><input type="text" ng-model="user.phone" ng-show="edit" /></td>
+
+                                   <!--   <td ng-show="edit"><button type="button" class="btn btn-default" ng-show="edit" ng-click="edit=false">Cancel</button></td>
+                                    <td ng-show="edit"><button type="button" class="sec-cus-buttons" ng-show="edit" ng-click="edit=!edit; editSaveUsers($index); ">Save</button></td>
+
+                                  
+                                    
+                                    <td class="text-center" ng-hide="edit"><i class="fa fa-trash-o" ng-click="removeUser($index)"></i>  </td>
+                                    <td class="text-center" ng-hide="edit"><i class="fa fa-pencil-square-o" ng-click="edit=true; editRow($index);"></i></td> -->
+                                    <td class="text-center" ng-hide="edit"><i class="fa fa-trash-o" ng-click="removeUser($index)"></i>  </td>
+
+                                  </tr>
+                                   </form>
+                                </tbody>
+                              </table>
+                            </div>
+
+
+
+
+                         
+
+
+                            
+                         </div>
+
+
+
+                         <div class="text-center pad-5">
+
+                         
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                        <div ng-show="showInvitePreviewss">
+                            <h3 class="text-center">Send the invite to the people</h3><br>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                      
+                                                       <h4>Message will be sent to <a ng-disabled="disableEmailNotification" ng-click="openEmailContent();">{{emailNotificationsLength}} people</a> with Email </h4>
+                                                        <div class="panel panel-default invite email">
+                                                          <div class="panel-heading">
+                                                            <div class="panel-title text-center"><img src="images/crowdtxt-logo.png" alt="CrowdTXT"></div>
+                                                          </div>
+                                                          <div class="panel-body">
+                                                            <div class="content">
+                                                                <h4>Hi User,</h4>
+                                                                <p>Thanks so much for signing up with CrowdTXT.</p>
+                                                                <p>You'll enjoy, submitting your deal ideas, chatting with friends about deals and making purchases.</p>
+                                                               <!--  <div class="text-center"><button type="submit" class="sec-cus-buttons">Sign Up</button></div><br> -->
+                                                                <p>Did you Know that your deal idea could get you a free deal! Why not be the first to post your deal idea.</p>
+                                                                <span>Thanks,</span><br>
+                                                                <strong>CrowdTXT Team</strong>
+                                                            </div>
+                                                          </div>
+                                                           <!--<div class="action-but"><div class="text-right"><button type="submit" class="sec-cus-buttons ma-btn">Send</button></div></div>-->
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <h4>Message will be sent to <a ng-disabled="disableMobileNotification" ng-click="openMessageContent();">{{msgNotificationsLength}} people</a> with Mobile number </h4>
+                                                         <div class="panel panel-default invite mobile">
+                                                          <!--<div class="panel-heading">
+                                                            <h3 class="panel-title">Sent to users mobile no </h3>
+                                                          </div>-->
+                                                          <div class="panel-body">
+                                                            <div class="content">
+                                                                <p>Welcome, Thanks so much for signing up with CrowdTXT. You'll enjoy, submitting your deal ideas, chatting with friends about deals and making purchases.</p>
+                                                            </div>
+                                                          </div>
+                                                           <!--<div class="action-but"><div class="text-right"><button type="submit" class="sec-cus-buttons ma-btn">Send</button></div></div>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 text-center">
+                                                       <br><br>
+                                                        <button type="button" ng-click="homePage();" class="sec-cus-buttons ma-btn">Send invite</button>
+                                                    </div>
+                                                </div>
+         <!--  <button class="btn btn-default prevBtn pull-left" type="button">Back</button> -->
+          <!--<button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>-->
+
+          <button class="btn btn-default pull-left" ng-click="showStepThree();" type="button">Back</button>
+
+          </div>
+
+      
+
+        </div>
+          <button class="btn btn-default pull-left" ng-click="goBackToStep2();" ng-show="!showPreviousStep" type="button">Back</button>
+          <button class="btn btn-primary pull-right" ng-click="showInvitePreview();" ng-show="hideOnPrivateChecked" type="button">Save & Preview</button>
+          <!--  <button type="button" class="btn btn-primary pull-right" ng-show="addUsersToGroup" ng-click="showPrivateGroupSection();">Add users to private group</button> -->
+      </div>
+    </div>
+
+
+ </div>
+    </div>
+ </div>
+
+
+
+
+     <div class="modal fade" id="uploaddetails" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="removeUploadedFile();" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Uploaded file details</h4>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                         <th>First Name</th>
+                         <th>Last Name</th>
+                         <th>Email ID</th>
+                         <th>Mobile #</th>
+                         <th>Option</th> 
+                      </tr>
+                  </thead>
+                  <tbody>
+                     
+                     <tr ng-repeat="upload in uploaddedData" ng-if="upload.status=='Y'">
+                          <td>{{upload.firstName}}</td>
+                          <td>{{upload.lastName}}</td>
+                          <td>{{upload.emailid}}</td>
+                          <td>{{upload.phone}}</td>
+                          <td ng-if="upload.status=='Y'"><i class="fa fa-check"></i></td>
+                         
+                      </tr>
+
+                        <!-- <tr ng-repeat="upload in uploaddedData" ng-if="upload.status=='N'" class="danger">
+                          <td ng-model="upload.uploadFirstName">{{upload.firstname}}</td>
+                          <td ng-model="upload.uploadLastName">{{upload.lastname}}</td>
+                          <td ng-model="upload.uploadEmail">{{upload.email}}</td>
+                          <td ng-model="upload.uploadPhone">{{upload.phone}}</td>
+                          <td ng-if="upload.status=='N'"> 
+                            <i class="fa fa-pencil-square-o"></i>
+                            <i class="fa fa-trash-o" ng-click=""></i>
+                           </td>
+                      </tr> -->
+
+                              <tr ng-repeat="upload in uploaddedData" ng-if="upload.status=='N'" class="danger">
+                                    <td ng-hide="editss">{{upload.firstName}}</td>
+                                    <td ng-show="editss"><input type="text" ng-model="upload.firstName" id="uploadUserfirstName" ng-show="editss" />
+                                    <span ng-show="uploadfirstName" style="color:red;">Required valid first name</span>
+                                    </td>
+
+                                    <td ng-hide="editss">{{upload.lastName}}</td>
+                                    <td ng-show="editss"><input type="text" ng-model="upload.lastName" id="uploadUserlastName" ng-show="editss" />
+                                    <span ng-show="uploadlastName" style="color:red;">Required valid last name</span>
+                                    </td>
+
+                                    <td ng-hide="editss">{{upload.emailid}}</td>
+                                    <td ng-show="editss"><input type="text" ng-model="upload.emailid" id="uploadUserEmail" ng-show="editss" />
+                                    <span ng-show="uploadEmail" style="color:red;">Required valid email id</span>
+                                    </td>
+
+                                    <td ng-hide="editss">{{upload.phone}}</td>
+                                    <td ng-show="editss"><input type="text" ng-model="upload.phone" id="uploadUserMobile" ng-show="editss" />
+                                    <span ng-show="uploadMobile" style="color:red;">Required valid mobile</span>
+                                    </td>
+
+                                    <td ng-show="editss"><button type="button" class="btn btn-default savePrivateUsersssss" ng-show="editss" ng-click="editss=false">Cancel</button></td>
+                                    <td ng-show="editss"><button type="button" class="sec-cus-buttons" ng-show="editss" ng-click="editUploadUserss($index);">Save</button></td>
+
+                                    <td> 
+                                      <i class="fa fa-pencil-square-o" ng-hide="editss" ng-click="editss=true"></i>
+                                      <i class="fa fa-trash-o" ng-hide="editss" ng-click="removeUploadedUser($index)"></i>
+                                      <!-- <td  ng-show="edit"><button type="button" class="btn btn-default" ng-show="edit" ng-click="edit=false">Cancel</button></td>
+                                      <td  ng-show="edit"><button type="button" class="sec-cus-buttons" ng-show="edit" ng-click="edit=!edit">Save Users</button></td> -->
+                                   </td>   
+                               </tr>
+                  
+               
+                  </tbody>
+              </table>
+              <div class="text-center"><button type="button" ng-show="showProcessUpload" ng-click="showToastNotification();" class="sec-cus-buttons ma-btn" data-dismiss="modal">Process Upload</button></div>
+              
+            </div>
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>-->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+    <!-- ====================================================================== -->
+
+
+
+
+
+
+
+    <div class="modal fade" id="duplicateUsersDetails" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" style="color:red;">Duplicate users not added</h4>
+          </div>
+          <div class="modal-body">
+
+
+
+            <div class="table-responsive">          
+                  <table class="table">
+                    <thead>
+                      <tr>       
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="duplicateData in duplicateDataToDisplay">
+                        <td>{{duplicateData.firstName}}</td>
+                        <td>{{duplicateData.lastName}}</td>
+                        <td>{{duplicateData.emailid}}</td>
+                        <td>{{duplicateData.phone}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+
+                  <div class="modal-footer">
+                  </div>
+<!-- 
+
+            <ul class="list-group" ng-repeat="duplicateData in duplicateDataToDisplay">
+                <li class="list-group-item">{{duplicateData.firstname}} {{duplicateData.lastname}}  {{duplicateData.emailid}} {{duplicateData.phone}}</li>
+              
+              </ul> -->
+            
+          </div>
+
+
+          <div class="modal-header">
+            <h4 class="modal-title" style="color:green;">Users successfully added</h4>
+          </div>
+          <div class="modal-body">
+
+              <div class="table-responsive">          
+                  <table class="table">
+                    <thead>
+                      <tr>       
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="enteredUsers in usersToSendNotificationToShow">
+                        <td>{{enteredUsers.firstName}}</td>
+                        <td>{{enteredUsers.lastName}}</td>
+                        <td>{{enteredUsers.emailid}}</td>
+                        <td>{{enteredUsers.phone}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+
+
+           <!--  <ul class="list-group" ng-repeat="enteredUsers in usersToSendNotification">
+                <li class="list-group-item">{{enteredUsers.firstName}} {{enteredUsers.lastName}}  {{enteredUsers.emailid}} {{enteredUsers.phone}}</li>
+              </ul> -->
+          </div>
+
+
+          <div class="modal-footer">
+           <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+            <button type="button" class="sec-cus-buttons ma-btn" ng-click="showEmailandMessageList();" data-dismiss="modal">Ok</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="duplicateUsersDetailsToShow" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="removeUploadedFile();" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Users you have entered already exists</h4>
+          </div>
+          <div class="modal-header">
+            
+            <h4 class="modal-title">Your Limit is <span class="label label-success">{{totalLimits}}</span> &nbsp;&nbsp;&nbsp;&nbsp; You have entered <span class="label label-success">{{duplicateUsersLength}}</span>&nbsp;&nbsp;&nbsp;&nbsp; You can proceed with deleting or editing duplicate users</h4>
+          </div>
+
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                         <th>First Name</th>
+                         <th>Last Name</th>
+                         <th>Email ID</th>
+                         <th>Mobile #</th>
+                         <th>Option</th> 
+                      </tr>
+                  </thead>
+                  <tbody>
+                     
+                    
+
+                              <tr ng-repeat="duplicate in duplicateUserValues">
+                                    <td ng-hide="edited">{{duplicate.firstName}}</td>
+                                    <td ng-show="edited"><input type="text" ng-model="duplicate.firstName" id="duplicateUserfirstName" ng-show="edited" />
+                                    <span ng-show="duplicatefirstName" style="color:red;">Required valid first name</span>
+                                    </td>
+
+                                    <td ng-hide="edited">{{duplicate.lastName}}</td>
+                                    <td ng-show="edited"><input type="text" ng-model="duplicate.lastName" id="duplicateUserlastName" ng-show="edited" />
+                                    <span ng-show="duplicatelastName" style="color:red;">Required valid last name</span>
+                                    </td>
+
+                                    <td ng-hide="edited">{{duplicate.emailid}}</td>
+                                    <td ng-show="edited"><input type="text" ng-model="duplicate.emailid" id="duplicateUseremailid" ng-show="edited" />
+                                    <span ng-show="duplicateEmail" style="color:red;">Required valid email id</span>
+                                    </td>
+
+                                    <td ng-hide="edited">{{duplicate.phone}}</td>
+                                    <td ng-show="edited"><input type="text" ng-model="duplicate.phone" id="duplicateUserphone" ng-show="edited" />
+                                    <span ng-show="duplicateMobile" style="color:red;">Required valid mobile number</span>
+                                    </td>
+
+                                    <td ng-show="edited"><button type="button" class="btn btn-default saveDuplicateUserss" ng-show="edited" ng-click="edited=false">Cancel</button></td>
+                                    <td ng-show="edited"><button type="button" class="sec-cus-buttons" ng-show="edited" ng-click="editDuplicateUserss($index);">Save</button></td>
+
+                                    <td> 
+                                      <i class="fa fa-pencil-square-o" ng-hide="edited" ng-click="edited=true"></i>
+                                      <i class="fa fa-trash-o" ng-hide="edited" ng-click="removeCombinedUsers($index)"></i>
+                                     <!--  <td  ng-show="edit"><button type="button" class="btn btn-default" ng-show="edit" ng-click="edit=false">Cancel</button></td>
+                                      <td  ng-show="edit"><button type="button" class="sec-cus-buttons" ng-show="edit" ng-click="edit=!edit">Save Users</button></td> -->
+                                   </td>   
+                               </tr>
+                  
+
+             
+                  </tbody>
+              </table>
+              <div class="text-center"><button type="button" ng-show="btnDisable" ng-click="saveCombinedUsers();" class="sec-cus-buttons ma-btn" data-dismiss="modal">Save Users</button></div>
+              
+            </div>
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>-->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+     <div class="modal fade" id="editUserDetails" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ng-click="removeUploadedFile();" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Edit the users</h4>
+          </div>
+          <div class="modal-header">
+            
+            <h4 class="modal-title">Your Limit is <span class="label label-success">{{totalAllowedUsers}}</span> &nbsp;&nbsp;&nbsp;&nbsp; You have entered <span class="label label-success">{{limitedUsersToDisplayLength}}</span>&nbsp;&nbsp;&nbsp;&nbsp; You can proceed with <span class="label label-success">{{totalRemainingUsers}}</span> users</h4>
+          </div>
+
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                         <th>First Name</th>
+                         <th>Last Name</th>
+                         <th>Email ID</th>
+                         <th>Mobile #</th>
+                         <th>Option</th> 
+                      </tr>
+                  </thead>
+                  <tbody>
+                     
+                    
+
+                              <tr ng-repeat="limitedUsers in limitedUsersToDisplay">
+                                    <td ng-hide="editnl">{{limitedUsers.firstName}}</td>
+                                    <td ng-show="editnl"><input type="text" ng-model="limitedUsers.firstName" ng-show="editnl" />
+                                    <span ng-show="limitedUsersfirstName" style="color:red;">Required valid first name</span>
+                                    </td>
+
+                                    <td ng-hide="editnl">{{limitedUsers.lastName}}</td>
+                                    <td ng-show="editnl"><input type="text" ng-model="limitedUsers.lastName" ng-show="editnl" />
+                                    <span ng-show="limitedUserslastName" style="color:red;">Required valid last name</span>
+                                    </td>
+
+                                    <td ng-hide="editnl">{{limitedUsers.emailid}}</td>
+                                    <td ng-show="editnl"><input type="text" ng-model="limitedUsers.emailid"  ng-show="editnl" />
+                                    <span ng-show="limitedUsersemailid" style="color:red;">Required valid email id</span>
+                                    </td>
+
+                                    <td ng-hide="editnl">{{limitedUsers.phone}}</td>
+                                    <td ng-show="editnl"><input type="text" ng-model="limitedUsers.phone" ng-show="editnl" />
+                                    <span ng-show="limitedUsersphone" style="color:red;">Required valid mobile number</span>
+                                    </td>
+
+                                    
+                                    <td ng-show="editnl"><button type="button" class="btn btn-default savePrivateUsersssssnn" ng-show="editnl" ng-click="editnl=false">Cancel</button></td>
+                                    <td ng-show="editnl"><button type="button" class="sec-cus-buttons" ng-show="editnl" ng-click="editlimitedUserss($index);">Save</button></td>
+
+                                    <td> 
+                                      <i class="fa fa-pencil-square-o" ng-hide="editnl" ng-click="editnl=true"></i>
+                                      <i class="fa fa-trash-o" ng-hide="editnl" ng-click="removeCombinedUser($index)"></i>
+                                      <!-- <td  ng-show="edit"><button type="button" class="btn btn-default" ng-show="edit" ng-click="edit=false">Cancel</button></td>
+                                      <td  ng-show="edit"><button type="button" class="sec-cus-buttons" ng-show="edit" ng-click="edit=!edit">Save Users</button></td> -->
+                                   </td>   
+                               </tr>
+                  
+
+             
+                  </tbody>
+              </table>
+              <div class="text-center"><button type="button" ng-show="btnDisabless" ng-click="saveCombinedUsers();" class="sec-cus-buttons ma-btn" data-dismiss="modal">Save Users</button></div>
+              
+            </div>
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>-->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="openEmailModel" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">User list with Email ID</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group" ng-repeat="emailsDetails in emailNotifications">
+                <li class="list-group-item">{{emailsDetails.firstName}} {{emailsDetails.lastName}} - {{emailsDetails.emailid}}</li>
+               <!--  <li class="list-group-item">Tom - tom@gmail.com</li>
+                <li class="list-group-item">Steev - steev@aol.com</li>
+                <li class="list-group-item"> - Ken@ymail.com</li> -->
+                
+              </ul>
+            
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>-->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    <div class="modal fade" id="openMobileModel" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">User list with Mobile No's</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group" ng-repeat="msgDetails in msgNotifications">
+                <li class="list-group-item">{{msgDetails.firstName}} {{msgDetails.lastName}} - {{msgDetails.phone}}</li>
+                <!-- <li class="list-group-item">John - 408-547-1286</li>
+                <li class="list-group-item">Katherine - 409-521-8795</li>
+                <li class="list-group-item">  - 409-921-1276</li> -->
+                
+              </ul>
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button type="button" class="sec-cus-buttons ma-btn">Save</button>
+          </div>-->
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+
+        <!-- ========================================================================================================================================== -->
+
+
+
+
+
+
+
+
+

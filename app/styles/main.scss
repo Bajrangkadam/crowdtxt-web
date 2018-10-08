@@ -1,0 +1,1530 @@
+
+
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+/* ==========================================================================
+App custom styles
+========================================================================== */
+
+
+/*  Site Variables Defined   ================================================ */
+
+/*  - Theme Variables */
+
+/* Generic vaiables  */
+$primary-color      : #3b8ced;
+$secondary-color    : #8cc63f;
+$typography-color1  : #17181a;
+$typography-color2  : #474950;
+$link-color         : #0072bc;
+$subtle-color       : #9fa2aa ; //for border and subheading text 
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+/*$font-size-base:          14px
+$font-size-large:         ceil(($font-size-base * 1.25)) // ~18px
+$font-size-medium:        ceil(($font-size-base * 1.15)) // ~16px
+$font-size-small:         ceil(($font-size-base * 0.85)) // ~12px
+
+$font-size-h1:            floor(($font-size-base * 2.6)) // ~36px
+$font-size-h2:            floor(($font-size-base * 2.15)) // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.7)) // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.25)) // ~18px
+$font-size-h5:            $font-size-base
+$font-size-h6:            ceil(($font-size-base * 0.85)) // ~12px*/
+
+
+/* Header */
+$header-bg-color    : #ffffff;
+$header-font-color  : $typography-color1;
+$header-link-hover-bg-color : #e9ecef;
+$header-link-active-bg-color: #e9ecef;
+//$header-inner-border: 1px solid #afd8e3;
+
+/* Sidebar */
+$sb-bg-color    : #262d3c;
+$sb-font-color  : #9fa2aa;
+$sb-link-hover-bg-color     : #30394c;
+//$sb-link-active-bg-color    : #30394c;
+$sb-link-selected-bg-color  : #30394c; // small highlight color: 5086c5
+$sb-link-active-font-color  : #ffffff;
+$sb-link-hover-font-color   : #ffffff;
+$sb-inner-border: 1px solid #afd8e3;
+
+/* Main Section */
+$main-bg-color    : #e9ecef;
+$main-font-color  : #17181a;
+
+
+/*  Resets   =============================================================== */
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: $main-bg-color;
+}
+
+ul.reset,
+ol.reset {
+    margin : 0;
+    padding : 0;
+}
+
+ul.reset li,
+ol.reset li {
+    list-style:none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.fa {
+    margin-right: 5px;
+}
+
+form {
+    label {
+        /*font-weight: normal;
+        font-size: 15px; */
+    }
+    
+    .form-control {
+        border-radius: 3px !important;
+    }
+    
+    .input-group .form-control {
+        border-bottom-right-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+}
+
+.badge {
+    background-color: #428bca;
+}
+
+/*label {
+    font-weight: 700;
+    font-size: 15px;
+}*/
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ================  Start of website styles  =============================== */
+
+body {
+
+/* ================
+    font-family: 'Varela Round', sans-serif !important;
+    font-size: 14px !important;
+    background-color: #ffffff !important;
+    =============================== */
+}
+
+/*  Header Styles    ======================================================== */ 
+
+
+/* ================  End of website styles  =============================== */
+
+/* ==========================================================================
+Login - styles
+========================================================================== */
+
+/*---- Start Mohan ----*/
+
+.login,.forget {
+    position: relative;
+    
+    .pad-box{
+        padding: 100px 10px 10px;
+        min-height: 625px;
+        .login-box {
+            border: 1px solid $subtle-color;
+            min-height: 300px;
+            padding: 20px;
+        }
+    }
+    
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 20px;
+        font-size: 13px;
+        color: #adb3b8;
+        text-align: center;
+        z-index: 20;
+        padding: 2px;
+    }
+}
+
+
+/* ==========================================================================
+Site main header - styles
+========================================================================== */
+
+.header-wrapper {
+    /*background:$header-bg-color;
+    color: $bg-header-font-color;
+    @extend .top-bottom-dark-box-shadows;
+    position: relative;
+    z-index:20; */
+    min-height: 50px;
+
+    header {
+        /*padding: 0px 10px;
+        position: relative;
+        max-height: 43px;
+        overflow: hidden;*/
+    }
+    
+    .navbar {
+        background-color: $header-bg-color;
+        @extend .top-bottom-dark-box-shadows;
+        border: none !important;
+        
+        .navbar-brand {
+            padding: 5px 15px;
+            
+            img {
+                width: 90%;
+            }
+        }
+        
+        .pull-right.visible-xs > a {
+            padding: 5px 15px;
+            display: inline-block;
+            height: 50px;
+            line-height: 40px;
+            color: #17181a;
+            
+            &:hover {
+                text-decoration: none;
+            }
+        }
+        
+        li {
+            a {  
+                color: $typography-color1;            
+            }
+            
+            &.active {
+                a {
+                    color: #5086c5 !important;   
+                }
+            }
+            
+            &:hover {
+                background: #f4f6f7;
+            }
+        }
+        
+        .navbar-right {
+            .label {
+                padding: 5px;
+                background: $primary-color;
+            }
+        }
+    }
+
+
+    /*.menutoggle {
+        @extend .display-ib;
+        color: $header-font-color;
+        padding: 12px 20px;
+        margin-left: 78px;
+        text-decoration: none;
+        
+        &:hover {
+            background-color: $header-link-hover-bg-color;
+        }
+    }
+
+    .nav-right-options > li {
+        @extend .display-ib;
+        *border-left: $header-inner-br;
+        border-right: $header-inner-br;*
+        position: relative;
+    }
+
+    .nav-right-options > li > a, .nav-right-options > li .dropdown > a  {
+        @extend .menutoggle;
+        margin-left: 0;
+
+        .label {
+            padding: 5px;
+            background: $primary-color;
+        }
+    }
+    
+    .dropdown-menu.notification-container {
+        padding: 0;
+        min-width: 360px;
+        
+        .panel {
+            margin-bottom: 0;
+            border: none;
+        }
+        
+        .panel-body {
+            padding: 0;
+        }
+    }
+    
+    .notification-list {
+        
+        max-height: 360px;
+        overflow: hidden;
+        overflow-y: auto;
+    
+        & >li {
+            padding: 10px 10px 0;
+            border-top: 1px solid #d0d0d0;
+            
+            a {
+                color: #333333;
+                font-weight: bold;
+                font-size: 15px;
+                cursor: pointer;
+            }
+        }
+        
+        .section-heading{
+            padding-bottom: 7px;
+        }
+        
+        p {
+            margin: 0px;
+        }
+        
+        .note-sub-section {
+            margin-left: 15px;
+            
+            li {
+                padding: 5px;
+                border-top: 1px solid #d0d0d0;
+                
+                &:first-child {
+                    margin-top: 7px;
+                }
+            }
+            
+            small.text-muted {
+                padding-left: 5px;
+                border-left: 1px solid #d0d0d0;
+                
+                &.bordernone {
+                    border: none;
+                    padding-left: 0;
+                }
+            }
+
+            h4, h5, h6 {
+                margin: 0;
+            }
+        }
+    } */
+} 
+
+
+/* ==========================================================================
+  Main content - styles (include sidebar and page content)
+========================================================================== */
+
+.main[role="main"] {
+    position: relative;
+}
+
+
+/*  Home Page Styles   ================================================ */
+.home {
+    h2 {
+        font-size: 48px;
+        
+        &+p {
+            font-size: 24px;
+            padding-bottom: 40px;
+        }
+    }
+    
+    .options {
+        padding-bottom: 40px;
+        
+        a {
+            text-decoration: none;
+        }
+        
+        i {
+            font-size: 52px;
+            color: $typography-color2;
+        }
+        
+        h5 {
+            font-size: 20px;
+            color: $typography-color2;
+        }
+        
+        &:hover {
+            cursor: pointer;
+            i {
+                color: $sb-link-hover-bg-color;
+            }
+        }
+    }
+}
+
+
+/*  Page content Styles   ================================================ */
+#page-content {
+    background-color: $main-bg-color;
+    @extend .display-b;
+    position: relative;
+    left: 0;
+    //margin-left: 240px;
+    min-height: 100%;
+    @include transition(all, ease-out, .1s);
+
+    .page-headers {
+        margin: 0 -15px;
+        background: $sb-bg-color;
+        color: #ffffff;
+        
+        h3 {
+            margin: 0 5px;
+        }
+    }
+    
+    .page-options {
+        
+        margin: 0 -15px;
+        
+        .option {
+            @extend .display-ib;
+            float: left;
+            margin: 0 5px;
+            
+            .fa {
+                margin-right: 0px;
+            }
+            
+            button.active {
+                .fa {
+                    color: #428bca;
+                }
+            }
+        }
+        
+        .btn-group {
+            margin: 0 5px;
+        }
+    }
+    
+    .contents > .row.lisiting  {
+        
+        &> div > img {
+            width: 30px;
+        }
+        
+        &> div.single-w-lh {
+            line-height: 30px
+        }
+        
+        &:hover {
+            background-color: #fefeff;
+            
+            .fa { 
+                color: $typography-color2;
+                cursor: pointer;
+            }
+        }
+        
+    }
+    
+    .contents {        
+        //margin: 10px 0;
+    
+        .inline-options {
+            text-align: right;
+            
+            .fa {
+                font-size: 20px;
+                padding-right: 10px;
+                color: $subtle-color;
+                vertical-align: middle;
+                
+                &:hover {
+                    color: $typography-color2;
+                    cursor: pointer;
+                }
+                
+            }
+            
+            
+            &.mar-t {
+                margin-top: 10px;
+            }
+        }
+        
+        .panel .inline-options .fa {
+                padding-right: 0;
+        }
+        
+        .edu-info {
+            margin: 20px 0;
+            
+            th.qua {
+                width: 20%
+            }
+            
+            th.name {
+                width: 60%
+            }
+            
+            th.year {
+                width: 20%
+            }
+        }
+    }
+}
+    
+/*  upload-data-progress Page Styles   ================================================ */
+.upload-data-progress {
+    .contents {
+        
+         p {
+            font-size: 24px;
+        }
+        
+        i {
+            font-size: 48px;
+        }
+        
+        small {
+            font-size: 18px;
+            display: inline-block;
+            padding-top: 10px;
+            
+            span {
+                color: $secondary-color;
+            }
+        }   
+    }
+} 
+
+/*  Invite Page Styles   ================================================ */
+
+.invite {
+    form {
+        position: relative;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        
+        table {
+            width: 100%;
+            
+            td:first-child {
+                width: 24px;
+            }
+        }
+        
+        textarea {
+            width: 100%;
+            background: #fff;
+            border: none !important;
+            padding: 7px 5px;
+            resize: none;
+            outline: none;
+            vertical-align: middle;
+        }
+    }
+    
+    .action-but {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top: 1px solid #ddd;
+        
+        .sec-cus-buttons {
+            padding: 7px 24px;
+            margin-right: 20px;
+        }
+    }
+}
+
+/*  Groups Page Styles   ================================================ */
+
+.groups {
+    .page-headers {
+        ul.pull-right {
+            .option > i {
+                font-size: 20px;
+                padding-top: 5px;
+                margin: 0 7px !important;
+                cursor: pointer;
+                
+                &:hover {
+                    color: #5086c5 !important;
+                }
+            }
+        }
+    }
+    
+    .lisiting {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.group-add-user {
+    
+    .contents {
+        &>.row {
+            .col-sm-9 {
+                .dz-default {
+                    position: absolute;
+                    border-radius: 0px;
+                    min-height: 115px;
+                    z-index: 2;
+                    opacity: 0.9;
+                    width: 877px;
+                    margin: 0 -15px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+/*  User list Page Styles   ================================================ */
+.user-list {
+    .table {
+        th i {
+            color: $subtle-color;
+            font-size: 15px;
+            margin: 0 5px;
+            opacity: 0.3;
+            
+            &:hover {
+                color: $typography-color2;
+                cursor: pointer;
+            }            
+        }
+        
+        th:hover {
+            i {
+                opacity: 1;
+            }
+        }
+        
+        td {
+            .fa {
+                font-size: 24px;
+                margin-top: 4px;
+                cursor: pointer;
+            }
+        }
+        
+    }
+}
+
+.table-info-nav {
+    margin-top: 15px;
+    
+    .fa {
+        margin-right: 0;
+    }
+}
+
+/*  Settings Page Styles   ================================================ */
+.plan-details {
+    
+    h4 {
+        margin-top: 0;
+    }
+    
+    button {
+        margin-right:25px;
+    }
+}
+
+/*  Send Message Page Styles   ================================================ */
+.group-user-list {
+    .list-group {
+        .checkbox {
+            margin: 0;
+        }
+    }
+}
+
+/*  Status Page - URL page   ================================================ */
+
+.event-details {
+    h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    & > p {
+        margin-bottom: 2px;
+    }
+    
+    .fa-info-circle {
+        font-size: 24px;
+        vertical-align: middle;
+    }
+}
+
+.list-group-item.active {
+    .dropdown {
+        color: $main-font-color;
+    }
+} 
+
+.comments-container {
+    
+    margin-top: 25px;    
+    font-size: 14px;
+    
+    header {
+        span {
+            @extend .display-ib;
+            line-height: 33px;
+        }
+        
+        .dropdown-menu {
+            right: 0;
+            left: initial;
+        }
+    }
+    
+    & > header, & > .comments-options {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #dddddd;
+    }
+    
+    .avatar {
+        margin-right: 10px;
+        
+        img {
+            width: 36px;
+            height: 36px;
+        }   
+    }
+    
+    .post-body {
+        
+        overflow:hidden;
+        
+        .post-time, .footer li {
+            font-size: 12px;
+            color: #999;
+            display: inline-block;
+            padding-left: 7px;
+            border-left: 1px solid #909090;
+            margin-left: 7px;
+        }
+        
+        .footer li:first-of-type {
+            border: medium none !important;
+        }
+        
+    }
+    
+    .post-body-textarea {
+        overflow: hidden;
+        
+        textarea {
+            min-height: 75px;
+            display: block;
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 5px;
+        }
+    }
+    
+    .post-but-options {
+        button {
+            margin-left: 20px;
+        }
+    }
+    
+    .reply-comment {
+        margin-top: 10px;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    
+    .post.row {
+        margin-top: 16px;
+    }
+    
+}
+
+.chat-content-wrapper {
+    background: #f5f5f5;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    min-height: 38px;
+    
+    .avatar {
+        margin-right: 10px;
+        
+        img {
+            width: 36px;
+            height: 36px;
+            border-radius: 100%;
+        }
+    }
+    
+    .post-body {
+        overflow: hidden;
+        
+        p {
+            margin-bottom: 0;
+        }
+        
+    }
+    
+    &.admin {
+        background: #ebebed;
+        margin-right: 15px;
+    }
+}
+
+.comments-container {
+    
+    font-size: 14px;
+    
+    .avatar {
+        margin-right: 10px;
+        
+        img {
+            width: 36px;
+            height: 36px;
+        }   
+    }
+    
+    .post-body {
+        
+        overflow:hidden;
+        
+        .post-time, .footer li {
+            font-size: 12px;
+            color: #999;
+            display: inline-block;
+            padding-left: 7px;
+            border-left: 1px solid #909090;
+            margin-left: 7px;
+        }
+        
+        .footer li:first-of-type {
+            border: medium none !important;
+        }
+        
+    }
+    
+    .post-body-textarea {
+        overflow: hidden;
+        
+        textarea {
+            min-height: 75px;
+            display: block;
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 5px;
+        }
+    }
+    
+    .post-but-options {
+        button {
+            margin-left: 20px;
+        }
+    }
+    
+    .reply-comment {
+        margin-top: 10px;
+    }
+    
+    a:hover {
+        text-decoration: none;
+    }
+    
+    .post.row {
+        margin-top: 16px;
+    }
+    
+    .post-but-options {
+        padding-bottom: 2px;
+    }
+}
+
+// Accoridian Toggle icon before and after selection 
+
+/*.panel-heading .accordion-toggle .font-icon:after {
+    font-family: 'Glyphicons Halflings'; 
+    content: "\e114";  
+}
+.panel-heading .accordion-toggle.collapsed .font-icon:after {
+    content: "\e080";
+}*/ 
+
+// Users Group to Event listing highlighting current
+.panel .list-group-item.current {
+    background: #e5f2ff;
+}
+
+
+
+//Step wizard styles for initial setup
+
+.stepwizard-step p {
+    margin-top: 10px;
+}
+.stepwizard-row {
+    display: table-row;
+}
+.stepwizard {
+    display: table;
+    width: 50%;
+    position: relative;
+}
+.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-order: 0;
+}
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+.setup-content .pull-left {
+    margin-top: 25px;
+}
+
+.setup-content .pull-right {
+    margin-top: 25px;
+}
+
+
+
+/*  Trip page styles  ================================================ */
+
+.trip {
+    .date-wrapper {
+        background-color: #FFFFFF;
+        border-radius: 3px;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+        float: left;
+        font-size: 9px;
+        height: 40px;
+        line-height: 9px;
+        text-align: center;
+        text-shadow: none;
+        width: 40px;
+    }
+    
+    .month {
+        background-color: #3b8ced;
+        border-radius: 3px 3px 0px 0px;
+        color: #FFFFFF;
+        display: block;
+        padding: 2px;
+        text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+        text-transform: uppercase;
+    }
+    
+    .date {
+        color: #555555;
+        display: block;
+        font-size: 17px;
+        line-height: 17px;
+    }
+    
+    .day {
+        color: #999999;
+    }
+    
+    .destination {
+        h5 {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.trip-details {
+    .contents {
+        .fa {
+            font-size: 40px;
+            margin-top: 5px;
+        }
+        
+        h3 {
+            font-size: 30px;
+            margin-top: 5px;
+        }
+        
+        .action-buts {
+            .fa {
+                font-size: 34px;
+                margin-top: 0px;
+                margin-right: 0px;
+            }
+            button {
+                margin: 0 5px;
+            }
+        }
+    }
+}
+
+.note-trip {
+    p {
+        margin: 10px 0;
+    }
+}
+
+
+/*  General Class & Styles   ================================================ */
+
+.alerts-container {
+    position: absolute;
+    z-index: 100000;
+    width: 60%;
+    left: 20%;
+    top: 25px;
+    @include transition(all, ease-in-out, 0.5s);
+}
+
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.badge-error {
+  background-color: #b94a48;
+}
+.badge-error:hover {
+  background-color: #953b39;
+}
+.badge-warning {
+  background-color: #f89406;
+}
+.badge-warning:hover {
+  background-color: #c67605;
+}
+.badge-success {
+  background-color: #468847;
+}
+.badge-success:hover {
+  background-color: #356635;
+}
+.badge-info {
+  background-color: #3a87ad;
+}
+.badge-info:hover {
+  background-color: #2d6987;
+}
+.badge-inverse {
+  background-color: #333333;
+}
+
+form {
+    button.ma-btn, input.ma-btn { //ma-btn => Main action buttons
+        padding: 7px 45px;
+        font-size: 18px;
+    }
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.required {
+    color: #d62e2e;
+}
+
+.cus-panels {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0.5px 0.9px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.cus-panels-with-pad {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0.5px 0.9px 4px 0px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.dz-default {
+    background: $main-bg-color;
+    border: 2px dashed $subtle-color;
+    position: relative;
+    border-radius: 5px;
+    transition: border-color .35s ease-out;
+    min-height: 150px;
+    padding: 10px;
+    
+    &:hover {
+        border-color: #474950;
+        cursor: pointer;
+    }
+}
+
+// Custom buttons
+.pri-cus-buttons {
+    display: inline-block;
+    background-color: #3b8ced;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-decoration: none;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.4);
+    outline: none;
+    @include transition(all, linear, .25s);
+
+    &:hover{
+        background-color: #2971c9;
+        text-decoration: none;
+        box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.6);
+        @include transition(all, linear, .25s);
+    }
+
+    &:active{
+        color: #fff;
+        background-color: #2465b4;
+        text-decoration: none;
+        box-shadow: inset 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+        @include transition(all, linear, .25s);
+    }
+}
+
+.sec-cus-buttons {
+    display: inline-block;
+    background-color: #8cc63f;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    padding: 6px 12px;
+    text-decoration: none;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.4);
+    outline: none;
+    @include transition(all, linear, .25s);
+
+    &:hover{
+        background-color: #71a230;
+        text-decoration: none;
+        box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.6);
+        @include transition(all, linear, .25s);
+    }
+
+    &:active{
+        color: #fff;
+        background-color: #638e2a;
+        text-decoration: none;
+        box-shadow: inset 0px 0px 7px 0px rgba(0, 0, 0, 0.5);
+        @include transition(all, linear, .25s);
+    }
+}
+
+.btn-default {
+    
+    color: #474950 !important;
+    background-color: #fafafa;
+    border-color: #dadada;
+    border-bottom-color: #ccc;
+    -webkit-box-shadow: 0 1px 1px rgba(90,90,90,0.1);
+    box-shadow: 0 1px 1px rgba(90,90,90,0.1);
+  
+    /*border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 13px;
+    line-height: 1.5;*/
+    
+    &:hover {
+        color: #474950 !important;
+        background-color: #ededed;
+        border-color: #c6c6c6;
+        text-decoration: none;
+    }
+    
+    &:active, &.active {
+        @include box-shadow(rgba(0, 0, 0, .125) 0 3px 5px 0 inset);  //box-shadow(rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset)
+    }
+}
+
+
+.btn-disabled {
+    
+    box-shadow: none !important;
+    background: #f0f0f0;
+    border-color: #dadada;
+    color: #aaaaaa;
+    cursor: not-allowed;
+    opacity: .75;
+
+    &:hover {
+        color: #aaaaaa;
+        box-shadow: none !important;
+    }
+
+    &:active {
+        color: #aaaaaa;
+        box-shadow: none !important;
+    }
+}
+
+.pad-0 {
+    padding: 0px;
+}
+
+.pad-5 {
+    padding: 5px;
+}
+
+.pad-7 {
+    padding: 7px;
+}
+
+.pad-10 {
+    padding: 10px;
+}
+
+.pad-15 {
+    padding: 15px;
+}
+
+.pad-25 {
+    padding: 25px;
+}
+
+.pad-5-10 {
+    padding: 5px 10px;
+}
+
+.pad-5-0 {
+    padding: 5px 0px;
+}
+
+.pad-0-5 {
+    padding: 0px 5px;
+}
+
+
+.pad-0-10 {
+    padding: 0px 10px;
+}
+
+.pad-10-5 {
+    padding: 10px 5px;
+}
+
+.pad-7-15 {
+    padding: 7px 15px;
+}
+
+.pad-15-7 {
+    padding: 15px 7px;
+}
+
+
+
+.mar-0 {
+    margin: 0px;
+}
+
+.mar-5 {
+    margin: 5px;
+}
+
+.mar-7 {
+    margin: 7px;
+}
+
+.mar-10 {
+    margin: 10px;
+}
+
+.mar-25 {
+    margin: 25px;
+}
+
+.mar-5-10 {
+    margin: 5px 10px;
+}
+
+.mar-5-0 {
+    margin: 5px 0px;
+}
+
+.mar-0-5 {
+    margin: 0px 5px;
+}
+
+.mar-0-10 {
+    margin: 0px 10px;
+}
+
+.mar-10-0 {
+    margin: 10px 0px;
+}
+
+.mar-10-5 {
+    margin: 10px 5px;
+}
+
+.mar-7-15 {
+    margin: 7px 15px;
+}
+
+.mar-15-7 {
+    margin: 15px 7px;
+}
+
+.display-ib {
+    display: inline-block;
+}
+
+.display-i {
+    display: inline;
+}
+
+.display-b {
+    display: block;
+}
+
+.display-n {
+    display: none;
+}
+
+.bordernone {
+    border: none !important;
+}
+
+.border-left-none {
+    border-left: none !important;
+}
+
+.border-right-none {
+    border-right: none !important;
+}
+
+
+.top-bottom-dark-box-shadows {
+    //@include box-shadow($color $hoff $voff $blur $spread $inset, $color $hoff $voff $blur $spread $inset);
+    @include box-shadow(rgba(255,255,255,0.75) 0 1px 0 0 inset, rgba(0,0,0,0.9) 0 1px 2px 0 );
+}
+
+.top-bottom-moderate-box-shadows {
+    @include box-shadow(rgba(255,255,255,0.6) 0 1px 0 0 inset, rgba(0,0,0,0.7) 0 1px 2px 0 );
+}
+
+.top-bottom-light-box-shadows {
+    @include box-shadow(rgba(255,255,255,0.4) 0 1px 0 0 inset, rgba(0,0,0,0.6) 0 1px 2px 0 );
+}
+
+.top-bottom-mild-box-shadows {
+    @include box-shadow(rgba(255,255,255,0.5) 0 1px 0 0 inset, rgba(51,51,51,0.75) 0 1px 2px 0 );
+}
+
+.top-highlight-box-shadow {
+    @include box-shadow(rgba(255,255,255,0.75) 0 1px 0 0 inset);
+}
+
+.bottom-dark-box-shadow {
+    @include box-shadow(rgba(0,0,0,0.9) 0 1px 3px 0 );
+}
+
+.bottom-moderate-box-shadow {
+    @include box-shadow(rgba(0,0,0,0.7) 0 1px 3px 0 );
+}
+
+.bottom-moderate2-box-shadow {
+    @include box-shadow(rgba(0,0,0,0.6) 0 1px 2px 0 );
+}
+
+.bottom-light-box-shadow {
+    @include box-shadow(rgba(0,0,0,0.3) 0 1px 2px 0 );
+}
+
+.bottom-mild-box-shadow {
+    @include box-shadow(rgba(51,51,51,0.75) 0 1px 2px 0 );
+}
+
+.bottom-dark-s-box-shadow {
+    @include box-shadow(rgba(0,0,0,0.9) 0 1px 1px 0 );
+}
+
+.bottom-moderate-s-box-shadow {
+    @include box-shadow(rgba(0,0,0,0.7) 0 1px 1px 0 );
+}
+
+.bottom-moderate2-s-box-shadow {
+    @include box-shadow(rgba(0,0,0,0.6) 0 1px 1px 0 );
+}
+
+.bottom-light-s-box-shadow {
+    @include box-shadow(rgba(0,0,0,0.3) 0 1px 1px 0 );
+}
+
+.bottom-mild-s-box-shadow {
+    @include box-shadow(rgba(51,51,51,0.75) 0 1px 1px 0 );
+}
+
+
+/*==============================================
+Animation slideDown
+==============================================*/
+
+
+
+.slideDown{
+    animation-name: slideDown;
+    -webkit-animation-name: slideDown;  
+
+    animation-duration: 1s; 
+    -webkit-animation-duration: 1s;
+
+    animation-timing-function: ease;    
+    -webkit-animation-timing-function: ease;    
+
+    visibility: visible !important;                     
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+    }
+    50%{
+        transform: translateY(8%);
+    }
+    65%{
+        transform: translateY(-4%);
+    }
+    80%{
+        transform: translateY(4%);
+    }
+    95%{
+        transform: translateY(-2%);
+    }           
+    100% {
+        transform: translateY(0%);
+    }       
+}
+
+@-webkit-keyframes slideDown {
+    0% {
+        -webkit-transform: translateY(-100%);
+    }
+    50%{
+        -webkit-transform: translateY(8%);
+    }
+    65%{
+        -webkit-transform: translateY(-4%);
+    }
+    80%{
+        -webkit-transform: translateY(4%);
+    }
+    95%{
+        -webkit-transform: translateY(-2%);
+    }           
+    100% {
+        -webkit-transform: translateY(0%);
+    }   
+}
+
+
+/* Following codes written by Steev ------------------------------------- New CSS ---------------------------------------- */
+
+
+  .hideSave{
+    display: none !important;
+  }
+
+  .showSave{
+    display: block !important;
+  }
+
+
+  
+
+
+/* ------------------------------------- User data upload css.. ---------------------------------------- */
+
+  .drop-box {
+    background: #F8F8F8 Â ;
+    border: 5px dashed #DDD;
+    width: 200px;
+    height: 65px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed gray;
+}
+
+
+
+
+
+
+@media(min-width:250px) and (max-width:767px){
+
+  .mobileView{
+    margin-top:12%;
+  }
+  
+}
